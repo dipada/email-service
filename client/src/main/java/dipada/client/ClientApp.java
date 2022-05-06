@@ -49,7 +49,7 @@ public class ClientApp extends Application {
             stage.setScene(scene);
             LoginController loginController = loginLoader.getController();
             loginController.setLoginController(this, stage);
-            stage.show();
+            stage.showAndWait();
         } catch (IOException e) {
             System.out.println("Login loader error");
             e.printStackTrace();
