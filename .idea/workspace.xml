@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="First commit, new project divided by server and client module">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/example/client/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/example/client/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/com/example/client/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/dipada/client/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/com/example/server/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/hello-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,17 +25,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="28mfH3zPYn2KWSKWpLnSGG08Mnp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "18"
   }
 }]]></component>
   <component name="RunManager" selected="Application.com.example.server.HelloApplication">
@@ -81,9 +102,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
-      <workItem from="1651826592832" duration="1000" />
+      <workItem from="1651826592832" duration="442000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
+      <created>1651826811583</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651826811583</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -95,5 +127,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="First commit, new project divided by server and client module" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit, new project divided by server and client module" />
   </component>
 </project>

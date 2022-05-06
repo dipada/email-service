@@ -4,6 +4,6 @@ module com.example.server {
 
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.server to javafx.fxml;
-    exports com.example.server;
+    opens dipada.server to javafx.fxml;
+    exports dipada.server;
 }

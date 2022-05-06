@@ -1,4 +1,4 @@
-package com.example.server;
+package dipada.server;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
