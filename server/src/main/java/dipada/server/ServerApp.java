@@ -21,6 +21,10 @@ public class ServerApp extends Application {
     }
 
     public static void main(String[] args) {
+        Server server = new Server(8989);
+        Thread ts = new Thread(server);
+        ts.start();
+
         launch();
     }
 }

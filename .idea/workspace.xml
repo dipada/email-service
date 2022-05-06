@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added serialization to Email class">
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Email.java" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update email class">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerThreadSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +51,15 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dipada.server" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/src/main/resources/dipada/server" />
       <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.ClientApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dipada.client.ClientApp" />
       <module name="client" />
@@ -92,8 +101,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
       </list>
     </recent_temporary>
   </component>
@@ -106,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="4240000" />
+      <workItem from="1651845060613" duration="6009000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -234,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651849550316</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update email class">
+      <created>1651849703199</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1651849703199</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,6 +287,7 @@
     <MESSAGE value="fixed module-info.java and fxml file name in start application" />
     <MESSAGE value="added model class to server" />
     <MESSAGE value="added serialization to Email class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added serialization to Email class" />
+    <MESSAGE value="update email class" />
+    <option name="LAST_COMMIT_MESSAGE" value="update email class" />
   </component>
 </project>

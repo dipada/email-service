@@ -10,6 +10,6 @@ public class ServerMainWindowController {
     private ListView<String> loglst;
 
     public void initialize(){
-        System.out.println("Server controller");
+        //System.out.println("Server controller");
     }
 }
