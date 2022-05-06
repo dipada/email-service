@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="deleted standard javafx project file">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added main window controller, image and update main view">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Email.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client/src/main/resources/dipada/client/Login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/dipada/client/MainWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,11 @@
     "jdk.selected.JAVA_MODULE": "18"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="dipadamail" />
@@ -69,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
-      <workItem from="1651826592832" duration="1367000" />
+      <workItem from="1651826592832" duration="2145000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -92,7 +96,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651827185674</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added main windows view">
+      <created>1651828215812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1651828215812</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added main window controller, image and update main view">
+      <created>1651828343630</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651828343631</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +132,8 @@
     <MESSAGE value="First commit, new project divided by server and client module" />
     <MESSAGE value="second commit, project structure" />
     <MESSAGE value="deleted standard javafx project file" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted standard javafx project file" />
+    <MESSAGE value="added main windows view" />
+    <MESSAGE value="added main window controller, image and update main view" />
+    <option name="LAST_COMMIT_MESSAGE" value="added main window controller, image and update main view" />
   </component>
 </project>
