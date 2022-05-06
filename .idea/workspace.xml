@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="Fixed exit by login screen. Now if exit by login screen application will be terminated">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="Added alert for login view">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="1351000" />
+      <workItem from="1651845060613" duration="2577000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -172,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651831108631</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added alert for login view">
+      <created>1651846451017</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1651846451017</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +209,7 @@
     <MESSAGE value="update start method for load 2 view, to fix: main layout just need appear later login layout is closed" />
     <MESSAGE value="update showLogin method, now main layout start only when login screen is closed" />
     <MESSAGE value="Fixed exit by login screen. Now if exit by login screen application will be terminated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed exit by login screen. Now if exit by login screen application will be terminated" />
+    <MESSAGE value="Added alert for login view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added alert for login view" />
   </component>
 </project>
