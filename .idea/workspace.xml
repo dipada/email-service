@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added basic connection feature">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/ServerMainWindow.fxml" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="fixed module-info.java and fxml file name in start application">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,6 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "18",
     "last_directory_selection": "/home/dan/IdeaProjects/dipadamail/server/src/main/java/dipada/server"
@@ -109,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="2979000" />
+      <workItem from="1651845060613" duration="3913000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -202,7 +199,28 @@
       <option name="project" value="LOCAL" />
       <updated>1651847827845</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added server view and controller">
+      <created>1651848230606</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651848230606</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added ServerApp main class">
+      <created>1651848248175</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1651848248175</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed module-info.java and fxml file name in start application">
+      <created>1651848359954</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651848359954</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +252,9 @@
     <MESSAGE value="Fixed exit by login screen. Now if exit by login screen application will be terminated" />
     <MESSAGE value="Added alert for login view" />
     <MESSAGE value="added basic connection feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="added basic connection feature" />
+    <MESSAGE value="added server view and controller" />
+    <MESSAGE value="added ServerApp main class" />
+    <MESSAGE value="fixed module-info.java and fxml file name in start application" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed module-info.java and fxml file name in start application" />
   </component>
 </project>
