@@ -1,11 +1,14 @@
 package dipada.server.lib;
 
 import dipada.server.model.Email;
-import javafx.scene.control.ListView;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -19,13 +22,22 @@ public class FileManager {
         Email e1 = new Email("dan@dipada.it", "oggetto 1", List.of("gio@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
         Email e2 = new Email("gio@dipada.it", "oggetto 2", List.of("dan@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
         Email e3 = new Email("pep@dipada.it", "oggetto 3", List.of("dan@dipada.it", "gio@dipada.it"),"ciao a tutti da dan", new Date());
-        save(e1);
-        save(e2);
-        save(e3);
+        e1 = save(e1);
+        e2 = save(e2);
+        e3 = save(e3);
+
+        deletgeEmail(e1,"dan@dipada.it");
+        //deletgeEmail(e2,"dan@dipada.it");
     }
 
+    /**
+     *
+     * This method save and email sent in inbox directory of sender
+     * and outbox directory of receivers
+     *
+     * @param email email to save
+     * */
     public synchronized static Email save(Email email){
-        boolean result;
         Email newEmail = null;
 
         try{
@@ -82,6 +94,87 @@ public class FileManager {
         return newEmail;
     }
 
+    // TODO caricare email in arrivo
+    /**
+     *
+     * This method retrive inbox user emails and return a list of emails
+     * @param user user that request inbox email
+     * @return Inbox list of emails
+     *
+     */
+    public synchronized static List<Email> loadInbox(String user) {
+        List<Email> inbox = new ArrayList<>();
+        try {
+            File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/in/")));
+            ObjectInputStream oi = null;
+            FileInputStream fis = null;
+            if(userDir.listFiles() == null)
+                return null;
+            for (File f : Objects.requireNonNull(userDir.listFiles())) {
+                fis = new FileInputStream(f);
+                oi = new ObjectInputStream(fis);
+                inbox.add((Email) oi.readObject());
+                oi.close();
+                fis.close();
+            }
+            for(Email e : inbox)
+                System.out.println(user + " INBOX: " + e);
+        } catch (ClassNotFoundException | IOException | NullPointerException e) {
+            e.printStackTrace();
+            inbox = null;
+        } finally {
+        }
+        return inbox;
+    }
+
+    // TODO caricare email in uscita
+    /**
+     *
+     * This method retrive outbox user emails and return a list of emails
+     * @param user user that request inbox email
+     * @return Outbox list of emails
+     */
+    public synchronized static List<Email> loadOutbox(String user) {
+        List<Email> outbox = new ArrayList<>();
+        try {
+            File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/out/")));
+            ObjectInputStream oi = null;
+            FileInputStream fis = null;
+
+            for(File f : Objects.requireNonNull(userDir.listFiles())){
+                fis = new FileInputStream(f);
+                oi = new ObjectInputStream(fis);
+                outbox.add((Email) oi.readObject());
+                oi.close();
+                fis.close();
+            }
+            for(Email e : outbox)
+                System.out.println(user + " OUTBOX: " + e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outbox;
+    }
+
+    //TODO delete email
+    public synchronized static void deletgeEmail(Email email, String user){
+        try{
+            System.out.println("Email inviata: "+ email.isSent());
+            if(email.isSent()){
+                System.out.println("TRUE");
+                System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId() + ".dp"));
+                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId() + ".dp"))));
+            }else{
+                System.out.println("FALSE");
+                System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId() + ".dp"))));
+                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId() + ".dp"))));
+            }
+        } catch (IOException e) {
+            System.out.println("Filemanager files.delete exception");
+            e.printStackTrace();
+        }
+    }
+
     private static boolean createDirectory(File f) {
         return f.mkdirs();
     }
@@ -90,6 +183,8 @@ public class FileManager {
         String path = new File("").getAbsolutePath() + "/server/src/main/resources/dipada/server/file" + subPath;
         return new File(path);
     }
+
+
 
 
 }

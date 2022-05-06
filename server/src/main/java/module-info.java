@@ -9,7 +9,11 @@ module com.example.server {
 
     exports dipada.server;
     opens dipada.server to javafx.fxml;
+
     exports dipada.server.lib;
     opens dipada.server.lib to javafx.fxml;
+
+    exports dipada.server.model;
+    opens dipada.server.model to javafx.fxml;
 
 }
