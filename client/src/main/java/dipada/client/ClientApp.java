@@ -63,8 +63,6 @@ public class ClientApp extends Application {
             System.out.println("Login loader error");
             e.printStackTrace();
         }
-
-
     }
 
     private void showMainWindow(Stage primaryStage) {
