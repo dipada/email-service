@@ -1,10 +1,12 @@
 package dipada.client.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Email{
+public class Email implements Serializable{
     private final int id;
     private final String sender;
     private final String subject;
