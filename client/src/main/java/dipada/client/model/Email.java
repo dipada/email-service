@@ -1,18 +1,18 @@
 package dipada.client.model;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Email implements Serializable{
+public class Email implements Serializable {
     private final int id;
     private final String sender;
     private final String subject;
     private final List<String> receivers;
     private final String messageText;
-    private final Date date;
+    private final Date date; // TODO finire data
+    private boolean sent;
 
     public Email(String sender, String subject, List<String> receivers, String messageText, Date date) {
         this.sender = sender;
@@ -20,30 +20,35 @@ public class Email implements Serializable{
         this.receivers = receivers;
         this.messageText = messageText;
         this.date = date;
+        this.sent = false;
         this.id = this.hashCode();
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getSender(){
+    public String getSender() {
         return sender;
     }
 
-    public String getSubject(){return subject;}
+    public String getSubject() {
+        return subject;
+    }
 
-    public List<String> getReceivers(){
+    public List<String> getReceivers() {
         return receivers;
     }
 
-    public String getMessageText(){return messageText;}
+    public String getMessageText() {
+        return messageText;
+    }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public String getDateToString(){
+    public String getDateToString() {
         return (this.date == null) ? "" : formatDate(this.date);
     }
 
@@ -55,11 +60,7 @@ public class Email implements Serializable{
 
     @Override
     public String toString() {
-        return "ID: " + id + " "
-                + "Sender: " + sender + " - "
-                + "Subject:" + subject + " - "
-                + "Receivers:" + receivers + " - "
-                + "Date: " + getDateToString();
+        return "ID: " + id + " " + "Sender: " + sender + " - " + "Subject:" + subject + " - " + "Receivers: " + receivers + " - " + "Date: " + getDateToString();
     }
 
     @Override
@@ -77,9 +78,17 @@ public class Email implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Email email = (Email) obj;
         return getId() == email.getId();
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 }
