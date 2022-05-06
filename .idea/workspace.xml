@@ -4,14 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added simply code for test communication with 2-3 clients and server.">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="moved Server and ServerThreadSession to lib package">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/FileManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/dan@dipada.it/out/-1526173366" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/dan@dipada.it/out/-1526173367" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/dan@dipada.it/out/-1526185581" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/dan@dipada.it/out/-1526201316" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/dan@dipada.it/out/-1526325567" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/gio@dipada.it/in/-1526173366" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/gio@dipada.it/in/-1526173367" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/gio@dipada.it/in/-1526185581" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/gio@dipada.it/in/-1526201316" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/gio@dipada.it/in/-1526325567" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/pep@dipada.it/in/-1526173366" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/pep@dipada.it/in/-1526173367" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/pep@dipada.it/in/-1526185581" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/pep@dipada.it/in/-1526201316" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/dipada/server/file/pep@dipada.it/in/-1526325567" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/ServerThreadSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +71,9 @@
       <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.dipada.server.ServerApp">
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dipada.server.ServerApp" />
+  <component name="RunManager" selected="Application.FileManager">
+    <configuration name="FileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dipada.server.lib.FileManager" />
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -86,6 +98,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dipada.server.ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dipada.server.ServerApp" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dipada.server.lib.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="dipadamail" />
       <method v="2">
@@ -100,11 +125,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.FileManager" />
       <item itemvalue="Application.dipada.server.ServerApp" />
       <item itemvalue="Application.dipada.client.ClientApp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FileManager" />
         <item itemvalue="Application.dipada.client.ClientApp" />
         <item itemvalue="Application.dipada.server.ServerApp" />
       </list>
@@ -119,7 +146,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="7916000" />
+      <workItem from="1651845060613" duration="10322000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -268,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651851731788</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="moved Server and ServerThreadSession to lib package">
+      <created>1651854067369</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1651854067369</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +342,7 @@
     <MESSAGE value="update email class" />
     <MESSAGE value="added Server, ServerThreadSession for handle multiple connections. All works. Clients can send a file and server can read it. To fix: when server fx Application terminate server have to shutdown threadPool. To complete: add operations and file handler for save email received/sended" />
     <MESSAGE value="added simply code for test communication with 2-3 clients and server." />
-    <option name="LAST_COMMIT_MESSAGE" value="added simply code for test communication with 2-3 clients and server." />
+    <MESSAGE value="moved Server and ServerThreadSession to lib package" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved Server and ServerThreadSession to lib package" />
   </component>
 </project>
