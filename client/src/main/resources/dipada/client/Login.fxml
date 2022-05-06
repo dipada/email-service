@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dipada.client.controller.LoginController">
+   <children>
+      <TextField fx:id="emailField" layoutX="20.0" layoutY="20.0" />
+      <Label layoutX="201.0" layoutY="20.0" prefHeight="24.0" prefWidth="79.0" text="\@dipada.it" />
+      <Button fx:id="btnLogin" layoutX="210.0" layoutY="55.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
+   </children>
+</AnchorPane>
