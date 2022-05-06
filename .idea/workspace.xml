@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update email class">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerThreadSession.java" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added simply code for test communication with 2-3 clients and server.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/ServerThreadSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,13 +59,13 @@
       <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
-    <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dipada.client.ClientApp" />
-      <module name="client" />
+  <component name="RunManager" selected="Application.dipada.server.ServerApp">
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dipada.server.ServerApp" />
+      <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dipada.client.*" />
+          <option name="PATTERN" value="dipada.server.lib.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -73,12 +73,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dipada.server.ServerApp" />
-      <module name="server" />
+    <configuration name="dipada.client.ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dipada.client.ClientApp" />
+      <module name="client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dipada.server.*" />
+          <option name="PATTERN" value="dipada.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,10 +99,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.dipada.server.ServerApp" />
+      <item itemvalue="Application.dipada.client.ClientApp" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.dipada.client.ClientApp" />
+        <item itemvalue="Application.dipada.server.ServerApp" />
       </list>
     </recent_temporary>
   </component>
@@ -115,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="6009000" />
+      <workItem from="1651845060613" duration="7916000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -250,7 +254,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651849703199</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="added Server, ServerThreadSession for handle multiple connections. All works. Clients can send a file and server can read it. To fix: when server fx Application terminate server have to shutdown threadPool. To complete: add operations and file handler for save email received/sended">
+      <created>1651851685846</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1651851685846</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added simply code for test communication with 2-3 clients and server.">
+      <created>1651851731788</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1651851731788</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +306,8 @@
     <MESSAGE value="added model class to server" />
     <MESSAGE value="added serialization to Email class" />
     <MESSAGE value="update email class" />
-    <option name="LAST_COMMIT_MESSAGE" value="update email class" />
+    <MESSAGE value="added Server, ServerThreadSession for handle multiple connections. All works. Clients can send a file and server can read it. To fix: when server fx Application terminate server have to shutdown threadPool. To complete: add operations and file handler for save email received/sended" />
+    <MESSAGE value="added simply code for test communication with 2-3 clients and server." />
+    <option name="LAST_COMMIT_MESSAGE" value="added simply code for test communication with 2-3 clients and server." />
   </component>
 </project>

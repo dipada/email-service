@@ -1,4 +1,4 @@
-package dipada.server;
+package dipada.server.lib;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
