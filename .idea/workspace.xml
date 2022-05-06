@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added login view and controller">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update showLogin method, now main layout start only when login screen is closed">
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
-      <workItem from="1651826592832" duration="3872000" />
+      <workItem from="1651826592832" duration="4194000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -150,7 +148,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651829885871</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update start method for load 2 view, to fix: main layout just need appear later login layout is closed">
+      <created>1651830895310</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1651830895310</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update showLogin method, now main layout start only when login screen is closed">
+      <created>1651830951611</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1651830951611</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +189,8 @@
     <MESSAGE value="added Email model class" />
     <MESSAGE value="Fixed module-info.java, added ClientApp main class" />
     <MESSAGE value="added login view and controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="added login view and controller" />
+    <MESSAGE value="update start method for load 2 view, to fix: main layout just need appear later login layout is closed" />
+    <MESSAGE value="update showLogin method, now main layout start only when login screen is closed" />
+    <option name="LAST_COMMIT_MESSAGE" value="update showLogin method, now main layout start only when login screen is closed" />
   </component>
 </project>

@@ -2,11 +2,14 @@ package dipada.client;
 
 import dipada.client.controller.LoginController;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,9 +47,15 @@ public class ClientApp extends Application {
             Scene scene = new Scene(loginLoader.load(), 300, 100);
             Stage stage = new Stage();
             stage.setTitle("Login");
-
+            stage.initModality(Modality.WINDOW_MODAL); // blocca l'owner stage (primarystage) di questo stage finchè questo non finisce
             stage.initOwner(primaryStage);
             stage.setScene(scene);
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Platform.exit(); // Causes the JavaFX application to terminare. javaDoc
+                }
+            });
             LoginController loginController = loginLoader.getController();
             loginController.setLoginController(this, stage);
             stage.showAndWait();
