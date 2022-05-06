@@ -11,7 +11,7 @@ import java.net.URL;
 public class ServerApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        URL serverUrl = ServerApp.class.getResource("ServerMainWindows.fxml");
+        URL serverUrl = ServerApp.class.getResource("ServerMainWindow.fxml");
         FXMLLoader serverLoader = new FXMLLoader(serverUrl);
         Scene scene = new Scene(serverLoader.load(), 900, 600);
 
