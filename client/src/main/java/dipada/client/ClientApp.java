@@ -39,7 +39,7 @@ public class ClientApp extends Application {
     public static void main(String[] args) {
 
         Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
-        //ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
+        ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
         tc.start();
         //connection.startConnection();
 

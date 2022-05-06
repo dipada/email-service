@@ -66,7 +66,15 @@ public class ConnectionHandler extends Thread {
 
     @Override
     public void run() {
-        super.run();
+
         startConnection();
+        try {
+            outStream.writeObject("stringa di provaa");
+        } catch (IOException e) {
+            System.out.println("Eccezione CONNECTION writeObject");
+            e.printStackTrace();
+        }
+        closeConnection();
+
     }
 }
