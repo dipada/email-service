@@ -59,7 +59,7 @@
       <recent name="dipada.client.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FileManager">
+  <component name="RunManager" selected="Application.dipada.client.ClientApp">
     <configuration name="FileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dipada.server.lib.FileManager" />
       <module name="server" />
@@ -119,9 +119,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FileManager" />
         <item itemvalue="Application.dipada.client.ClientApp" />
         <item itemvalue="Application.dipada.server.ServerApp" />
+        <item itemvalue="Application.FileManager" />
       </list>
     </recent_temporary>
   </component>
