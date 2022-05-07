@@ -1,7 +1,7 @@
-package dipada.client.controller;
+package prog.dipada.controller;
 
-import dipada.client.model.Client;
-import dipada.client.model.Email;
+import prog.dipada.model.Email;
+import prog.dipada.model.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -75,6 +75,7 @@ public class MainWindowController {
         // TODO istanzio nuovo client e genero email
         // TODO vanno caricate da server
         //model = new Client("email@dominio.it");
+        model = new Client();
         model.generateEmail();
 
         selectedEmail = null;

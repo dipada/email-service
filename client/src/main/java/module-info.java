@@ -4,13 +4,13 @@ module com.example.client {
 
     requires org.kordamp.bootstrapfx.core;
 
-    exports dipada.client.controller;
-    opens dipada.client.controller to javafx.fxml;
+    exports prog.dipada.controller;
+    opens prog.dipada.controller to javafx.fxml;
 
-    exports dipada.client.model;
-    opens dipada.client.model to javafx.fxml;
+    exports prog.dipada.model;
+    opens prog.dipada.model to javafx.fxml;
 
-    exports dipada.client;
-    opens dipada.client to javafx.fxml;
+    exports prog.dipada;
+    opens prog.dipada to javafx.fxml;
 
 }

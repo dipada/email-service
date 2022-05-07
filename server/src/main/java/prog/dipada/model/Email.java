@@ -1,4 +1,4 @@
-package dipada.client.model;
+package prog.dipada.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Email implements Serializable {
+    private static final long serialVersionUID = 5462223600L;
     private final int id;
     private final String sender;
     private final String subject;

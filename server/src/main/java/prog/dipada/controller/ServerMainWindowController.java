@@ -1,4 +1,4 @@
-package dipada.server.controller;
+package prog.dipada.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;

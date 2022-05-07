@@ -1,10 +1,10 @@
-package dipada.client;
+package prog.dipada;
 
-import dipada.client.controller.LoginController;
+import prog.dipada.controller.LoginController;
+import prog.dipada.model.Client;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -15,10 +15,11 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ClientApp extends Application {
+    private static Client client;
+    private static ConnectionHandler connection;
 
     @Override
     public void start(Stage stage) throws Exception {
-
         //URL clientUrl = ClientApp.class.getResource("MainWindow.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
         //Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -33,16 +34,21 @@ public class ClientApp extends Application {
         //stage.setScene(scene);
         //stage.show();
         showLoginLayout(stage);
-        showMainWindow(stage);
+        System.out.println("Client da main: " + client.getUserEmailProperty());
+        //showMainWindow(stage);
+
     }
 
     public static void main(String[] args) {
+        //Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
+        connection = new ConnectionHandler("localhost", 8989);
+        Thread connThread = new Thread(connection);
 
-        Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
-        ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
-        tc.start();
+        //ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
+        connThread.start();
+        client = new Client();
+        //client = new Client("a caso");
         //connection.startConnection();
-
         launch();
     }
 
@@ -63,7 +69,7 @@ public class ClientApp extends Application {
                 }
             });
             LoginController loginController = loginLoader.getController();
-            loginController.setLoginController(this, stage);
+            loginController.setLoginController(this, stage, client, connection);
             stage.showAndWait();
         } catch (IOException e) {
             System.out.println("Login loader error");
@@ -74,6 +80,7 @@ public class ClientApp extends Application {
     private void showMainWindow(Stage primaryStage) {
         try{
             URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
+            System.out.println("PATHHH " + mainWindowsUrl);
             FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
             Scene scene = new Scene(mainWindowLoader.load(), 900, 600);
             primaryStage.setTitle("dipadamail");

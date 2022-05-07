@@ -1,6 +1,7 @@
-package dipada.server;
+package prog.dipada;
 
-import dipada.server.lib.Server;
+import prog.dipada.lib.FileManager;
+import prog.dipada.lib.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ public class ServerApp extends Application {
 
     public static void main(String[] args) {
         Server server = new Server(8989);
+        server.setUsersList();
         Thread ts = new Thread(server);
         ts.start();
 

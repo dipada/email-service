@@ -1,8 +1,8 @@
-package dipada.client.controller;
+package prog.dipada.controller;
 
-import dipada.client.ClientApp;
-import dipada.client.model.Client;
-import javafx.application.Platform;
+import prog.dipada.ClientApp;
+import prog.dipada.ConnectionHandler;
+import prog.dipada.model.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 public class LoginController {
     private ClientApp clientApp;
+    private ConnectionHandler connection;
     private Client client;
     private Stage stage;
 
@@ -30,32 +31,32 @@ public class LoginController {
             String emailUserLogin = emailField.getText() + emailDomain;
             if(validateEmail(emailUserLogin)){
                 //TODO operazioni
-                System.out.println("Valida " + emailUserLogin);
-            }else{
-                //TODO messaggio di errore email scorretta
-                System.out.println("NOn valida " + emailUserLogin);
-            }
-            Platform.exit();
-            //System.out.println("Client email da login " + client.getUserEmailProperty());
-            client.setUserEmailProperty(emailField.getText());
-            //System.out.println("Client email da login " + client.getUserEmailProperty());
-            //ClientApp.client = client;
-            //client.setUserEmailProperty(emailField.getText()+"@dipada.it");
-            // TODO effettuare controllo email valida
-            if((emailField.getText()+"@dipada.it").equals("dan@dipada.it")){
-
+                System.out.println("Client è " + client);
+                System.out.println("Connection è " + connection);
+                client.setUserEmailProperty(emailUserLogin);
+                connection.setIdConnection(emailUserLogin);
                 // TODO controllo sul server dell'email
-                System.out.println("Login effettuato correttamente");
+                if(connection.requestAll()){
+                    // TODO verifica utente esiste
+                    System.out.println("Richiesta andata a buon fine");
+                }else{
+                    System.out.println("Richiesta non andata a buon fine");
+                }
+
                 stage.close();
             }else{
-                generateErrorAlert("Error login", "Wrong Email", "Email not valid");
+                //TODO messaggio di errore email scorretta
+                generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +
+                        "- should begin with a letter\n" +
+                        "- length need to be almost 4 character\n" +
+                        "- can contain only this special character . _");
             }
         }
     }
 
     private boolean validateEmail(String emailUserLogin) {
         // Compiles the given regular expression and attempts to match the given input against it.
-        return Pattern.matches("[a-zA-Z][a-zA-Z0-9._]+@dipada.it",emailUserLogin);
+        return Pattern.matches("^[a-zA-Z][a-zA-Z0-9._][a-zA-Z0-9._][a-zA-Z0-9._]+@dipada.it",emailUserLogin);
     }
 
     private void generateErrorAlert(String title, String headerText, String contentText){
@@ -67,9 +68,10 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    public void setLoginController(ClientApp clientApp, Stage stage, Client client) {
+    public void setLoginController(ClientApp clientApp, Stage stage, Client client, ConnectionHandler connection) {
         this.clientApp = clientApp;
         this.stage = stage;
         this.client = client;
+        this.connection = connection;
     }
 }

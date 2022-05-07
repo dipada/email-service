@@ -1,4 +1,4 @@
-package dipada.client.model;
+package prog.dipada.model;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;

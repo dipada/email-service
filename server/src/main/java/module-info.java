@@ -4,16 +4,16 @@ module com.example.server {
 
     requires org.kordamp.bootstrapfx.core;
 
-    exports dipada.server.controller;
-    opens dipada.server.controller to javafx.fxml;
+    exports prog.dipada.controller;
+    opens prog.dipada.controller to javafx.fxml;
 
-    exports dipada.server;
-    opens dipada.server to javafx.fxml;
+    exports prog.dipada;
+    opens prog.dipada to javafx.fxml;
 
-    exports dipada.server.lib;
-    opens dipada.server.lib to javafx.fxml;
+    exports prog.dipada.lib;
+    opens prog.dipada.lib to javafx.fxml;
 
-    exports dipada.server.model;
-    opens dipada.server.model to javafx.fxml;
+    exports prog.dipada.model;
+    opens prog.dipada.model to javafx.fxml;
 
 }

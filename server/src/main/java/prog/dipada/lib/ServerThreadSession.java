@@ -1,9 +1,14 @@
-package dipada.server.lib;
+package prog.dipada.lib;
 
+import prog.dipada.model.Email;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -11,11 +16,13 @@ import java.net.Socket;
  *
  * */
 public class ServerThreadSession implements Runnable {
+    private final FileManager fileManager;
     private Socket socket;
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
-    public ServerThreadSession(Socket socket) {
+    public ServerThreadSession(Socket socket, FileManager fileManager) {
         this.socket = socket;
+        this.fileManager = fileManager;
     }
 
     @Override
@@ -27,15 +34,32 @@ public class ServerThreadSession implements Runnable {
 
         // TODO qui operazioni
         try {
-            String provaricezione = (String) inStream.readObject();
-            if(provaricezione.equals("stringa di provaa")){
-                System.out.println("BENE ho ricevuto>> " + provaricezione);
-            }else{
-                System.out.println("MALE ho ricevuto>> " + provaricezione);
+            String req = (String) inStream.readObject();
+            switch (req){
+                case "sendAll":{
+                    String userEmail = (String) inStream.readObject();
+                    // TODO verifica esistenza email
+                    if(fileManager.checkUserExist(userEmail)){
+                        //System.out.println("Spedico email all'utente " + userEmail);
+                        outStream.writeObject(fileManager.loadInbox(userEmail));
+                        outStream.flush();
+                        outStream.writeObject(fileManager.loadOutbox(userEmail));
+                        outStream.flush();
+                        //outStream.writeObject(new Email("daniele", "ogg", List.of("1","2"), "adsdasdasd", new Date()));
+                    }else{
+                        outStream.writeObject("ERROR_SERVER");
+                        // TODO gestire utente non esistente
+                    }
+                    //outStream.writeObject();
+                    //List<Email> inboxList = (List<Email>) inStream.readObject();
+                    //List<Email> outboxList = (List<Email>) inStream.readObject();
+
+                }
             }
         } catch (IOException e) {
+            // User close streams
             System.out.println("SESSION eccezione lettura object");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Session eccezione class not found");
             e.printStackTrace();

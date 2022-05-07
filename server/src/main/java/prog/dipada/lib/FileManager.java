@@ -1,9 +1,8 @@
-package dipada.server.lib;
+package prog.dipada.lib;
 
-import dipada.server.model.Email;
+import prog.dipada.model.Email;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -16,25 +15,43 @@ import java.util.*;
  *
  * */
 public class FileManager {
+
     public static void main(String[] args) {
-        Email e1 = new Email("daniele@dipada.it", "oggetto 1", List.of("gio@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e2 = new Email("giovanni@dipada.it", "oggetto 2", List.of("dan@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e3 = new Email("peppino@dipada.it", "oggetto 3", List.of("dan@dipada.it", "gio@dipada.it"),"ciao a tutti da dan", new Date());
+        Email e1 = new Email("daniele@dipada.it", "oggetto 1", List.of("giovanni@dipada.it", "peppino@dipada.it"),"ciao a tutti da dan", new Date());
+        Email e2 = new Email("giovanni@dipada.it", "oggetto 2", List.of("daniele@dipada.it", "peppino@dipada.it"),"ciao a tutti da dan", new Date());
+        Email e3 = new Email("peppino@dipada.it", "oggetto 3", List.of("daniele@dipada.it", "giovanni@dipada.it"),"ciao a tutti da dan", new Date());
 
-        e1 = save(e1);
-        //e2 = save(e2);
-        //e3 = save(e3);
+       /*
+        FileManager fileManager = new FileManager();
+
+        fileManager.addUserDir("daniele@dipada.it");
+        fileManager.addUserDir("giovanni@dipada.it");
 
 
-
-        if(checkUserExist("danz@dipada.it")){
-            System.out.println("Esiste");
-        }else{
-            System.out.println("Non esiste");
-        }
+        e1 = fileManager.save(e1);
+        e2 = fileManager.save(e2);
+        e3 = fileManager.save(e3);
+*/
 
         //deletgeEmail(e1,"dan@dipada.it");
         //deletgeEmail(e2,"dan@dipada.it");
+    }
+    private final String filePath;
+    public FileManager(){
+        this.filePath = String.valueOf(getUserFileDirectory(""));
+        System.out.println("File path " + filePath);
+    }
+
+    public boolean addUserDir(String userEmail){
+        File f = new File(filePath + "/" + userEmail);
+        //System.out.println("ADDUSERDIR " + f.toString());
+        if(checkUserExist(userEmail)){
+            System.out.println("Utente già esistente");
+            return true;
+        }else{
+            System.out.println("Creo le cartelle per " + userEmail);
+            return createDirectory(f);
+        }
     }
 
     /**
@@ -44,11 +61,12 @@ public class FileManager {
      *
      * @param email email to save
      * */
-    public synchronized static Email save(Email email){
+    public synchronized Email save(Email email){
         Email newEmail = null;
 
         try{
-            String path = String.valueOf(getUserFileDirectory("/" + email.getSender() + "/out"));
+            String path = filePath + "/" + email.getSender() + "/out";
+            //String path = String.valueOf(getUserFileDirectory("/" + email.getSender() + "/out"));
             File f = new File(path);
             if(!f.exists())
                 createDirectory(f);
@@ -69,7 +87,8 @@ public class FileManager {
 
             List<String> receivers = email.getReceivers();
             for(String rcv : receivers){
-                path = String.valueOf(getUserFileDirectory("/" + rcv + "/in"));
+                path = filePath + "/" + rcv + "/in";
+                //path = String.valueOf(getUserFileDirectory("/" + rcv + "/in"));
                 f = new File(path);
                 if(!f.exists())
                     createDirectory(f);
@@ -109,7 +128,7 @@ public class FileManager {
      * @return Inbox list of emails
      *
      */
-    public synchronized static List<Email> loadInbox(String user) {
+    public synchronized List<Email> loadInbox(String user) {
         List<Email> inbox = new ArrayList<>();
         try {
             File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/in/")));
@@ -141,7 +160,7 @@ public class FileManager {
      * @param user user that request inbox email
      * @return Outbox list of emails
      */
-    public synchronized static List<Email> loadOutbox(String user) {
+    public synchronized List<Email> loadOutbox(String user) {
         List<Email> outbox = new ArrayList<>();
         try {
             File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/out/")));
@@ -155,8 +174,8 @@ public class FileManager {
                 oi.close();
                 fis.close();
             }
-            for(Email e : outbox)
-                System.out.println(user + " OUTBOX: " + e);
+            //for(Email e : outbox)
+              //  System.out.println(user + " OUTBOX: " + e);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,7 +183,7 @@ public class FileManager {
     }
 
     //TODO delete email
-    public synchronized static void deletgeEmail(Email email, String user){
+    public synchronized void deletgeEmail(Email email, String user){
         try{
             System.out.println("Email inviata: "+ email.isSent());
             if(email.isSent()){
@@ -182,12 +201,14 @@ public class FileManager {
         }
     }
 
-    private static boolean createDirectory(File f) {
+    private boolean createDirectory(File f) {
         return f.mkdirs();
     }
 
-    private static File getUserFileDirectory(String subPath) {
-        String path = new File("").getAbsolutePath() + "/server/src/main/resources/dipada/server/file" + subPath;
+    // TODO creare cartella user
+
+    private File getUserFileDirectory(String subPath) {
+        String path = new File("").getAbsolutePath() + "/server/src/main/resources/prog/dipada/file" + subPath;
         return new File(path);
     }
 
@@ -197,9 +218,8 @@ public class FileManager {
      * if exists its folder
      *
      *  */
-    public static boolean checkUserExist(String userEmail){
+    public boolean checkUserExist(String userEmail){
         String[] dir = (getUserFileDirectory("").list());
-
         return dir != null && dir.length != 0 && Arrays.stream(dir).toList().contains(userEmail);
     }
 }
