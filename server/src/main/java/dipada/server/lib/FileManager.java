@@ -3,12 +3,10 @@ package dipada.server.lib;
 import dipada.server.model.Email;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  *
@@ -19,14 +17,23 @@ import java.util.Objects;
  * */
 public class FileManager {
     public static void main(String[] args) {
-        Email e1 = new Email("dan@dipada.it", "oggetto 1", List.of("gio@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e2 = new Email("gio@dipada.it", "oggetto 2", List.of("dan@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e3 = new Email("pep@dipada.it", "oggetto 3", List.of("dan@dipada.it", "gio@dipada.it"),"ciao a tutti da dan", new Date());
-        e1 = save(e1);
-        e2 = save(e2);
-        e3 = save(e3);
+        Email e1 = new Email("daniele@dipada.it", "oggetto 1", List.of("gio@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
+        Email e2 = new Email("giovanni@dipada.it", "oggetto 2", List.of("dan@dipada.it", "pep@dipada.it"),"ciao a tutti da dan", new Date());
+        Email e3 = new Email("peppino@dipada.it", "oggetto 3", List.of("dan@dipada.it", "gio@dipada.it"),"ciao a tutti da dan", new Date());
 
-        deletgeEmail(e1,"dan@dipada.it");
+        e1 = save(e1);
+        //e2 = save(e2);
+        //e3 = save(e3);
+
+
+
+        if(checkUserExist("danz@dipada.it")){
+            System.out.println("Esiste");
+        }else{
+            System.out.println("Non esiste");
+        }
+
+        //deletgeEmail(e1,"dan@dipada.it");
         //deletgeEmail(e2,"dan@dipada.it");
     }
 
@@ -184,7 +191,15 @@ public class FileManager {
         return new File(path);
     }
 
+    /**
+     *
+     * Check if a userEmail exists, by verifying
+     * if exists its folder
+     *
+     *  */
+    public static boolean checkUserExist(String userEmail){
+        String[] dir = (getUserFileDirectory("").list());
 
-
-
+        return dir != null && dir.length != 0 && Arrays.stream(dir).toList().contains(userEmail);
+    }
 }

@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update main window controller">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added method for validate email">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/ServerThreadSession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,8 +122,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.dipada.client.ClientApp" />
-        <item itemvalue="Application.dipada.server.ServerApp" />
         <item itemvalue="Application.FileManager" />
+        <item itemvalue="Application.dipada.server.ServerApp" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +136,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="17948000" />
+      <workItem from="1651845060613" duration="25901000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -320,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651900017438</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added method for validate email">
+      <created>1651906477539</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1651906477539</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +346,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="second commit, project structure" />
     <MESSAGE value="deleted standard javafx project file" />
     <MESSAGE value="added main windows view" />
     <MESSAGE value="added main window controller, image and update main view" />
@@ -364,6 +370,7 @@
     <MESSAGE value="update file manager with loading inbox/outbox methods" />
     <MESSAGE value="added Client model class" />
     <MESSAGE value="update main window controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="update main window controller" />
+    <MESSAGE value="added method for validate email" />
+    <option name="LAST_COMMIT_MESSAGE" value="added method for validate email" />
   </component>
 </project>
