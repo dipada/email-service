@@ -13,14 +13,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Client {
-    private final StringProperty userEmail;
+    private StringProperty userEmail;
     private final ListProperty<Email> inbox;
     private final ObservableList<Email> inboxContent;  // Per bindind di property
 
     private final ListProperty<Email> outbox;
     private final ObservableList<Email> outboxContent;  // Per bindind di property
-    public Client(String userEmail){
-        this.userEmail = new SimpleStringProperty(userEmail);
+    public Client(){
+        this.userEmail = new SimpleStringProperty(null);
         this.inboxContent = FXCollections.observableList(new LinkedList<>());
         this.inbox = new SimpleListProperty<>();
         this.inbox.set(inboxContent); // setto il valore interno della property con una ObservableList
@@ -28,9 +28,8 @@ public class Client {
         this.outboxContent = FXCollections.observableList(new LinkedList<>());
         this.outbox = new SimpleListProperty<>();
         this.outbox.set(outboxContent);
-
     }
-
+    public void setUserEmailProperty(String userEmail){this.userEmail.set(userEmail);};
     // ritorna una lista di email perchè è ciò che avevo settato nel costruttore
     //
     public ListProperty<Email> getInboxProperty(){
@@ -45,7 +44,6 @@ public class Client {
     public StringProperty getUserEmailProperty(){
         return userEmail;
     }
-
 
     public void deleteEmail(Email email){
         inboxContent.remove(email);

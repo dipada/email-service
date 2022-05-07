@@ -74,7 +74,7 @@ public class MainWindowController {
 
         // TODO istanzio nuovo client e genero email
         // TODO vanno caricate da server
-        model = new Client("email@dominio.it");
+        //model = new Client("email@dominio.it");
         model.generateEmail();
 
         selectedEmail = null;

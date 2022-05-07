@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update file manager with loading inbox/outbox methods">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update main window controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +136,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="12571000" />
+      <workItem from="1651845060613" duration="17948000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -304,7 +306,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651857580820</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="added Client model class">
+      <created>1651899734837</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1651899734837</updated>
+    </task>
+    <task id="LOCAL-00026" summary="update main window controller">
+      <created>1651900017438</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1651900017438</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +339,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="First commit, new project divided by server and client module" />
     <MESSAGE value="second commit, project structure" />
     <MESSAGE value="deleted standard javafx project file" />
     <MESSAGE value="added main windows view" />
@@ -347,6 +362,8 @@
     <MESSAGE value="moved Server and ServerThreadSession to lib package" />
     <MESSAGE value="added file manager that save sent email according hierarchy" />
     <MESSAGE value="update file manager with loading inbox/outbox methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="update file manager with loading inbox/outbox methods" />
+    <MESSAGE value="added Client model class" />
+    <MESSAGE value="update main window controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="update main window controller" />
   </component>
 </project>
