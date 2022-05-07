@@ -45,7 +45,6 @@ public class ServerThreadSession implements Runnable {
                         outStream.flush();
                         outStream.writeObject(fileManager.loadOutbox(userEmail));
                         outStream.flush();
-                        //outStream.writeObject(new Email("daniele", "ogg", List.of("1","2"), "adsdasdasd", new Date()));
                     }else{
                         outStream.writeObject("ERROR_SERVER");
                         // TODO gestire utente non esistente

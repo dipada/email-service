@@ -35,9 +35,9 @@ public class Server extends Thread{
     }
 
     public void setUsersList(){ // TODO rivedere per creazione
-        userList.add("dani2ele@dipada.it");
-        userList.add("giova13nni@dipada.it");
-        userList.add("pepp312ino@dipada.it");
+        userList.add("daniele@dipada.it");
+        userList.add("giovanni@dipada.it");
+        userList.add("peppino@dipada.it");
     }
 
     public List<String> getUserList(){return userList;}

@@ -4,35 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added method to check if user exist">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/ConnectionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/controller/MainWindowController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/dipada/client/model/Email.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/dipada/client/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/dipada/client/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/dipada/client/images/account_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/images/account_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/ServerApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/controller/ServerMainWindowController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/lib/ServerThreadSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dipada/server/model/Email.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/dipada/server/ServerMainWindow.fxml" beforeDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream">
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
-      <workItem from="1651845060613" duration="41279000" />
+      <workItem from="1651845060613" duration="41678000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -357,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651914586709</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream">
+      <created>1651937463571</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1651937463571</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +357,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added main windows view" />
     <MESSAGE value="added main window controller, image and update main view" />
     <MESSAGE value="added Email model class" />
     <MESSAGE value="Fixed module-info.java, added ClientApp main class" />
@@ -401,6 +381,7 @@
     <MESSAGE value="update main window controller" />
     <MESSAGE value="added method for validate email" />
     <MESSAGE value="added method to check if user exist" />
-    <option name="LAST_COMMIT_MESSAGE" value="added method to check if user exist" />
+    <MESSAGE value="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream" />
   </component>
 </project>
