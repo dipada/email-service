@@ -1,6 +1,7 @@
 package prog.dipada.lib;
 
 import prog.dipada.model.Email;
+import prog.dipada.model.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,18 +18,21 @@ import java.util.List;
  * */
 public class ServerThreadSession implements Runnable {
     private final FileManager fileManager;
+    private final Log log;
     private Socket socket;
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
-    public ServerThreadSession(Socket socket, FileManager fileManager) {
+
+    public ServerThreadSession(Socket socket, FileManager fileManager, Log log) {
         this.socket = socket;
         this.fileManager = fileManager;
+        this.log = log;
     }
 
     @Override
     public void run() {
         System.out.println("Sessione partita " + socket);
-
+        log.printLogOnScreen("New session started " + socket.getInetAddress());
         // TODO apre stream - invia/riceve dati - chiude stream
         openStreams();
 
@@ -38,6 +42,7 @@ public class ServerThreadSession implements Runnable {
             switch (req){
                 case "sendAll":{
                     String userEmail = (String) inStream.readObject();
+                    log.printLogOnScreen("USER: " + userEmail + " has requested inbox and outbox emails");
                     // TODO verifica esistenza email
                     if(fileManager.checkUserExist(userEmail)){
                         //System.out.println("Spedico email all'utente " + userEmail);

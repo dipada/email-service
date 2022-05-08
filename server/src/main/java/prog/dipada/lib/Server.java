@@ -1,6 +1,7 @@
 package prog.dipada.lib;
 
-import java.io.File;
+import prog.dipada.model.Log;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors;
  *
  * */
 public class Server extends Thread{
+    private Log log;
     private final int serverPort;
     private int numThreadSession;
     private ExecutorService exec;
@@ -31,7 +33,12 @@ public class Server extends Thread{
         exec = Executors.newFixedThreadPool(numThreadSession);
         this.userList = new LinkedList<>();
         this.fileManager = new FileManager();
+        log = new Log();
         this.runningServer = true;
+    }
+
+    public Log getLog(){
+        return log;
     }
 
     public void setUsersList(){ // TODO rivedere per creazione
@@ -47,9 +54,10 @@ public class Server extends Thread{
         // Il thread del server si mette in attesa "infinita"
         // quando accetta una connessione la passa al thread pool
         System.out.println("Server partito");
+        log.printLogOnScreen("Server started");
         for (String s : getUserList()){
             System.out.println(s);
-            fileManager.addUserDir(s);
+            fileManager.addUserDirs(s);
         }
         listen();
     }
@@ -57,11 +65,11 @@ public class Server extends Thread{
     public void listen(){
         try {
             ServerSocket serverSocket = new ServerSocket(serverPort);
+            log.printLogOnScreen("Server ready for connections. Max simultaneous connections " + numThreadSession);
             while(runningServer){ // TODO sistemare chiusura
-                System.out.println("SERVER in attesa di client");
                 socket = serverSocket.accept();
-                System.out.println("SERVER Nuova sessione accettata, mando al threadpool");
-                exec.execute(new ServerThreadSession(socket,fileManager));
+                log.printLogOnScreen("New connection accepted");
+                exec.execute(new ServerThreadSession(socket,fileManager,log));
             }
         } catch (IOException e) {
             System.out.println("Server eccezione serverSocket");

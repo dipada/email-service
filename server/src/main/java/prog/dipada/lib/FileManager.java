@@ -21,17 +21,17 @@ public class FileManager {
         Email e2 = new Email("giovanni@dipada.it", "oggetto 2", List.of("daniele@dipada.it", "peppino@dipada.it"),"ciao a tutti da dan", new Date());
         Email e3 = new Email("peppino@dipada.it", "oggetto 3", List.of("daniele@dipada.it", "giovanni@dipada.it"),"ciao a tutti da dan", new Date());
 
-       /*
+
         FileManager fileManager = new FileManager();
 
-        fileManager.addUserDir("daniele@dipada.it");
-        fileManager.addUserDir("giovanni@dipada.it");
+        fileManager.addUserDirs("daniele@dipada.it");
+        fileManager.addUserDirs("giovanni@dipada.it");
 
 
         e1 = fileManager.save(e1);
         e2 = fileManager.save(e2);
         e3 = fileManager.save(e3);
-*/
+
 
         //deletgeEmail(e1,"dan@dipada.it");
         //deletgeEmail(e2,"dan@dipada.it");
@@ -42,15 +42,16 @@ public class FileManager {
         System.out.println("File path " + filePath);
     }
 
-    public boolean addUserDir(String userEmail){
-        File f = new File(filePath + "/" + userEmail);
-        //System.out.println("ADDUSERDIR " + f.toString());
-        if(checkUserExist(userEmail)){
+    public boolean addUserDirs(String userEmail){
+        File in = new File(filePath + "/" + userEmail + "/in");
+        File out = new File(filePath + "/" + userEmail + "/out");
+//        System.out.println("ADDUSERDIR " + f.toString());
+        if(!checkUserExist(userEmail)){
+            System.out.println("Creo le cartelle per " + userEmail);
+            return createDirectory(in) && createDirectory(out);
+        }else{
             System.out.println("Utente già esistente");
             return true;
-        }else{
-            System.out.println("Creo le cartelle per " + userEmail);
-            return createDirectory(f);
         }
     }
 
