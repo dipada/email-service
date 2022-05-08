@@ -22,6 +22,7 @@ public class ServerThreadSession implements Runnable {
     private Socket socket;
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
+    private String idSession;
 
     public ServerThreadSession(Socket socket, FileManager fileManager, Log log) {
         this.socket = socket;
@@ -35,41 +36,64 @@ public class ServerThreadSession implements Runnable {
         log.printLogOnScreen("New session started " + socket.getInetAddress());
         // TODO apre stream - invia/riceve dati - chiude stream
         openStreams();
-
+        boolean runSession = true;
         // TODO qui operazioni
-        try {
-            String req = (String) inStream.readObject();
-            switch (req){
-                case "sendAll":{
-                    String userEmail = (String) inStream.readObject();
-                    log.printLogOnScreen("USER: " + userEmail + " has requested inbox and outbox emails");
-                    // TODO verifica esistenza email
-                    if(fileManager.checkUserExist(userEmail)){
-                        //System.out.println("Spedico email all'utente " + userEmail);
-                        outStream.writeObject(fileManager.loadInbox(userEmail));
-                        outStream.flush();
-                        outStream.writeObject(fileManager.loadOutbox(userEmail));
-                        outStream.flush();
-                    }else{
-                        outStream.writeObject("ERROR_SERVER");
-                        // TODO gestire utente non esistente
+        while (runSession) {
+            try {
+                System.out.println("SERVER ATTENDO OPERAZIONE");
+                String req = (String) inStream.readObject();
+                System.out.println("OPERAZIONE RICHIESTA>> " + req);
+                switch (req) {
+                    case "AUTH": {
+                        System.out.println("Server in auth aspetto email");
+                        String userEmail = (String) inStream.readObject();
+                        this.idSession = userEmail;
+                        if (fileManager.checkUserExist(userEmail)) {
+                            log.printLogOnScreen("USER: " + idSession + " try connect to the server. Connection accepted");
+                            outStream.writeObject("USERACCEPTED");
+                            outStream.flush();
+                        } else {
+                            log.printLogOnScreen("USER: " + userEmail
+                                    + " try connect to the server. Connection refused, unknown user");
+                            outStream.writeObject("USERREFUSED");
+                            outStream.flush();
+                            //runSession = false;
+                        }
+                        System.out.println("AUTH finito");
+                        break;
                     }
-                    //outStream.writeObject();
-                    //List<Email> inboxList = (List<Email>) inStream.readObject();
-                    //List<Email> outboxList = (List<Email>) inStream.readObject();
 
+                    case "sendAll": {
+                        System.out.println("Server in sendAll aspetto userEmail");
+                       // String userEmail = (String) inStream.readObject();
+                        log.printLogOnScreen("USER: " + idSession + " has requested inbox and outbox emails");
+
+                        System.out.println("sendall scrivo le liste");
+
+                        outStream.writeObject(fileManager.loadInbox(idSession));
+                        outStream.flush();
+                        outStream.writeObject(fileManager.loadOutbox(idSession));
+                        outStream.flush();
+
+                        System.out.println("Sendall finita");
+                        break;
+                    }
                 }
+            } catch (IOException e) {
+                // User close streams
+                System.out.println("SESSION eccezione lettura object");
+                runSession = false;
+                //e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                System.out.println("Session eccezione class not found");
+                runSession = false;
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            // User close streams
-            System.out.println("SESSION eccezione lettura object");
-            //e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Session eccezione class not found");
-            e.printStackTrace();
         }
 
+        System.out.println("server chiude gli stream");
         // TODO chiude stream
+        log.printLogOnScreen(idSession + " disconnected" );
         closeStreams();
     }
 
