@@ -30,20 +30,27 @@ public class LoginController {
             //TODO controllo email
             String emailUserLogin = emailField.getText() + emailDomain;
             if(validateEmail(emailUserLogin)){
+                //connection = new ConnectionHandler("localhost", 8989);
                 //TODO operazioni
                 System.out.println("Client è " + client);
                 System.out.println("Connection è " + connection);
                 client.setUserEmailProperty(emailUserLogin);
                 connection.setIdConnection(emailUserLogin);
-                // TODO controllo sul server dell'email
-                if(connection.requestAll()){
-                    // TODO verifica utente esiste
-                    System.out.println("Richiesta andata a buon fine");
+                if(connection.authUser(emailUserLogin)){
+                    System.out.println("Utente sul server esistente connessione andata a buon fine");
+                    // TODO controllo sul server dell'email
+                    if(connection.requestAll()){
+                        // TODO verifica utente esiste
+                        System.out.println("Richiesta andata a buon fine");
+                        stage.close();
+                    }else{
+                        System.out.println("Richiesta non andata a buon fine");
+                    }
                 }else{
-                    System.out.println("Richiesta non andata a buon fine");
+                    // TODO utente non accettato dal server
+                    System.out.println("Utente non accettato dal serverr ");
+                    generateErrorAlert("Error login", emailUserLogin + " does not exist", "Insert an existing email");
                 }
-
-                stage.close();
             }else{
                 //TODO messaggio di errore email scorretta
                 generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +

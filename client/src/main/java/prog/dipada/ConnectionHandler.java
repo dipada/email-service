@@ -93,33 +93,24 @@ public class ConnectionHandler extends Thread {
         System.out.println("ConnectionHandler Richiesta ALL partita");
         try {
             outStream.writeObject("sendAll");
-            outStream.writeObject(idConnection);
+            //outStream.writeObject(idConnection);
 
-            System.out.println("CLIENT ARRIVA QUIA");
-            List<Email> inboxList = (List<Email>) inStream.readObject();
-            List<Email> outboxList = (List<Email>) inStream.readObject();
-            //Email res = (Email) inStream.readObject();
-            /*
-            if (res == null) {
-                System.out.println("Res è null");
-            }*/
-            System.out.println("qui2");
-            //System.out.println(res);
+                System.out.println("Richiesta accettata dal server utente esistente");
+                System.out.println("CLIENT ARRIVA QUIA");
+                List<Email> inboxList = (List<Email>) inStream.readObject();
+                List<Email> outboxList = (List<Email>) inStream.readObject();
+                System.out.println("Email inbox " + idConnection);
+                System.out.println();
+                for(Email em : inboxList){
+                    System.out.println(em);
+                }
+                System.out.println("\n\nInbox finita");
 
-            System.out.println("Email inbox " + idConnection);
-            System.out.println("Email ricevuta ");
-            //System.out.println(res);
-
-            System.out.println("OUTBOX RICEVUTOOO ");
-            for(Email em : outboxList){
-                System.out.println(em);
-            }
-
-            System.out.println("INBOX RICEVUTO");
-            for(Email em : inboxList){
-                System.out.println(em);
-            }
-
+                System.out.println();
+                for(Email em : outboxList){
+                    System.out.println(em);
+                }
+                System.out.println("\n\noutbox finita");
         } catch (ClassNotFoundException e){
             System.out.println("RequestALL ClassNotFOundException");
             e.printStackTrace();
@@ -134,5 +125,28 @@ public class ConnectionHandler extends Thread {
 
     public void setIdConnection(String emailIdConnection){
         this.idConnection = emailIdConnection;
+    }
+
+    public boolean authUser(String emailUserLogin) {
+        boolean successAuth = false;
+        try {
+            outStream.writeObject("AUTH");
+            outStream.flush();
+            outStream.writeObject(emailUserLogin);
+            String rx = (String)inStream.readObject();
+            System.out.println("Il server ha mandato >> " + rx);
+            if(rx.equals("USERACCEPTED")){
+                System.out.println("User " + emailUserLogin + " accettato dal server");
+                successAuth = true;
+            }else{
+                System.out.println("User " + emailUserLogin + " non accettato dal server");
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR AUTH ");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return successAuth;
     }
 }

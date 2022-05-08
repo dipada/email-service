@@ -4,14 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added Log model class for print logs on screen">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added timestamp">
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/-2115890874" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/-2115894439" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/77899770" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/77903335" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/out/1363517733" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/out/1363521298" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/-2115890874" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/-2115894439" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/1363517733" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/1363521298" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/out/77899770" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/out/77903335" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/1363517733" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/1363521298" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/77899770" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/77903335" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/out/-2115890874" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/out/-2115894439" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Log.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +78,7 @@
       <recent name="dipada.client.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.prog.dipada.ClientApp">
     <configuration name="FileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="prog.dipada.lib.FileManager" />
       <module name="server" />
@@ -123,9 +138,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.FileManager" />
-        <item itemvalue="Application.prog.dipada.ClientApp" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +154,7 @@
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
       <workItem from="1651845060613" duration="47691000" />
-      <workItem from="1651988255577" duration="300000" />
+      <workItem from="1651988255577" duration="6194000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -351,7 +366,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651937922021</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="update file manager, now when server starts automatically create directory for pre-existent users">
+      <created>1651988794202</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1651988794202</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added timestamp">
+      <created>1651988814150</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1651988814150</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,8 +399,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added Email model class" />
-    <MESSAGE value="Fixed module-info.java, added ClientApp main class" />
     <MESSAGE value="added login view and controller" />
     <MESSAGE value="update start method for load 2 view, to fix: main layout just need appear later login layout is closed" />
     <MESSAGE value="update showLogin method, now main layout start only when login screen is closed" />
@@ -395,6 +422,8 @@
     <MESSAGE value="added method to check if user exist" />
     <MESSAGE value="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream" />
     <MESSAGE value="added Log model class for print logs on screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Log model class for print logs on screen" />
+    <MESSAGE value="update file manager, now when server starts automatically create directory for pre-existent users" />
+    <MESSAGE value="added timestamp" />
+    <option name="LAST_COMMIT_MESSAGE" value="added timestamp" />
   </component>
 </project>
