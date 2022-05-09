@@ -11,6 +11,7 @@ import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -42,6 +43,6 @@ public class Log {
      * */
     public void printLogOnScreen(String messageLog){
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Platform.runLater(()->logContent.add(dateFormatter.format(new Date()) + " - " + messageLog));
+        Platform.runLater(()-> logContent.add(0,dateFormatter.format(new Date()) + " - " + messageLog));
     }
 }

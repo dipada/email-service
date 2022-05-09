@@ -4,29 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added timestamp">
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/-2115890874" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/-2115894439" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/77899770" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/in/77903335" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/out/1363517733" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/daniele@dipada.it/out/1363521298" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/-2115890874" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/-2115894439" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/1363517733" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/in/1363521298" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/out/77899770" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/giovanni@dipada.it/out/77903335" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/1363517733" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/1363521298" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/77899770" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/in/77903335" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/out/-2115890874" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/file/peppino@dipada.it/out/-2115894439" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +91,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="pr" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="prog.dipada.pr" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="prog.dipada.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="prog.dipada.ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="prog.dipada.ClientApp" />
       <module name="client" />
@@ -132,6 +131,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.pr" />
       <item itemvalue="Application.prog.dipada.ClientApp" />
       <item itemvalue="Application.FileManager" />
       <item itemvalue="Application.ServerApp" />
@@ -141,6 +141,7 @@
         <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.FileManager" />
+        <item itemvalue="Application.pr" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +155,8 @@
       <updated>1651826591736</updated>
       <workItem from="1651826592832" duration="4941000" />
       <workItem from="1651845060613" duration="47691000" />
-      <workItem from="1651988255577" duration="6194000" />
+      <workItem from="1651988255577" duration="17425000" />
+      <workItem from="1652073317733" duration="1470000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -380,7 +382,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651988814150</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added auth request and some log print">
+      <created>1651994592894</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1651994592894</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow">
+      <created>1651994713035</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1651994713035</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,8 +415,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added login view and controller" />
-    <MESSAGE value="update start method for load 2 view, to fix: main layout just need appear later login layout is closed" />
     <MESSAGE value="update showLogin method, now main layout start only when login screen is closed" />
     <MESSAGE value="Fixed exit by login screen. Now if exit by login screen application will be terminated" />
     <MESSAGE value="Added alert for login view" />
@@ -424,6 +438,8 @@
     <MESSAGE value="added Log model class for print logs on screen" />
     <MESSAGE value="update file manager, now when server starts automatically create directory for pre-existent users" />
     <MESSAGE value="added timestamp" />
-    <option name="LAST_COMMIT_MESSAGE" value="added timestamp" />
+    <MESSAGE value="added auth request and some log print" />
+    <MESSAGE value="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow" />
   </component>
 </project>
