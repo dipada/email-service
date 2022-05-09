@@ -32,24 +32,36 @@ public class LoginController {
             if(validateEmail(emailUserLogin)){
                 //connection = new ConnectionHandler("localhost", 8989);
                 //TODO operazioni
-                System.out.println("Client è " + client);
-                System.out.println("Connection è " + connection);
+                //System.out.println("Client è " + client);
+                //System.out.println("Connection è " + connection);
                 client.setUserEmailProperty(emailUserLogin);
                 connection.setIdConnection(emailUserLogin);
-                if(connection.authUser(emailUserLogin)){
-                    System.out.println("Utente sul server esistente connessione andata a buon fine");
-                    // TODO controllo sul server dell'email
-                    if(connection.requestAll()){
-                        // TODO verifica utente esiste
-                        System.out.println("Richiesta andata a buon fine");
+
+                String isUserAccept = connection.authUser(emailUserLogin);
+                System.out.println("Useraccept " + isUserAccept);
+
+                if(isUserAccept != null){
+                    if(isUserAccept.equals("valid")){
+                        // Utente esistente
                         stage.close();
+                        /*
+                        if(connection.requestAll()){
+                            System.out.println("Richiesta andata a buon fine");
+                            stage.close();
+                        }else{
+                            // Il server è offline
+                            System.out.println("Richiesta non andata a buon fine");
+                            generateErrorAlert("Error logins", "Server offline", "Server does not respond");
+                        }
+                        */
                     }else{
-                        System.out.println("Richiesta non andata a buon fine");
+                        // L'utente non esiste
+                        generateErrorAlert("Error login", emailUserLogin + " invalid account", "Account does not exist");
                     }
                 }else{
-                    // TODO utente non accettato dal server
-                    System.out.println("Utente non accettato dal serverr ");
-                    generateErrorAlert("Error login", emailUserLogin + " does not exist", "Insert an existing email");
+                    // Il server è offline
+                    System.out.println("il server è offline");
+                    generateErrorAlert("Error login", "Server offline", "Server does not respond");
                 }
             }else{
                 //TODO messaggio di errore email scorretta

@@ -20,6 +20,9 @@ public class ConnectionHandler extends Thread {
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
     private String idConnection;
+    private Thread checkTh;
+    private boolean stop;
+
 
     public ConnectionHandler(String host, int port) {
         this.idConnection = null;
@@ -28,30 +31,43 @@ public class ConnectionHandler extends Thread {
         this.outStream = null;
         this.host = host;
         this.port = port;
+
+        this.stop = false;
     }
+
+
 
     public boolean startConnection(){
         boolean success = false;
-        if(socket == null){
-            System.out.println("Apro nuova connessione");
+        //while(!success && attempts > 1){
+            System.out.println("Apro nuova connessioneeee socket vale " + socket);
+
             try {
                 // TODO gestire caso server offline
                 socket = new Socket(host,port);
+
+                System.out.println("1 socket vale " + socket);
                 openStream();
+                System.out.println("2");
                 success = true;
             } catch (IOException e) {
                 System.out.println("startConnection socket error");
+                success = false;
                 e.printStackTrace();
             }
-        }
+            //attempts--;
+        //}
         return success;
     }
 
     private void openStream(){
         try {
             outStream = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("3");
             inStream = new ObjectInputStream(socket.getInputStream());
+            System.out.println("4");
         } catch (IOException e) {
+            //connectionIsUp = false;
             System.out.println("Eccezione Errore openStream");
             e.printStackTrace();
         }
@@ -68,24 +84,51 @@ public class ConnectionHandler extends Thread {
                 e.printStackTrace();
             }
         }
+        System.out.println("Connection closed");
     }
 
     @Override
     public void run() {
-        /*
-        Platform.runLater(()->{startConnection();
-            try {
-                outStream.writeObject("stringa di provaa");
-            } catch (IOException e) {
-                System.out.println("Eccezione CONNECTION writeObject");
-                e.printStackTrace();
-            }
-            closeConnection();});
-       */
         startConnection();
 
-        //closeConnection();
+        //checkTh = new Thread(this::checkConnection);
+        //checkTh.start();
+        checkConnection();
+        closeConnection();
 
+    }
+
+    public void end(){
+        System.out.println("Closing connection...");
+        stop = true;
+    }
+
+    private void checkConnection() {
+        while (!stop) {
+            try {
+                outStream.writeObject("UP");
+                try {
+                    String inRead = (String) inStream.readObject();
+                    /*
+                    if(inRead.equals("YES")){
+                        System.out.println("Server up");
+                    }*/
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+
+            } catch (Exception e) {
+                System.out.println("Server off provo a ripristinare la connessione");
+                startConnection();
+            }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("THREAD refresh finito");
     }
 
     /***/
@@ -114,10 +157,12 @@ public class ConnectionHandler extends Thread {
         } catch (ClassNotFoundException e){
             System.out.println("RequestALL ClassNotFOundException");
             e.printStackTrace();
+           //connectionIsUp = false;
             return false;
         } catch (IOException e) {
             System.out.println("RequestALL IOException");
             e.printStackTrace();
+            //connectionIsUp = false;
             return false;
         }
         return true;
@@ -127,26 +172,31 @@ public class ConnectionHandler extends Thread {
         this.idConnection = emailIdConnection;
     }
 
-    public boolean authUser(String emailUserLogin) {
-        boolean successAuth = false;
+    public String authUser(String emailUserLogin) {
+        String success = null;
         try {
             outStream.writeObject("AUTH");
             outStream.flush();
             outStream.writeObject(emailUserLogin);
             String rx = (String)inStream.readObject();
             System.out.println("Il server ha mandato >> " + rx);
-            if(rx.equals("USERACCEPTED")){
+            if(rx.equals("USER_ACCEPTED")){
                 System.out.println("User " + emailUserLogin + " accettato dal server");
-                successAuth = true;
+                success = "valid";
             }else{
                 System.out.println("User " + emailUserLogin + " non accettato dal server");
+                success = "notvalid";
             }
-        } catch (IOException e) {
+        }catch (NullPointerException e){
+            success = null;
+        }catch (IOException e) {
             System.out.println("ERROR AUTH ");
+            success = null;
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            success = null;
             e.printStackTrace();
         }
-        return successAuth;
+        return success;
     }
 }

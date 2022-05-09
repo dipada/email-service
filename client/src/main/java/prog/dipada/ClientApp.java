@@ -13,10 +13,13 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ClientApp extends Application {
     private static Client client;
     private static ConnectionHandler connection;
+    private static Thread connThread;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,10 +42,24 @@ public class ClientApp extends Application {
 
     }
 
+    @Override
+    public void stop(){
+        System.out.println("Preparing to application exit...");
+        connection.end();
+        try {
+            connThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Exiting now");
+    }
+
     public static void main(String[] args) {
         //Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
         connection = new ConnectionHandler("localhost", 8989);
-        Thread connThread = new Thread(connection);
+
+        connThread = new Thread(connection);
+        //connThread = Executors.newSingleThreadExecutor();
 
         //ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
         connThread.start();
