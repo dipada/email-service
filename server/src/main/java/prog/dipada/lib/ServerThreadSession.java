@@ -38,24 +38,30 @@ public class ServerThreadSession implements Runnable {
         openStreams();
         boolean runSession = true;
         // TODO qui operazioni
-        while (runSession) {
             try {
-                System.out.println("SERVER ATTENDO OPERAZIONE");
+                System.out.println("SERVER ATTENDO OPERAZIONE " );
                 String req = (String) inStream.readObject();
                 System.out.println("OPERAZIONE RICHIESTA>> " + req);
                 switch (req) {
+
+                    case "UP":{
+                        outStream.writeObject("YES");
+                        outStream.flush();
+                        break;
+                    }
                     case "AUTH": {
                         System.out.println("Server in auth aspetto email");
                         String userEmail = (String) inStream.readObject();
                         this.idSession = userEmail;
                         if (fileManager.checkUserExist(userEmail)) {
-                            log.printLogOnScreen("USER: " + idSession + " try connect to the server. Connection accepted");
-                            outStream.writeObject("USERACCEPTED");
+                            log.printLogOnScreen("USER: " + idSession
+                                    + " try connect to the server. Connection accepted");
+                            outStream.writeObject("USER_ACCEPTED");
                             outStream.flush();
                         } else {
                             log.printLogOnScreen("USER: " + userEmail
                                     + " try connect to the server. Connection refused, unknown user");
-                            outStream.writeObject("USERREFUSED");
+                            outStream.writeObject("USER_REFUSE");
                             outStream.flush();
                             //runSession = false;
                         }
@@ -65,14 +71,14 @@ public class ServerThreadSession implements Runnable {
 
                     case "sendAll": {
                         System.out.println("Server in sendAll aspetto userEmail");
-                       // String userEmail = (String) inStream.readObject();
-                        log.printLogOnScreen("USER: " + idSession + " has requested inbox and outbox emails");
+                        String userEmail = (String) inStream.readObject();
+                        log.printLogOnScreen("USER: " + userEmail + " has requested inbox and outbox emails");
 
                         System.out.println("sendall scrivo le liste");
 
-                        outStream.writeObject(fileManager.loadInbox(idSession));
+                        outStream.writeObject(fileManager.loadInbox(userEmail));
                         outStream.flush();
-                        outStream.writeObject(fileManager.loadOutbox(idSession));
+                        outStream.writeObject(fileManager.loadOutbox(userEmail));
                         outStream.flush();
 
                         System.out.println("Sendall finita");
@@ -89,7 +95,6 @@ public class ServerThreadSession implements Runnable {
                 runSession = false;
                 e.printStackTrace();
             }
-        }
 
         System.out.println("server chiude gli stream");
         // TODO chiude stream

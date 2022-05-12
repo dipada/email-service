@@ -1,5 +1,8 @@
 package prog.dipada.controller;
 
+import javafx.application.Platform;
+import javafx.fxml.Initializable;
+import prog.dipada.ClientApp;
 import prog.dipada.model.Email;
 import prog.dipada.model.Client;
 import javafx.fxml.FXML;
@@ -7,7 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class MainWindowController {
 
@@ -43,6 +48,7 @@ public class MainWindowController {
     private Client model;
     private Email selectedEmail;
     private Email emptyEmail;
+    private ClientApp clientApp;
 
     private void showSelectedEmail(MouseEvent mouseEvent) {
         Email email = lstInboxEmail.getSelectionModel().getSelectedItem();
@@ -66,7 +72,7 @@ public class MainWindowController {
         }
     }
 
-    @FXML
+    /*
     public void initialize(){
         if(this.model != null){
             throw new IllegalMonitorStateException("Model can only be initialized once");
@@ -94,10 +100,36 @@ public class MainWindowController {
         //inboxTitledPane.setExpanded(true);
         //updateDetailView(emptyEmail);
     }
+    */
 
     private void showSelectedEmailOutbox(MouseEvent mouseEvent) {
         Email email = lstOutboxEmail.getSelectionModel().getSelectedItem();
         selectedEmail = email;
         //updateDetailView(email);
+    }
+
+
+    public void setMainWindowController(ClientApp clientApp) {
+        this.clientApp = clientApp;
+        lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
+        lstOutboxEmail.itemsProperty().bind(clientApp.getClient().getOutboxProperty());
+
+        lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
+
+        Thread clientThread = new Thread(()->refreshList());
+        clientThread.start();
+    }
+
+    private void refreshList() {
+        //Platform.runLater(()->System.out.println("ciao"));
+        while (true) {
+            System.out.println("ciao");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            clientApp.getConnectionHandler().requestAll();
+        }
     }
 }

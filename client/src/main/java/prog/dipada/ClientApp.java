@@ -1,6 +1,7 @@
 package prog.dipada;
 
 import prog.dipada.controller.LoginController;
+import prog.dipada.controller.MainWindowController;
 import prog.dipada.model.Client;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -24,11 +25,14 @@ public class ClientApp extends Application {
 
     public ClientApp(){
         connectionHandler = new ConnectionHandler(this);
-        //client = new Client(this);
+        client = new Client();
     }
 
     public ConnectionHandler getConnectionHandler(){
         return connectionHandler;
+    }
+    public Client getClient(){
+        return client;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class ClientApp extends Application {
         //System.out.println("DOPO login " + connection);
         //System.out.println("Client da main: " + client.getUserEmailProperty());
 
-        //showMainWindow(stage);
+        showMainWindow(stage);
 
     }
 /*
@@ -115,11 +119,13 @@ public class ClientApp extends Application {
     private void showMainWindow(Stage primaryStage) {
         try{
             URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
-            System.out.println("PATHHH " + mainWindowsUrl);
             FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
             Scene scene = new Scene(mainWindowLoader.load(), 900, 600);
+            MainWindowController mainWindowController = mainWindowLoader.getController();
+            mainWindowController.setMainWindowController(this);
             primaryStage.setTitle("dipadamail");
             primaryStage.setScene(scene);
+            //MainWindowController mainWindowController = mainWindowLoader.getController();
             primaryStage.show();
         } catch (IOException e) {
             System.out.println("Main windows loader error");

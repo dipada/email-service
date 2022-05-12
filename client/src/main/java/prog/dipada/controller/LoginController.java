@@ -48,6 +48,8 @@ public class LoginController {
         if(isUserAccept != null){
             if(isUserAccept.equals("valid")){
                 // user exist
+                clientApp.getClient().setUserEmailProperty(emailUserLogin);
+                clientApp.getConnectionHandler().setIdConnection(emailUserLogin);
                 stage.close();
             }else{
                 // user doesn't exist

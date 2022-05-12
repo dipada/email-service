@@ -130,12 +130,15 @@ public class ConnectionHandler {
         startConnection();
         try {
             outStream.writeObject("sendAll");
-            //outStream.writeObject(idConnection);
+            outStream.writeObject(idConnection);
 
             System.out.println("Richiesta accettata dal server utente esistente");
             System.out.println("CLIENT ARRIVA QUIA");
             List<Email> inboxList = (List<Email>) inStream.readObject();
             List<Email> outboxList = (List<Email>) inStream.readObject();
+
+            clientApp.getClient().setInboxContent(inboxList);
+
             System.out.println("Email inbox " + idConnection);
             System.out.println();
             for (Email em : inboxList) {

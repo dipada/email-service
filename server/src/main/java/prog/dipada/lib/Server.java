@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Server extends Thread{
     public Server(int serverPort){
         this.serverPort = serverPort;
         numThreadSession = Runtime.getRuntime().availableProcessors();
-        exec = Executors.newFixedThreadPool(numThreadSession);
+        exec = Executors.newFixedThreadPool(1);
         this.userList = new LinkedList<>();
         this.fileManager = new FileManager();
         log = new Log();
@@ -51,7 +52,7 @@ public class Server extends Thread{
 
     @Override
     public void run() {
-        // Il thread del server si mette in attesa "infinita"
+        // Il thread del server si mette in attesa
         // quando accetta una connessione la passa al thread pool
         System.out.println("Server partito");
         log.printLogOnScreen("Server started");
@@ -84,9 +85,16 @@ public class Server extends Thread{
                     e.printStackTrace();
                 }
             }
+            System.out.println("Server>> shoutdown");
             exec.shutdown();
+            //exec.shutdownNow();
+
+            System.out.println("Finish");
         }
+    }
 
-
+    public void end() {
+        log.printLogOnScreen("Start exiting...");
+        runningServer = false;
     }
 }

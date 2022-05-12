@@ -1,5 +1,6 @@
 package prog.dipada.model;
 
+import javafx.application.Platform;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,11 +30,18 @@ public class Client {
         this.outbox = new SimpleListProperty<>();
         this.outbox.set(outboxContent);
     }
-    public void setUserEmailProperty(String userEmail){this.userEmail.set(userEmail);};
+    public void setUserEmailProperty(String userEmail){
+        System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
+        this.userEmail.set(userEmail);
+        System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
+    };
     // ritorna una lista di email perchè è ciò che avevo settato nel costruttore
     //
     public ListProperty<Email> getInboxProperty(){
       return inbox;
+    }
+    public void setInboxContent(List<Email> inboxList){
+        inboxContent.setAll(inboxList);
     }
 
     public ListProperty<Email> getOutboxProperty(){

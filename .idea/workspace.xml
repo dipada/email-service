@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="fix log print to the top of listview">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="reversed conditions for clean code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,8 +140,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.prog.dipada.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.FileManager" />
         <item itemvalue="Application.pr" />
       </list>
@@ -155,7 +158,9 @@
       <workItem from="1651826592832" duration="4941000" />
       <workItem from="1651845060613" duration="47691000" />
       <workItem from="1651988255577" duration="17425000" />
-      <workItem from="1652073317733" duration="9851000" />
+      <workItem from="1652073317733" duration="24361000" />
+      <workItem from="1652164922354" duration="1208000" />
+      <workItem from="1652335170294" duration="12941000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -402,7 +407,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652075046568</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="added end method for correct closing connection">
+      <created>1652084081350</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1652084081350</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixed login and update instance method of clientApp">
+      <created>1652340695625</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1652340695625</updated>
+    </task>
+    <task id="LOCAL-00038" summary="reversed conditions for clean code">
+      <created>1652342588783</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1652342588783</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,10 +447,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed exit by login screen. Now if exit by login screen application will be terminated" />
-    <MESSAGE value="Added alert for login view" />
-    <MESSAGE value="added basic connection feature" />
-    <MESSAGE value="added server view and controller" />
     <MESSAGE value="added ServerApp main class" />
     <MESSAGE value="fixed module-info.java and fxml file name in start application" />
     <MESSAGE value="added model class to server" />
@@ -446,6 +468,20 @@
     <MESSAGE value="added auth request and some log print" />
     <MESSAGE value="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow" />
     <MESSAGE value="fix log print to the top of listview" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix log print to the top of listview" />
+    <MESSAGE value="added end method for correct closing connection" />
+    <MESSAGE value="fixed login and update instance method of clientApp" />
+    <MESSAGE value="reversed condition for clean code" />
+    <MESSAGE value="reversed conditions for clean code" />
+    <option name="LAST_COMMIT_MESSAGE" value="reversed conditions for clean code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

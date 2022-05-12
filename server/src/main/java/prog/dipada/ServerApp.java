@@ -11,9 +11,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 
 public class ServerApp extends Application {
+    private Server server;
     @Override
     public void start(Stage stage) throws Exception {
-        Server server = new Server(8989);
+        server = new Server(8989);
         server.setUsersList();
         Thread ts = new Thread(server);
         ts.start();
@@ -29,6 +30,14 @@ public class ServerApp extends Application {
         stage.setTitle("Server dipada");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        server.end();
+        server.join();
+        System.out.println("Server shutdown");
+        System.out.println("Exit now");
     }
 
     public static void main(String[] args) {
