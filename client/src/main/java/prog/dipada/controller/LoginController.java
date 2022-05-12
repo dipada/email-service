@@ -1,5 +1,6 @@
 package prog.dipada.controller;
 
+import javafx.application.Platform;
 import prog.dipada.ClientApp;
 import prog.dipada.ConnectionHandler;
 import prog.dipada.model.Client;
@@ -14,8 +15,8 @@ import java.util.regex.Pattern;
 
 public class LoginController {
     private ClientApp clientApp;
-    private ConnectionHandler connection;
-    private Client client;
+    //private ConnectionHandler connection;
+    //private Client client;
     private Stage stage;
 
     @FXML
@@ -27,19 +28,12 @@ public class LoginController {
         // TODO effettuare login
         final String emailDomain = "@dipada.it";
         if(emailField.getText().length()>0 && emailField != null){
-            //TODO controllo email
             String emailUserLogin = emailField.getText() + emailDomain;
             if(validateEmail(emailUserLogin)){
-                //connection = new ConnectionHandler("localhost", 8989);
-                //TODO operazioni
-                //System.out.println("Client è " + client);
-                //System.out.println("Connection è " + connection);
-                client.setUserEmailProperty(emailUserLogin);
-                connection.setIdConnection(emailUserLogin);
+                System.out.println("Client app da login" + clientApp);
+                // Email valida richiede login, se il server è online e l'utente esiste verrà fatto login
 
-                String isUserAccept = connection.authUser(emailUserLogin);
-                System.out.println("Useraccept " + isUserAccept);
-
+                String isUserAccept = clientApp.getConnectionHandler().authUser(emailUserLogin);
                 if(isUserAccept != null){
                     if(isUserAccept.equals("valid")){
                         // Utente esistente
@@ -52,8 +46,8 @@ public class LoginController {
                             // Il server è offline
                             System.out.println("Richiesta non andata a buon fine");
                             generateErrorAlert("Error logins", "Server offline", "Server does not respond");
-                        }
-                        */
+                        }*/
+
                     }else{
                         // L'utente non esiste
                         generateErrorAlert("Error login", emailUserLogin + " invalid account", "Account does not exist");
@@ -63,6 +57,7 @@ public class LoginController {
                     System.out.println("il server è offline");
                     generateErrorAlert("Error login", "Server offline", "Server does not respond");
                 }
+
             }else{
                 //TODO messaggio di errore email scorretta
                 generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +
@@ -87,10 +82,10 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    public void setLoginController(ClientApp clientApp, Stage stage, Client client, ConnectionHandler connection) {
+    public void setLoginController(ClientApp clientApp, Stage stage) {
         this.clientApp = clientApp;
         this.stage = stage;
-        this.client = client;
-        this.connection = connection;
+        //this.client = client;
+        //this.connection = connection;
     }
 }

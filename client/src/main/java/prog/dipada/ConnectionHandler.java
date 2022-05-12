@@ -10,11 +10,11 @@ import java.util.List;
 
 /**
  * Represents connection of client to server
- * */
-public class ConnectionHandler extends Thread {
+ */
+public class ConnectionHandler {
 
-    private String host;
-    private int port;
+    private final String host;
+    private final int port;
 
     private Socket socket;
     private ObjectOutputStream outStream;
@@ -22,45 +22,49 @@ public class ConnectionHandler extends Thread {
     private String idConnection;
     private Thread checkTh;
     private boolean stop;
+    private ClientApp clientApp;
 
-
+    public ConnectionHandler(ClientApp clientApp) {
+        this.clientApp = clientApp;
+        this.host = "localhost";
+        this.port = 8989;
+    }
+    /*
     public ConnectionHandler(String host, int port) {
         this.idConnection = null;
+        this.stop = false;
         this.socket = null;
         this.inStream = null;
         this.outStream = null;
         this.host = host;
         this.port = port;
-
-        this.stop = false;
+        System.out.println("Passa di qui");
     }
+    */
 
-
-
-    public boolean startConnection(){
+    private boolean startConnection() {
         boolean success = false;
         //while(!success && attempts > 1){
-            System.out.println("Apro nuova connessioneeee socket vale " + socket);
+        System.out.println("start connection Apro nuova connessioneeee socket vale " + socket);
 
-            try {
-                // TODO gestire caso server offline
-                socket = new Socket(host,port);
-
-                System.out.println("1 socket vale " + socket);
-                openStream();
-                System.out.println("2");
-                success = true;
-            } catch (IOException e) {
-                System.out.println("startConnection socket error");
-                success = false;
-                e.printStackTrace();
-            }
-            //attempts--;
+        try {
+            // TODO gestire caso server offline
+            socket = new Socket(host, port);
+            System.out.println("1 socket vale " + socket);
+            openStream();
+            System.out.println("2");
+            success = true;
+        } catch (IOException e) {
+            System.out.println("startConnection socket error");
+            success = false;
+            e.printStackTrace();
+        }
+        //attempts--;
         //}
         return success;
     }
 
-    private void openStream(){
+    private void openStream() {
         try {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("3");
@@ -73,9 +77,9 @@ public class ConnectionHandler extends Thread {
         }
     }
 
-    public void closeConnection(){
-        if(socket != null){
-            try{
+    private void closeConnection() {
+        if (socket != null) {
+            try {
                 inStream.close();
                 outStream.close();
                 socket.close();
@@ -84,21 +88,10 @@ public class ConnectionHandler extends Thread {
                 e.printStackTrace();
             }
         }
-        System.out.println("Connection closed");
+        System.out.println("closeConnection Connection closed");
     }
 
-    @Override
-    public void run() {
-        startConnection();
-
-        //checkTh = new Thread(this::checkConnection);
-        //checkTh.start();
-        checkConnection();
-        closeConnection();
-
-    }
-
-    public void end(){
+    public void end() {
         System.out.println("Closing connection...");
         stop = true;
     }
@@ -134,69 +127,73 @@ public class ConnectionHandler extends Thread {
     /***/
     public boolean requestAll() {
         System.out.println("ConnectionHandler Richiesta ALL partita");
+        startConnection();
         try {
             outStream.writeObject("sendAll");
             //outStream.writeObject(idConnection);
 
-                System.out.println("Richiesta accettata dal server utente esistente");
-                System.out.println("CLIENT ARRIVA QUIA");
-                List<Email> inboxList = (List<Email>) inStream.readObject();
-                List<Email> outboxList = (List<Email>) inStream.readObject();
-                System.out.println("Email inbox " + idConnection);
-                System.out.println();
-                for(Email em : inboxList){
-                    System.out.println(em);
-                }
-                System.out.println("\n\nInbox finita");
+            System.out.println("Richiesta accettata dal server utente esistente");
+            System.out.println("CLIENT ARRIVA QUIA");
+            List<Email> inboxList = (List<Email>) inStream.readObject();
+            List<Email> outboxList = (List<Email>) inStream.readObject();
+            System.out.println("Email inbox " + idConnection);
+            System.out.println();
+            for (Email em : inboxList) {
+                System.out.println(em);
+            }
+            System.out.println("\n\nInbox finita");
 
-                System.out.println();
-                for(Email em : outboxList){
-                    System.out.println(em);
-                }
-                System.out.println("\n\noutbox finita");
-        } catch (ClassNotFoundException e){
+            System.out.println();
+            for (Email em : outboxList) {
+                System.out.println(em);
+            }
+            System.out.println("\n\noutbox finita");
+        } catch (ClassNotFoundException e) {
             System.out.println("RequestALL ClassNotFOundException");
             e.printStackTrace();
-           //connectionIsUp = false;
+            //connectionIsUp = false;
             return false;
         } catch (IOException e) {
             System.out.println("RequestALL IOException");
             e.printStackTrace();
             //connectionIsUp = false;
             return false;
+        } finally {
+            closeConnection();
         }
         return true;
     }
 
-    public void setIdConnection(String emailIdConnection){
+    public void setIdConnection(String emailIdConnection) {
         this.idConnection = emailIdConnection;
     }
 
     public String authUser(String emailUserLogin) {
         String success = null;
-        try {
-            outStream.writeObject("AUTH");
-            outStream.flush();
-            outStream.writeObject(emailUserLogin);
-            String rx = (String)inStream.readObject();
-            System.out.println("Il server ha mandato >> " + rx);
-            if(rx.equals("USER_ACCEPTED")){
-                System.out.println("User " + emailUserLogin + " accettato dal server");
-                success = "valid";
-            }else{
-                System.out.println("User " + emailUserLogin + " non accettato dal server");
-                success = "notvalid";
+        if (startConnection()){
+            try {
+                outStream.writeObject("AUTH");
+                outStream.flush();
+                outStream.writeObject(emailUserLogin);
+                String serverResponse = (String) inStream.readObject();
+                //System.out.println("Il server ha mandato >> " + serverResponse);
+                if (serverResponse.equals("USER_ACCEPTED")) {
+                    System.out.println("User " + emailUserLogin + " accettato dal server");
+                    success = "valid";
+                } else {
+                    System.out.println("User " + emailUserLogin + " non accettato dal server");
+                    success = "notvalid";
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.out.println("ERROR AUTH ");
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        }catch (NullPointerException e){
-            success = null;
-        }catch (IOException e) {
-            System.out.println("ERROR AUTH ");
-            success = null;
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            success = null;
-            e.printStackTrace();
         }
+        closeConnection();
         return success;
     }
 }

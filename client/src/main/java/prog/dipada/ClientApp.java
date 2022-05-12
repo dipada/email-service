@@ -12,21 +12,30 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ClientApp extends Application {
-    private static Client client;
-    private static ConnectionHandler connection;
-    private static Thread connThread;
+    private Client client;
+    private ConnectionHandler connectionHandler;
+    //private static Thread connThread;
+
+    public ClientApp(){
+        connectionHandler = new ConnectionHandler(this);
+        //client = new Client(this);
+    }
+
+    public ConnectionHandler getConnectionHandler(){
+        return connectionHandler;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
         //URL clientUrl = ClientApp.class.getResource("MainWindow.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
         //Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-
         URL clientUrl = ClientApp.class.getResource("Login.fxml");
 
         //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
@@ -36,12 +45,18 @@ public class ClientApp extends Application {
         //stage.setTitle("dipadamail");
         //stage.setScene(scene);
         //stage.show();
+
+        //System.out.println("Main: conn è " + connection);
+
         showLoginLayout(stage);
-        System.out.println("Client da main: " + client.getUserEmailProperty());
+
+        //System.out.println("DOPO login " + connection);
+        //System.out.println("Client da main: " + client.getUserEmailProperty());
+
         //showMainWindow(stage);
 
     }
-
+/*
     @Override
     public void stop(){
         System.out.println("Preparing to application exit...");
@@ -53,19 +68,22 @@ public class ClientApp extends Application {
         }
         System.out.println("Exiting now");
     }
-
+*/
     public static void main(String[] args) {
         //Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
-        connection = new ConnectionHandler("localhost", 8989);
-
-        connThread = new Thread(connection);
+        //connection = new ConnectionHandler("localhost", 8989);
+/*
+        connThread = new Thread(connection::startConnection);
         //connThread = Executors.newSingleThreadExecutor();
 
         //ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
         connThread.start();
         client = new Client();
+        */
+
         //client = new Client("a caso");
         //connection.startConnection();
+
         launch();
     }
 
@@ -86,7 +104,7 @@ public class ClientApp extends Application {
                 }
             });
             LoginController loginController = loginLoader.getController();
-            loginController.setLoginController(this, stage, client, connection);
+            loginController.setLoginController(this, stage);
             stage.showAndWait();
         } catch (IOException e) {
             System.out.println("Login loader error");
@@ -108,4 +126,9 @@ public class ClientApp extends Application {
             e.printStackTrace();
         }
     }
+/*
+    public void setConnection(ConnectionHandler connection) {
+        this.connection = connection;
+    }
+*/
 }
