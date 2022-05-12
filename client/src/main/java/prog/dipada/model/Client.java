@@ -40,12 +40,16 @@ public class Client {
     public ListProperty<Email> getInboxProperty(){
       return inbox;
     }
+    public ListProperty<Email> getOutboxProperty(){
+        return outbox;
+    }
+
     public void setInboxContent(List<Email> inboxList){
         inboxContent.setAll(inboxList);
     }
 
-    public ListProperty<Email> getOutboxProperty(){
-        return outbox;
+    public void setOutboxContent(List<Email> outboxList) {
+        outboxContent.setAll(outboxList);
     }
 
     // indirizzo email della casella postale

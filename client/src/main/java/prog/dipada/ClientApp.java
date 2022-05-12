@@ -120,7 +120,7 @@ public class ClientApp extends Application {
         try{
             URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
             FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
-            Scene scene = new Scene(mainWindowLoader.load(), 900, 600);
+            Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
             MainWindowController mainWindowController = mainWindowLoader.getController();
             mainWindowController.setMainWindowController(this);
             primaryStage.setTitle("dipadamail");

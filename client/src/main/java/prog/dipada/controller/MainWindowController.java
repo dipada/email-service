@@ -2,6 +2,9 @@ package prog.dipada.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import prog.dipada.ClientApp;
 import prog.dipada.model.Email;
 import prog.dipada.model.Client;
@@ -16,6 +19,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController {
 
+    @FXML
+    private VBox rwVbox;
     @FXML
     private Button btnForward;
     @FXML
@@ -123,13 +128,12 @@ public class MainWindowController {
     private void refreshList() {
         //Platform.runLater(()->System.out.println("ciao"));
         while (true) {
-            System.out.println("ciao");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             clientApp.getConnectionHandler().requestAll();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
