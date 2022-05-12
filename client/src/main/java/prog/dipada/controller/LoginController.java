@@ -15,8 +15,6 @@ import java.util.regex.Pattern;
 
 public class LoginController {
     private ClientApp clientApp;
-    //private ConnectionHandler connection;
-    //private Client client;
     private Stage stage;
 
     @FXML
@@ -24,47 +22,40 @@ public class LoginController {
     @FXML
     private Button btnLogin;
 
-    public void onLoginButtonClick(ActionEvent actionEvent) {
-        // TODO effettuare login
+    public void onLoginButtonClick() {
         final String emailDomain = "@dipada.it";
-        if(emailField.getText().length()>0 && emailField != null){
-            String emailUserLogin = emailField.getText() + emailDomain;
-            if(validateEmail(emailUserLogin)){
-                System.out.println("Client app da login" + clientApp);
-                // Email valida richiede login, se il server è online e l'utente esiste verrà fatto login
 
-                String isUserAccept = clientApp.getConnectionHandler().authUser(emailUserLogin);
-                if(isUserAccept != null){
-                    if(isUserAccept.equals("valid")){
-                        // Utente esistente
-                        stage.close();
-                        /*
-                        if(connection.requestAll()){
-                            System.out.println("Richiesta andata a buon fine");
-                            stage.close();
-                        }else{
-                            // Il server è offline
-                            System.out.println("Richiesta non andata a buon fine");
-                            generateErrorAlert("Error logins", "Server offline", "Server does not respond");
-                        }*/
+        // campo email vuoto
+        if(emailField.getText().length() == 0 || emailField == null) {
+            generateErrorAlert("Error login", "Email field empty", "Insert an email");
+            return;
+        }
 
-                    }else{
-                        // L'utente non esiste
-                        generateErrorAlert("Error login", emailUserLogin + " invalid account", "Account does not exist");
-                    }
-                }else{
-                    // Il server è offline
-                    System.out.println("il server è offline");
-                    generateErrorAlert("Error login", "Server offline", "Server does not respond");
-                }
+        String emailUserLogin = emailField.getText() + emailDomain;
 
+        // l'email non rispetta il pattern
+        if(!validateEmail(emailUserLogin)){
+            generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +
+                    "- should begin with a letter\n" +
+                    "- length need to be almost 4 character\n" +
+                    "- can contain only this special character . _");
+            return;
+        }
+
+        // Email non vuota e rispetta il pattern
+        String isUserAccept = clientApp.getConnectionHandler().authUser(emailUserLogin);
+
+        if(isUserAccept != null){
+            if(isUserAccept.equals("valid")){
+                // user exist
+                stage.close();
             }else{
-                //TODO messaggio di errore email scorretta
-                generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +
-                        "- should begin with a letter\n" +
-                        "- length need to be almost 4 character\n" +
-                        "- can contain only this special character . _");
+                // user doesn't exist
+                generateErrorAlert("Error login", emailUserLogin + " invalid account", "Account does not exist");
             }
+        }else {
+            // server offline
+            generateErrorAlert("Error login", "Server offline", "Server does not respond");
         }
     }
 
@@ -85,7 +76,5 @@ public class LoginController {
     public void setLoginController(ClientApp clientApp, Stage stage) {
         this.clientApp = clientApp;
         this.stage = stage;
-        //this.client = client;
-        //this.connection = connection;
     }
 }
