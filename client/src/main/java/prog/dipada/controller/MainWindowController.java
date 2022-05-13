@@ -1,26 +1,23 @@
 package prog.dipada.controller;
 
 import javafx.application.Platform;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
 import prog.dipada.ClientApp;
 import prog.dipada.model.Email;
 import prog.dipada.model.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 
-import java.net.URL;
+import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class MainWindowController {
 
     @FXML
-    private VBox rwVbox;
+    private Label lblTotInbox;
+    @FXML
+    private Label lblTotOutbox;
     @FXML
     private Button btnForward;
     @FXML
@@ -29,8 +26,6 @@ public class MainWindowController {
     private Button btnREply;
     @FXML
     private Button btnNewEmail;
-    @FXML
-    private BorderPane pnlReadMessage;
     @FXML
     private Label lblUsername;
     @FXML
@@ -55,14 +50,26 @@ public class MainWindowController {
     private Email emptyEmail;
     private ClientApp clientApp;
 
-    private void showSelectedEmail(MouseEvent mouseEvent) {
+    private void showSelectedEmailInbox(MouseEvent mouseEvent) {
         Email email = lstInboxEmail.getSelectionModel().getSelectedItem();
         selectedEmail = email;
-        //updateDetailView(email);
+        updateDetailView(email);
+    }
+
+    private void showSelectedEmailOutbox(MouseEvent mouseEvent) {
+        Email email = lstOutboxEmail.getSelectionModel().getSelectedItem();
+        selectedEmail = email;
+        updateDetailView(email);
     }
 
     public void onDeleteButtonClick(MouseEvent mouseEvent) {
-        model.deleteEmail(selectedEmail);
+        System.out.println("Sender " + selectedEmail.getSender());
+        // TODO ridefinire il metodo deleteEmail per eliminare le email inviate/ricevute
+        clientApp.getClient().deleteEmail(selectedEmail);
+        selectedEmail = null;
+        updateDetailView(emptyEmail);
+
+        //model.deleteEmail(selectedEmail);
         //selectedEmail = null;
         //updateDetailView(emptyEmail);
     }
@@ -107,26 +114,31 @@ public class MainWindowController {
     }
     */
 
-    private void showSelectedEmailOutbox(MouseEvent mouseEvent) {
-        Email email = lstOutboxEmail.getSelectionModel().getSelectedItem();
-        selectedEmail = email;
-        //updateDetailView(email);
-    }
-
 
     public void setMainWindowController(ClientApp clientApp) {
         this.clientApp = clientApp;
+
+        lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
+
         lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
         lstOutboxEmail.itemsProperty().bind(clientApp.getClient().getOutboxProperty());
 
-        lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
+        lblTotInbox.textProperty().bind(clientApp.getClient().getInboxTotalNumProperty().asString());
+        lblTotOutbox.textProperty().bind(clientApp.getClient().getOutboxTotalNumProperty().asString());
+
+        lstInboxEmail.setOnMouseClicked(this::showSelectedEmailInbox);
+        lstOutboxEmail.setOnMouseClicked(this::showSelectedEmailOutbox);
+
+        selectedEmail = null;
+
+        emptyEmail = new Email("", "", List.of(""), "", null);
+        updateDetailView(emptyEmail);
 
         Thread clientThread = new Thread(()->refreshList());
         clientThread.start();
     }
 
     private void refreshList() {
-        //Platform.runLater(()->System.out.println("ciao"));
         while (true) {
             clientApp.getConnectionHandler().requestAll();
             try {
@@ -135,5 +147,11 @@ public class MainWindowController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onNewButtonClick(ActionEvent actionEvent) {
+        System.out.println("NEW BUTTON CLICK");
+        Email email = new Email("daniele@dipada.it", "oggetto mioo", List.of("giovanni@dipada.it","peppino@dipada.it"), "messaggino", new Date());
+        clientApp.getConnectionHandler().sendEmail(email);
     }
 }
