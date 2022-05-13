@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="reversed conditions for clean code">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="improved readability">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
     </list>
@@ -24,6 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -62,30 +71,19 @@
       <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="prog.dipada.lib" />
+      <recent name="prog.dipada" />
       <recent name="dipada.server.model" />
       <recent name="dipada.client.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.prog.dipada.ClientApp">
-    <configuration name="FileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="prog.dipada.lib.FileManager" />
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="prog.dipada.lib.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.prog.dipada.ServerApp">
     <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="prog.dipada.ServerApp" />
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="prog.dipada.*" />
+          <option name="PATTERN" value="prog.dipada.lib.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,7 +96,7 @@
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="prog.dipada.*" />
+          <option name="PATTERN" value="prog.dipada.lib.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,7 +109,20 @@
       <module name="client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="prog.dipada.*" />
+          <option name="PATTERN" value="prog.dipada.lib.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="prog.dipada.lib.FileManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="prog.dipada.lib.FileManager" />
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="prog.dipada.lib.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,17 +144,17 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.pr" />
+      <item itemvalue="Application.prog.dipada.ServerApp" />
+      <item itemvalue="Application.prog.dipada.pr" />
+      <item itemvalue="Application.prog.dipada.lib.FileManager" />
       <item itemvalue="Application.prog.dipada.ClientApp" />
-      <item itemvalue="Application.FileManager" />
-      <item itemvalue="Application.ServerApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.prog.dipada.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
-        <item itemvalue="Application.FileManager" />
-        <item itemvalue="Application.pr" />
+        <item itemvalue="Application.prog.dipada.ServerApp" />
+        <item itemvalue="Application.prog.dipada.lib.FileManager" />
+        <item itemvalue="Application.prog.dipada.pr" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +171,9 @@
       <workItem from="1651988255577" duration="17425000" />
       <workItem from="1652073317733" duration="24361000" />
       <workItem from="1652164922354" duration="1208000" />
-      <workItem from="1652335170294" duration="12941000" />
+      <workItem from="1652335170294" duration="18153000" />
+      <workItem from="1652356991952" duration="4339000" />
+      <workItem from="1652419078995" duration="35374000" />
     </task>
     <task id="LOCAL-00001" summary="First commit, new project divided by server and client module">
       <created>1651826811583</created>
@@ -428,7 +441,77 @@
       <option name="project" value="LOCAL" />
       <updated>1652342588783</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="first working exchange of emails between client and server. To complete operations and fix some bugs">
+      <created>1652349222474</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1652349222474</updated>
+    </task>
+    <task id="LOCAL-00040" summary="update view">
+      <created>1652363106480</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1652363106480</updated>
+    </task>
+    <task id="LOCAL-00041" summary="update view again">
+      <created>1652429822299</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1652429822299</updated>
+    </task>
+    <task id="LOCAL-00042" summary="added IntegerProperty for count emails, to complete: add delete method that can know if email is sent">
+      <created>1652429972991</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1652429972991</updated>
+    </task>
+    <task id="LOCAL-00043" summary="update view and controller with count email label">
+      <created>1652430019860</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1652430019860</updated>
+    </task>
+    <task id="LOCAL-00044" summary="added sendWindow view">
+      <created>1652441251577</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1652441251577</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added Send view controller">
+      <created>1652441295280</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1652441295280</updated>
+    </task>
+    <task id="LOCAL-00046" summary="added method for showup sendWindow">
+      <created>1652441323107</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1652441323107</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added clearComma by receiver string, checking for entire form and alert to display. To improve readability of alert msg">
+      <created>1652450077244</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1652450077244</updated>
+    </task>
+    <task id="LOCAL-00048" summary="improved readability">
+      <created>1652451060557</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1652451060557</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,17 +530,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added ServerApp main class" />
-    <MESSAGE value="fixed module-info.java and fxml file name in start application" />
-    <MESSAGE value="added model class to server" />
-    <MESSAGE value="added serialization to Email class" />
-    <MESSAGE value="update email class" />
-    <MESSAGE value="added Server, ServerThreadSession for handle multiple connections. All works. Clients can send a file and server can read it. To fix: when server fx Application terminate server have to shutdown threadPool. To complete: add operations and file handler for save email received/sended" />
-    <MESSAGE value="added simply code for test communication with 2-3 clients and server." />
-    <MESSAGE value="moved Server and ServerThreadSession to lib package" />
-    <MESSAGE value="added file manager that save sent email according hierarchy" />
-    <MESSAGE value="update file manager with loading inbox/outbox methods" />
-    <MESSAGE value="added Client model class" />
     <MESSAGE value="update main window controller" />
     <MESSAGE value="added method for validate email" />
     <MESSAGE value="added method to check if user exist" />
@@ -472,7 +544,18 @@
     <MESSAGE value="fixed login and update instance method of clientApp" />
     <MESSAGE value="reversed condition for clean code" />
     <MESSAGE value="reversed conditions for clean code" />
-    <option name="LAST_COMMIT_MESSAGE" value="reversed conditions for clean code" />
+    <MESSAGE value="first working exchange of emails between client and server. To complete operations and fix some bugs" />
+    <MESSAGE value="update view" />
+    <MESSAGE value="update view again" />
+    <MESSAGE value="added IntegerProperty for count emails" />
+    <MESSAGE value="added IntegerProperty for count emails, to complete: add delete method that can know if email is sent" />
+    <MESSAGE value="update view and controller with count email label" />
+    <MESSAGE value="added sendWindow view" />
+    <MESSAGE value="added Send view controller" />
+    <MESSAGE value="added method for showup sendWindow" />
+    <MESSAGE value="added clearComma by receiver string, checking for entire form and alert to display. To improve readability of alert msg" />
+    <MESSAGE value="improved readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved readability" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

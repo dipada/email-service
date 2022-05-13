@@ -1,10 +1,9 @@
 package prog.dipada;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
 import prog.dipada.controller.LoginController;
 import prog.dipada.controller.MainWindowController;
 import prog.dipada.controller.SendWindowController;
+import prog.dipada.lib.ConnectionHandler;
 import prog.dipada.model.Client;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,10 +16,7 @@ import javafx.stage.WindowEvent;
 import prog.dipada.model.Email;
 
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.URL;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ClientApp extends Application {
     private Client client;
@@ -115,7 +111,6 @@ public class ClientApp extends Application {
             mainWindowController.setMainWindowController(this);
             primaryStage.setTitle("dipadamail");
             primaryStage.setScene(scene);
-            //MainWindowController mainWindowController = mainWindowLoader.getController();
             primaryStage.show();
         } catch (IOException e) {
             System.out.println("Main windows loader error");

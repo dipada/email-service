@@ -12,5 +12,7 @@ module com.example.client {
 
     exports prog.dipada;
     opens prog.dipada to javafx.fxml;
+    exports prog.dipada.lib;
+    opens prog.dipada.lib to javafx.fxml;
 
 }

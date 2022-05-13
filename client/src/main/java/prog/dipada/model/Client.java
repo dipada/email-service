@@ -71,6 +71,10 @@ public class Client {
         outboxContent.setAll(outboxList);
     }
 
+    public void setOutboxContent(Email email){
+        outboxContent.add(email);
+    }
+
     // indirizzo email della casella postale
     public StringProperty getUserEmailProperty(){
         return userEmail;

@@ -12,11 +12,12 @@ import java.net.URL;
 
 public class ServerApp extends Application {
     private Server server;
+    private Thread ts;
     @Override
     public void start(Stage stage) throws Exception {
         server = new Server(8989);
         server.setUsersList();
-        Thread ts = new Thread(server);
+        ts = new Thread(server);
         ts.start();
 
         URL serverUrl = ServerApp.class.getResource("ServerMainWindow.fxml");
@@ -34,10 +35,13 @@ public class ServerApp extends Application {
 
     @Override
     public void stop() throws Exception {
-        server.end();
-        server.join();
-        System.out.println("Server shutdown");
-        System.out.println("Exit now");
+        ts.interrupt();
+        ts.join();
+
+        //server.end();
+        //server.join();
+        System.out.println("Main Server shutdown");
+        System.out.println("Main Exit now");
     }
 
     public static void main(String[] args) {

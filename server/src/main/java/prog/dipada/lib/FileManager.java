@@ -45,7 +45,7 @@ public class FileManager {
     public boolean addUserDirs(String userEmail){
         File in = new File(filePath + "/" + userEmail + "/in");
         File out = new File(filePath + "/" + userEmail + "/out");
-//        System.out.println("ADDUSERDIR " + f.toString());
+
         if(!checkUserExist(userEmail)){
             System.out.println("Creo le cartelle per " + userEmail);
             return createDirectory(in) && createDirectory(out);

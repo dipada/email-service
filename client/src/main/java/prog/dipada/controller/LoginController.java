@@ -1,10 +1,6 @@
 package prog.dipada.controller;
 
-import javafx.application.Platform;
 import prog.dipada.ClientApp;
-import prog.dipada.ConnectionHandler;
-import prog.dipada.model.Client;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

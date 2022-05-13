@@ -10,11 +10,11 @@ public class Email implements Serializable {
     private static final long serialVersionUID = 5462223600L;
     private final int id;
     private final String sender;
-    private final String subject;
-    private final List<String> receivers;
-    private final String messageText;
+    private String subject;
+    private List<String> receivers;
+    private String messageText;
     private final Date date; // TODO finire data
-    private boolean sent;
+    private boolean isSent;
 
     public Email(String sender, String subject, List<String> receivers, String messageText, Date date) {
         this.sender = sender;
@@ -22,7 +22,7 @@ public class Email implements Serializable {
         this.receivers = receivers;
         this.messageText = messageText;
         this.date = date;
-        this.sent = false;
+        this.isSent = false;
         this.id = this.hashCode();
     }
 
@@ -87,10 +87,22 @@ public class Email implements Serializable {
     }
 
     public boolean isSent() {
-        return sent;
+        return isSent;
     }
 
-    public void setSent(boolean sent) {
-        this.sent = sent;
+    public void setIsSent(boolean sent) {
+        this.isSent = sent;
+    }
+
+    public void setReceivers(List<String> receivers) {
+        this.receivers = receivers;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 }

@@ -140,9 +140,9 @@ public class MainWindowController {
 
     private void refreshList() {
         while (true) {
-            clientApp.getConnectionHandler().requestAll();
+            Platform.runLater(()->{clientApp.getConnectionHandler().requestAll();});
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -151,7 +151,7 @@ public class MainWindowController {
 
     public void onNewButtonClick(ActionEvent actionEvent) {
         System.out.println("NEW BUTTON CLICK");
-        Email email = new Email("daniele@dipada.it", "oggetto mioo", List.of("giovanni@dipada.it","peppino@dipada.it"), "messaggino", new Date());
-        clientApp.getConnectionHandler().sendEmail(email);
+        Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(), "", null, "", new Date());
+        clientApp.showSendEmailWindow(email);
     }
 }

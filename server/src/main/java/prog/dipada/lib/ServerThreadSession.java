@@ -3,12 +3,11 @@ package prog.dipada.lib;
 import prog.dipada.model.Email;
 import prog.dipada.model.Log;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,57 +32,88 @@ public class ServerThreadSession implements Runnable {
     @Override
     public void run() {
         System.out.println("Sessione partita " + socket);
-        log.printLogOnScreen("New session started " + socket.getInetAddress());
+        log.printLogOnScreen("New session started " + socket.getInetAddress() + socket.getLocalAddress() + socket.getLocalSocketAddress());
         // TODO apre stream - invia/riceve dati - chiude stream
         openStreams();
         boolean runSession = true;
         // TODO qui operazioni
             try {
                 System.out.println("SERVER ATTENDO OPERAZIONE " );
-                String req = (String) inStream.readObject();
+                ServerRequest req = (ServerRequest) inStream.readObject();
                 System.out.println("OPERAZIONE RICHIESTA>> " + req);
                 switch (req) {
 
-                    case "UP":{
-                        outStream.writeObject("YES");
-                        outStream.flush();
-                        break;
-                    }
-                    case "AUTH": {
+                    case AUTH: {
                         System.out.println("Server in auth aspetto email");
                         String userEmail = (String) inStream.readObject();
+
                         this.idSession = userEmail;
                         if (fileManager.checkUserExist(userEmail)) {
                             log.printLogOnScreen("USER: " + idSession
                                     + " try connect to the server. Connection accepted");
-                            outStream.writeObject("USER_ACCEPTED");
+                            outStream.writeObject(ServerResponse.OK); // user exist and is accepted
                             outStream.flush();
                         } else {
                             log.printLogOnScreen("USER: " + userEmail
                                     + " try connect to the server. Connection refused, unknown user");
-                            outStream.writeObject("USER_REFUSE");
+                            outStream.writeObject(ServerResponse.USERNOTEXIST);
                             outStream.flush();
-                            //runSession = false;
                         }
                         System.out.println("AUTH finito");
                         break;
                     }
 
-                    case "sendAll": {
+                    case SENDALL: {
                         System.out.println("Server in sendAll aspetto userEmail");
                         String userEmail = (String) inStream.readObject();
-                        log.printLogOnScreen("USER: " + userEmail + " has requested inbox and outbox emails");
 
-                        System.out.println("sendall scrivo le liste");
+                        this.idSession = userEmail;
+                        log.printLogOnScreen("USER: " + idSession + " has requested inbox and outbox emails");
 
                         outStream.writeObject(fileManager.loadInbox(userEmail));
                         outStream.flush();
+
                         outStream.writeObject(fileManager.loadOutbox(userEmail));
                         outStream.flush();
 
                         System.out.println("Sendall finita");
                         break;
                     }
+
+                    case SENDEMAIL:
+                        boolean usersExist = true;
+
+                        Email emailToSend = (Email) inStream.readObject();
+                        this.idSession = emailToSend.getSender();
+
+                        List<String> usersToCheck = emailToSend.getReceivers();
+                        List<String> usersNonexistent = new LinkedList<>();
+
+                        for(String user : usersToCheck){
+                            if(!fileManager.checkUserExist(user)){
+                                usersExist = false;
+                                usersNonexistent.add(user);
+                            }
+                        }
+
+                        if(usersExist){
+                            // All users exist, sending email
+                            log.printLogOnScreen("USER: " + idSession + " send an email correctly");
+                            Email newEmail = fileManager.save(emailToSend);
+                            outStream.writeObject(ServerResponse.EMAILSENT);
+                            outStream.writeObject(newEmail);
+                            outStream.flush();
+
+                        }else{
+                            // one or more users not exists, send back list of nonexistent users
+                            log.printLogOnScreen("USER: " + idSession + " error while sending an email: receivers does not exist");
+                            outStream.writeObject(ServerResponse.USERNOTEXIST);
+                            outStream.writeObject(usersNonexistent);
+                            outStream.flush();
+                        }
+                        break;
+
+
                 }
             } catch (IOException e) {
                 // User close streams

@@ -20,13 +20,13 @@ import java.util.concurrent.TimeUnit;
  * */
 public class Server extends Thread{
     private Log log;
-    private final int serverPort;
-    private int numThreadSession;
     private ExecutorService exec;
-    private boolean runningServer; // TODO check variabile
-    private Socket socket;
     private FileManager fileManager;
     private final List<String> userList;
+    private final int serverPort;
+    private Socket socket;
+    private int numThreadSession;
+    private boolean runningServer; // TODO check variabile
 
     public Server(int serverPort){
         this.serverPort = serverPort;
@@ -42,20 +42,20 @@ public class Server extends Thread{
         return log;
     }
 
-    public void setUsersList(){ // TODO rivedere per creazione
+    public List<String> getUserList(){return userList;}
+
+    public void setUsersList(){
         userList.add("daniele@dipada.it");
         userList.add("giovanni@dipada.it");
         userList.add("peppino@dipada.it");
     }
 
-    public List<String> getUserList(){return userList;}
-
     @Override
     public void run() {
-        // Il thread del server si mette in attesa
-        // quando accetta una connessione la passa al thread pool
         System.out.println("Server partito");
         log.printLogOnScreen("Server started");
+
+        // When server starts add user dir if doesn't exist
         for (String s : getUserList()){
             System.out.println(s);
             fileManager.addUserDirs(s);
@@ -67,7 +67,7 @@ public class Server extends Thread{
         try {
             ServerSocket serverSocket = new ServerSocket(serverPort);
             log.printLogOnScreen("Server ready for connections. Max simultaneous connections " + numThreadSession);
-            while(runningServer){ // TODO sistemare chiusura
+            while(!Thread.interrupted()){
                 socket = serverSocket.accept();
                 log.printLogOnScreen("New connection accepted");
                 exec.execute(new ServerThreadSession(socket,fileManager,log));
@@ -94,7 +94,8 @@ public class Server extends Thread{
     }
 
     public void end() {
-        log.printLogOnScreen("Start exiting...");
+        //log.printLogOnScreen("Start exiting...");
+        System.out.println("Start exiting...");
         runningServer = false;
     }
 }

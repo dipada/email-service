@@ -63,8 +63,6 @@ public class SendWindowController {
     }
 
     public void onClickSendBtn(ActionEvent actionEvent) {
-        // TODO controllare indirizzi email
-
         email.setReceivers(clearCommaReceiver(rcvTextField.getText()));
         email.setSubject(subjectTextField.getText());
         email.setMessageText(msgTxtArea.getText());
@@ -72,7 +70,31 @@ public class SendWindowController {
         if (checkSendEmailFields(email)) {
             sendClicked = true;
             // TODO inviare email
-            stage.close();
+            System.out.println("SendWindow prima di SENDEMAIL ci sono>>");
+            for (String s : email.getReceivers()){
+                System.out.println(s);
+            }
+
+            switch (clientApp.getConnectionHandler().sendEmail(email)){
+                case EMAILSENT -> {
+                    System.out.println("Email inviata");
+                    // TODO popUp dell'invio
+                    stage.close();
+                }
+                case USERNOTEXIST -> {
+                    StringBuilder errContentText = new StringBuilder();
+                    for(String userNonexistent : email.getReceivers()){
+                        errContentText.append(userNonexistent).append("\n");
+                    }
+                    generateErrorAlert("Error sending email", "Error user not exist", "Following users not exist:\n"+errContentText);
+                }
+                case ERRCONNECTION -> generateErrorAlert("Error login", "Server offline", "Server does not respond");
+            }
+            System.out.println("SendWindow DOPO di SENDEMAIL ci sono>>");
+            for (String s : email.getReceivers()){
+                System.out.println(s);
+            }
+
         }
     }
 
