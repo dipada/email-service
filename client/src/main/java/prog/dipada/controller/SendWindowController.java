@@ -77,36 +77,55 @@ public class SendWindowController {
     }
 
     private boolean checkSendEmailFields(Email email) {
-        String errorContentMsg = "";
+        boolean isWritten = false;
+        StringBuilder errorContentMsg = new StringBuilder();
         if (rcvTextField.getText() == null || rcvTextField.getText().length() == 0) {
-            errorContentMsg += "No receiver written\n";
+            errorContentMsg.append("No receiver written\n");
         }
 
         for (String rcv : email.getReceivers()) {
             if (!validateEmail(rcv)) {
-                errorContentMsg += "Receiver: " + rcv + " is not valid\n";
+                if (!isWritten) {
+                    errorContentMsg.append("These receivers are not valid: \n");
+                    isWritten = true;
+                }
+                errorContentMsg.append("\t -> ").append(rcv).append("\n");
             }
         }
 
+        if (isWritten) {
+            errorContentMsg.append("""
+                    Valid email address
+                    - should begin with a letter
+                    - length need to be almost 4 character
+                    - can contain only this special character . _
+
+                    """);
+        }
+
         if (subjectTextField.getText() == null || subjectTextField.getText().length() == 0) {
-            errorContentMsg += "No Subject written\n";
+            errorContentMsg.append("No Subject written\n");
         }
 
         if (msgTxtArea.getText() == null || msgTxtArea.getText().length() == 0) {
-            errorContentMsg += "Message body is empty\n";
+            errorContentMsg.append("Message body is empty\n");
         }
 
         if (errorContentMsg.length() == 0) {
             return true;
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(stage);
-            alert.setTitle("Error in fields");
-            alert.setHeaderText("There are some wrong things: ");
-            alert.setContentText(errorContentMsg);
-            alert.showAndWait();
+            generateErrorAlert("Error in fields", "There are some wrong things: ", errorContentMsg.toString());
             return false;
         }
+    }
+
+    private void generateErrorAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.initOwner(stage);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
     private boolean validateEmail(String emailUserLogin) {
