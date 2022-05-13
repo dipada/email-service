@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.dipada.controller.SendWindowController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="84.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="516.0" minWidth="10.0" prefWidth="516.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="210.0" text="From:">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="434.0" text="To:" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="136.0" text="Subject:" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Label>
+                  <TextField fx:id="rcvTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label fx:id="lblUserEmail" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="598.0" text="userEmail" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="subjectTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="143.0" prefWidth="572.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="12.0" right="12.0" top="5.0" />
+               </VBox.margin>
+            </GridPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="338.0" prefWidth="580.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="12.0" right="12.0" top="5.0" />
+               </VBox.margin>
+               <children>
+                  <TextArea fx:id="msgTxtArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="266.0" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <HBox alignment="BOTTOM_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="sendBtn" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#onClickSendBtn" text="Send">
+                           <HBox.margin>
+                              <Insets bottom="5.0" right="12.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
