@@ -1,7 +1,10 @@
 package prog.dipada;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import prog.dipada.controller.LoginController;
 import prog.dipada.controller.MainWindowController;
+import prog.dipada.controller.SendWindowController;
 import prog.dipada.model.Client;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import prog.dipada.model.Email;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -74,20 +78,6 @@ public class ClientApp extends Application {
     }
 */
     public static void main(String[] args) {
-        //Thread tc = new Thread(new ConnectionHandler("localhost", 8989));
-        //connection = new ConnectionHandler("localhost", 8989);
-/*
-        connThread = new Thread(connection::startConnection);
-        //connThread = Executors.newSingleThreadExecutor();
-
-        //ConnectionHandler connection = new ConnectionHandler("localhost", 8989);
-        connThread.start();
-        client = new Client();
-        */
-
-        //client = new Client("a caso");
-        //connection.startConnection();
-
         launch();
     }
 
@@ -132,9 +122,24 @@ public class ClientApp extends Application {
             e.printStackTrace();
         }
     }
-/*
-    public void setConnection(ConnectionHandler connection) {
-        this.connection = connection;
+
+    public boolean showSendEmailWindow(Email email) {
+        try{
+            URL sendWindowUrl = ClientApp.class.getResource("SendWindow.fxml");
+            FXMLLoader sendWindowLoader = new FXMLLoader(sendWindowUrl);
+            Stage stage = new Stage();
+            Scene scene = new Scene(sendWindowLoader.load(), 600, 400);
+            stage.setTitle("Write - dipadamail");
+            SendWindowController sendWindowController = sendWindowLoader.getController();
+            sendWindowController.setSendWindowController(this,stage);
+            sendWindowController.setEmail(email);
+            stage.setScene(scene);
+            stage.showAndWait();
+            return sendWindowController.isSendClicked();
+        }catch (IOException e){
+            System.out.println("Send email window loader error");
+            e.printStackTrace();
+            return false;
+        }
     }
-*/
 }
