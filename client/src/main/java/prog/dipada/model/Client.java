@@ -1,10 +1,6 @@
 package prog.dipada.model;
 
-import javafx.application.Platform;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,10 +12,11 @@ import java.util.List;
 public class Client {
     private StringProperty userEmail;
     private final ListProperty<Email> inbox;
-    private final ObservableList<Email> inboxContent;  // Per bindind di property
-
+    private final ObservableList<Email> inboxContent;
     private final ListProperty<Email> outbox;
-    private final ObservableList<Email> outboxContent;  // Per bindind di property
+    private final ObservableList<Email> outboxContent;
+    private final IntegerProperty inboxTotalNum;
+    private final IntegerProperty outboxTotalNum;
     public Client(){
         this.userEmail = new SimpleStringProperty(null);
         this.inboxContent = FXCollections.observableList(new LinkedList<>());
@@ -29,12 +26,34 @@ public class Client {
         this.outboxContent = FXCollections.observableList(new LinkedList<>());
         this.outbox = new SimpleListProperty<>();
         this.outbox.set(outboxContent);
+
+        this.inboxTotalNum = new SimpleIntegerProperty(0);
+        this.outboxTotalNum = new SimpleIntegerProperty(0);
     }
+
+    public IntegerProperty getInboxTotalNumProperty(){
+        return inboxTotalNum;
+    }
+
+    public void setInboxTotalNumProperty(int numEmail){
+        System.out.println("INBOXTOT vale " + inboxTotalNum.getValue());
+        this.inboxTotalNum.set(numEmail);
+        System.out.println("INBOXTOT dopo vale " + inboxTotalNum.getValue());
+    }
+
+    public IntegerProperty getOutboxTotalNumProperty(){
+        return outboxTotalNum;
+    }
+
+    public void setOutboxTotalNumProperty(int numEmail){
+        this.outboxTotalNum.set(numEmail);
+    }
+
     public void setUserEmailProperty(String userEmail){
         System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
         this.userEmail.set(userEmail);
         System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
-    };
+    }
     // ritorna una lista di email perchè è ciò che avevo settato nel costruttore
     //
     public ListProperty<Email> getInboxProperty(){
@@ -58,7 +77,7 @@ public class Client {
     }
 
     public void deleteEmail(Email email){
-        inboxContent.remove(email);
+        outboxContent.remove(email);
     }
 
     public void generateEmail(){
