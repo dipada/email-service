@@ -1,10 +1,5 @@
 package prog.dipada;
 
-import prog.dipada.controller.LoginController;
-import prog.dipada.controller.MainWindowController;
-import prog.dipada.controller.SendWindowController;
-import prog.dipada.lib.ConnectionHandler;
-import prog.dipada.model.Client;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -13,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import prog.dipada.controller.LoginController;
+import prog.dipada.controller.MainWindowController;
+import prog.dipada.controller.SendWindowController;
+import prog.dipada.lib.ConnectionHandler;
+import prog.dipada.model.Client;
 import prog.dipada.model.Email;
 
 import java.io.IOException;
@@ -21,22 +21,40 @@ import java.net.URL;
 public class ClientApp extends Application {
     private Client client;
     private ConnectionHandler connectionHandler;
-    //private static Thread connThread;
+    private Thread mainWinT;
 
-    public ClientApp(){
+    public ClientApp() {
         connectionHandler = new ConnectionHandler(this);
         client = new Client();
     }
 
-    public ConnectionHandler getConnectionHandler(){
+    /*
+        @Override
+        public void stop(){
+            System.out.println("Preparing to application exit...");
+            connection.end();
+            try {
+                connThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Exiting now");
+        }
+    */
+    public static void main(String[] args) {
+        launch();
+    }
+
+    public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
     }
-    public Client getClient(){
+
+    public Client getClient() {
         return client;
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         //URL clientUrl = ClientApp.class.getResource("MainWindow.fxml");
         //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
         //Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -57,24 +75,27 @@ public class ClientApp extends Application {
         //System.out.println("DOPO login " + connection);
         //System.out.println("Client da main: " + client.getUserEmailProperty());
 
-        showMainWindow(stage);
+        mainWinT = new Thread(()->showMainWindow(stage));
+        mainWinT.start();
+        //showMainWindow(stage);
 
     }
-/*
+
     @Override
-    public void stop(){
-        System.out.println("Preparing to application exit...");
-        connection.end();
-        try {
-            connThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void stop() throws Exception {
+        super.stop();
+        System.out.println("Starting application exiting...");
+        if(mainWindowController != null) {
+            mainWindowController.setStop(true);
+            try {
+                mainWinT.join();
+            } catch (RuntimeException e) {
+                throw new RuntimeException();
+            }
         }
-        System.out.println("Exiting now");
-    }
-*/
-    public static void main(String[] args) {
-        launch();
+        System.out.println("->\tapplication exit successful\n");
+        System.out.println("Exit completed.");
+        System.exit(0);
     }
 
     private void showLoginLayout(Stage primaryStage) {
@@ -101,37 +122,41 @@ public class ClientApp extends Application {
             e.printStackTrace();
         }
     }
+    private MainWindowController mainWindowController;
 
     private void showMainWindow(Stage primaryStage) {
-        try{
-            URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
-            FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
-            Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
-            MainWindowController mainWindowController = mainWindowLoader.getController();
-            mainWindowController.setMainWindowController(this);
-            primaryStage.setTitle("dipadamail");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println("Main windows loader error");
-            e.printStackTrace();
-        }
+        Platform.runLater(()-> {
+            try {
+                URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
+                FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
+                Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
+                mainWindowController = mainWindowLoader.getController();
+                mainWindowController.setMainWindowController(this);
+                primaryStage.setTitle("dipadamail");
+                primaryStage.setScene(scene);
+                primaryStage.show();
+
+            } catch (IOException e) {
+                System.out.println("Main windows loader error");
+                e.printStackTrace();
+            }
+        });
     }
 
     public boolean showSendEmailWindow(Email email) {
-        try{
+        try {
             URL sendWindowUrl = ClientApp.class.getResource("SendWindow.fxml");
             FXMLLoader sendWindowLoader = new FXMLLoader(sendWindowUrl);
             Stage stage = new Stage();
             Scene scene = new Scene(sendWindowLoader.load(), 600, 400);
             stage.setTitle("Write - dipadamail");
             SendWindowController sendWindowController = sendWindowLoader.getController();
-            sendWindowController.setSendWindowController(this,stage);
+            sendWindowController.setSendWindowController(this, stage);
             sendWindowController.setEmail(email);
             stage.setScene(scene);
             stage.showAndWait();
             return sendWindowController.isSendClicked();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Send email window loader error");
             e.printStackTrace();
             return false;
