@@ -102,6 +102,15 @@ public class ServerThreadSession implements Runnable {
                             outStream.flush();
                         }
                     }
+
+                    case DELETEEMAIL -> {
+                        System.out.println("Server legge email da cancellare");
+                        String user = (String) inStream.readObject();
+                        Email emailToDelete = (Email) inStream.readObject();
+                        fileManager.deleteEmail(emailToDelete,user);
+                        outStream.writeObject(ServerResponse.EMAILDELETED);
+                        outStream.flush();
+                    }
                 }
             } catch (IOException ignore) {
                 // User close streams

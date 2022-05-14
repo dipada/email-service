@@ -2,12 +2,19 @@ package prog.dipada.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import prog.dipada.ClientApp;
-import prog.dipada.model.Email;
-import prog.dipada.model.Client;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import prog.dipada.ClientApp;
+import prog.dipada.model.Client;
+import prog.dipada.model.Email;
 
 import java.util.Date;
 import java.util.List;
@@ -50,6 +57,7 @@ public class MainWindowController {
     private Email emptyEmail;
     private ClientApp clientApp;
     private Thread clientThread;
+    private Stage primaryStage;
     private boolean stop;
 
     private void showSelectedEmailInbox(MouseEvent mouseEvent) {
@@ -67,17 +75,22 @@ public class MainWindowController {
     public void onDeleteButtonClick(MouseEvent mouseEvent) {
         System.out.println("Sender " + selectedEmail.getSender());
         // TODO ridefinire il metodo deleteEmail per eliminare le email inviate/ricevute
-        clientApp.getClient().deleteEmail(selectedEmail);
-        selectedEmail = null;
-        updateDetailView(emptyEmail);
+        //clientApp.getClient().deleteEmail(selectedEmail);
+        if(clientApp.getConnectionHandler().deleteEmail(selectedEmail)){
+            generatePopup("Email correctly deleted","green");
+            selectedEmail = null;
+            updateDetailView(emptyEmail);
+        }else{
+            generatePopup("Can't delete email","red");
+        }
 
         //model.deleteEmail(selectedEmail);
         //selectedEmail = null;
         //updateDetailView(emptyEmail);
     }
 
-    private void updateDetailView(Email email){
-        if(email != null){
+    private void updateDetailView(Email email) {
+        if (email != null) {
             lblFrom.setText("From: " + email.getSender());
             lblTo.setText("To: " + String.join(", ", email.getReceivers()));
             lblSubject.setText("Subject: " + email.getSubject());
@@ -117,9 +130,9 @@ public class MainWindowController {
     */
 
 
-    public void setMainWindowController(ClientApp clientApp) {
+    public void setMainWindowController(ClientApp clientApp, Stage primaryStage) {
         this.clientApp = clientApp;
-
+        this.primaryStage = primaryStage;
 
         lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
 
@@ -138,11 +151,11 @@ public class MainWindowController {
         updateDetailView(emptyEmail);
 
         stop = false;
-        clientThread = new Thread(()->refreshList());
+        clientThread = new Thread(this::refreshList);
         clientThread.start();
     }
 
-    public void setStop(boolean stop){
+    public void setStop(boolean stop) {
         System.out.println("->\tStopping main window");
         this.stop = stop;
         System.out.println("->\tWaiting for refresh thread to end");
@@ -155,19 +168,52 @@ public class MainWindowController {
     }
 
     private void refreshList() {
+        int actEmails;
         while (!stop) {
-            // TODO show pop up errore server
-            Platform.runLater(()->{clientApp.getConnectionHandler().requestAll();});
+            // TODO show pop up nuova email
+            actEmails = clientApp.getClient().getInboxProperty().size();
+            System.out.println("Ci sono " + actEmails + " emails");
+            Platform.runLater(() -> clientApp.getConnectionHandler().requestAll());
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
+
     public void onNewButtonClick(ActionEvent actionEvent) {
         System.out.println("NEW BUTTON CLICK");
         Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(), "", null, "", new Date());
-        clientApp.showSendEmailWindow(email);
+        if (clientApp.showSendEmailWindow(email))
+            generatePopup("Email sent", "green");
+    }
+
+    private void generatePopup(String contentText, String color) {
+        Label label = new Label(contentText);
+        Popup popup = new Popup();
+        label.setBackground(Background.fill(Color.WHITESMOKE));
+        label.setStyle("-fx-border-color: " + color + "; -fx-font-size: 40; -fx-text-alignment: center;-fx-border-width: 4");
+        if (color.equals("red"))
+            label.setTextFill(Color.RED);
+        else if (color.equals("green"))
+            label.setTextFill(Color.GREEN);
+        else
+            label.setTextFill(Color.BLUE);
+
+        popup.getContent().add(label);
+        label.setMinWidth(200);
+        label.setMinHeight(50);
+
+        popup.setY(primaryStage.getY());
+        popup.setX(primaryStage.getX());
+
+        popup.autoHideProperty().setValue(true);
+        popup.show(primaryStage);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ignore) {
+
+        }
     }
 }

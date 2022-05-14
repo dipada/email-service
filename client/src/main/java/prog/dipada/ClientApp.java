@@ -131,7 +131,7 @@ public class ClientApp extends Application {
                 FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
                 Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
                 mainWindowController = mainWindowLoader.getController();
-                mainWindowController.setMainWindowController(this);
+                mainWindowController.setMainWindowController(this,primaryStage);
                 primaryStage.setTitle("dipadamail");
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -155,7 +155,7 @@ public class ClientApp extends Application {
             sendWindowController.setEmail(email);
             stage.setScene(scene);
             stage.showAndWait();
-            return sendWindowController.isSendClicked();
+            return sendWindowController.isEmailSent();
         } catch (IOException e) {
             System.out.println("Send email window loader error");
             e.printStackTrace();

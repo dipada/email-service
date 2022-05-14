@@ -1,5 +1,6 @@
 package prog.dipada.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,7 +8,6 @@ import javafx.stage.Stage;
 import prog.dipada.ClientApp;
 import prog.dipada.model.Email;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -29,7 +29,7 @@ public class SendWindowController {
     private Stage stage;
     private Email email;
 
-    private boolean sendClicked = false;
+    private boolean emailSent = false;
 
     public void setSendWindowController(ClientApp clientApp, Stage stage) {
         this.clientApp = clientApp;
@@ -63,39 +63,40 @@ public class SendWindowController {
     }
 
     public void onClickSendBtn(ActionEvent actionEvent) {
-        email.setReceivers(clearCommaReceiver(rcvTextField.getText()));
-        email.setSubject(subjectTextField.getText());
-        email.setMessageText(msgTxtArea.getText());
+            email.setReceivers(clearCommaReceiver(rcvTextField.getText()));
+            email.setSubject(subjectTextField.getText());
+            email.setMessageText(msgTxtArea.getText());
 
-        if (checkSendEmailFields(email)) {
-            sendClicked = true;
-            // TODO inviare email
-            System.out.println("SendWindow prima di SENDEMAIL ci sono>>");
-            for (String s : email.getReceivers()){
-                System.out.println(s);
-            }
+            if (checkSendEmailFields(email)) {
 
-            switch (clientApp.getConnectionHandler().sendEmail(email)){
-                case EMAILSENT -> {
-                    System.out.println("Email inviata");
-                    // TODO popUp dell'invio
-                    stage.close();
+                // TODO inviare email
+                System.out.println("SendWindow prima di SENDEMAIL ci sono>>");
+                for (String s : email.getReceivers()) {
+                    System.out.println(s);
                 }
-                case USERNOTEXIST -> {
-                    StringBuilder errContentText = new StringBuilder();
-                    for(String userNonexistent : email.getReceivers()){
-                        errContentText.append(userNonexistent).append("\n");
+
+                switch (clientApp.getConnectionHandler().sendEmail(email)) {
+                    case EMAILSENT -> {
+                        System.out.println("Email inviata");
+                        emailSent = true;
+                        // TODO popUp dell'invio
+                        stage.close();
                     }
-                    generateErrorAlert("Error sending email", "Error user not exist", "Following users not exist:\n"+errContentText);
+                    case USERNOTEXIST -> {
+                        StringBuilder errContentText = new StringBuilder();
+                        for (String userNonexistent : email.getReceivers()) {
+                            errContentText.append(userNonexistent).append("\n");
+                        }
+                        generateErrorAlert("Error sending email", "Error user not exist", "Following users not exist:\n" + errContentText);
+                    }
+                    case ERRCONNECTION -> generateErrorAlert("Error login", "Server offline", "Server does not respond");
                 }
-                case ERRCONNECTION -> generateErrorAlert("Error login", "Server offline", "Server does not respond");
-            }
-            System.out.println("SendWindow DOPO di SENDEMAIL ci sono>>");
-            for (String s : email.getReceivers()){
-                System.out.println(s);
-            }
+                System.out.println("SendWindow DOPO di SENDEMAIL ci sono>>");
+                for (String s : email.getReceivers()) {
+                    System.out.println(s);
+                }
 
-        }
+            }
     }
 
     private boolean checkSendEmailFields(Email email) {
@@ -173,7 +174,7 @@ public class SendWindowController {
         return receivers;
     }
 
-    public boolean isSendClicked() {
-        return sendClicked;
+    public boolean isEmailSent() {
+        return emailSent;
     }
 }

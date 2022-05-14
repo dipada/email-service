@@ -35,17 +35,15 @@ public class Client {
         return inboxTotalNum;
     }
 
-    public void setInboxTotalNumProperty(int numEmail){
-        System.out.println("INBOXTOT vale " + inboxTotalNum.getValue());
+    private void setInboxTotalNumProperty(int numEmail){
         this.inboxTotalNum.set(numEmail);
-        System.out.println("INBOXTOT dopo vale " + inboxTotalNum.getValue());
     }
 
     public IntegerProperty getOutboxTotalNumProperty(){
         return outboxTotalNum;
     }
 
-    public void setOutboxTotalNumProperty(int numEmail){
+    private void setOutboxTotalNumProperty(int numEmail){
         this.outboxTotalNum.set(numEmail);
     }
 
@@ -54,8 +52,7 @@ public class Client {
         this.userEmail.set(userEmail);
         System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
     }
-    // ritorna una lista di email perchè è ciò che avevo settato nel costruttore
-    //
+
     public ListProperty<Email> getInboxProperty(){
       return inbox;
     }
@@ -65,10 +62,12 @@ public class Client {
 
     public void setInboxContent(List<Email> inboxList){
         inboxContent.setAll(inboxList);
+        setInboxTotalNumProperty(inboxContent.size());
     }
 
     public void setOutboxContent(List<Email> outboxList) {
         outboxContent.setAll(outboxList);
+        setOutboxTotalNumProperty(outboxContent.size());
     }
 
     public void setOutboxContent(Email email){
@@ -81,7 +80,10 @@ public class Client {
     }
 
     public void deleteEmail(Email email){
-        outboxContent.remove(email);
+        if(email.isSent())
+            outboxContent.remove(email);
+        else
+            inboxContent.remove(email);
     }
 
     public void generateEmail(){

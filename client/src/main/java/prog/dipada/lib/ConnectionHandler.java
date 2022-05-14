@@ -2,17 +2,13 @@ package prog.dipada.lib;
 
 import javafx.application.Platform;
 import prog.dipada.ClientApp;
-import prog.dipada.lib.ServerRequest;
-import prog.dipada.lib.ServerResponse;
 import prog.dipada.model.Email;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.RecursiveTask;
 
 /**
  * Represents connection of client to server
@@ -41,20 +37,21 @@ public class ConnectionHandler {
         this.host = "localhost";
         this.port = 8989;
     }
+
     public void setIdConnection(String emailIdConnection) {
         this.idConnection = emailIdConnection;
     }
 
-    private void printColor(String text, String color){
-        System.out.println(color+text+RESET);
+    private void printColor(String text, String color) {
+        System.out.println(color + text + RESET);
     }
 
     private boolean startConnection() {
         boolean success = false;
         try {
-            printColor("Connecting to the server..",YELLOW);
+            printColor("Connecting to the server..", YELLOW);
             socket = new Socket(host, port);
-            if(openStream()){
+            if (openStream()) {
                 success = true;
                 printColor("Connection successful", GREEN);
             }
@@ -79,9 +76,9 @@ public class ConnectionHandler {
     private void closeConnection() {
         if (socket != null) {
             try {
-                if(inStream != null)
+                if (inStream != null)
                     inStream.close();
-                if(outStream != null)
+                if (outStream != null)
                     outStream.close();
                 socket.close();
             } catch (IOException e) {
@@ -121,28 +118,30 @@ public class ConnectionHandler {
                 closeConnection();
             }
             return true;
-        }else{
+        } else {
             closeConnection();
             return false;
         }
     }
 
-    public ServerResponse sendEmail(Email email){
+    public ServerResponse sendEmail(Email email) {
         email.setIsSent(false);
-        if(startConnection()){
+        if (startConnection()) {
             try {
                 outStream.writeObject(ServerRequest.SENDEMAIL);
+                outStream.flush();
                 outStream.writeObject(email);
+                outStream.flush();
 
                 ServerResponse serverResponse = (ServerResponse) inStream.readObject();
-                switch (serverResponse){
+                switch (serverResponse) {
                     case EMAILSENT -> {
                         Email em = (Email) inStream.readObject();
-                        if(em != null){
+                        if (em != null) {
                             email.setIsSent(true);
-                            Platform.runLater(()->clientApp.getClient().setOutboxContent(email));
+                            Platform.runLater(() -> clientApp.getClient().setOutboxContent(email));
                         }
-                       return ServerResponse.EMAILSENT;
+                        return ServerResponse.EMAILSENT;
                     }
 
                     case USERNOTEXIST -> {
@@ -159,7 +158,7 @@ public class ConnectionHandler {
             } finally {
                 closeConnection();
             }
-        }else{
+        } else {
             closeConnection();
         }
         return ServerResponse.ERRCONNECTION;
@@ -173,9 +172,10 @@ public class ConnectionHandler {
                 outStream.flush();
 
                 outStream.writeObject(emailUserLogin);
+                outStream.flush();
                 ServerResponse serverResponse = (ServerResponse) inStream.readObject();
 
-                switch (serverResponse){
+                switch (serverResponse) {
                     case OK -> {
                         System.out.println("User " + emailUserLogin + " accettato dal server");
                         success = "valid";
@@ -193,5 +193,40 @@ public class ConnectionHandler {
         }
         closeConnection();
         return success;
+    }
+
+    public boolean deleteEmail(Email email) {
+        boolean deleted = false;
+        if (startConnection()) {
+            try {
+                outStream.writeObject(ServerRequest.DELETEEMAIL);
+                outStream.flush();
+                System.out.println("USER email da cancellare " + clientApp.getClient().getUserEmailProperty().getValue());
+                outStream.writeObject(clientApp.getClient().getUserEmailProperty().getValue());
+                outStream.flush();
+                outStream.writeObject(email);
+                outStream.flush();
+
+                ServerResponse serverResponse = (ServerResponse) inStream.readObject();
+                switch (serverResponse) {
+                    case EMAILDELETED -> {
+                        System.out.println("Email canellcata connectionhandler");
+                        deleted = true;
+                    }
+                    case ERRDELETINGEM -> {
+                        System.out.println("Email non cancellata connection hadnler");
+                        deleted = false;
+                    }
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                closeConnection();
+            }
+        } else {
+            closeConnection();
+        }
+        return deleted;
     }
 }

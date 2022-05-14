@@ -73,14 +73,15 @@ public class FileManager {
                 createDirectory(f);
 
             FileOutputStream fout;
-            newEmail = new Email(email.getSender(), email.getSubject(), email.getReceivers(), email.getMessageText(), email.getDate());
-            newEmail.setIsSent(true);
-
+            //newEmail = new Email(email.getSender(), email.getSubject(), email.getReceivers(), email.getMessageText(), email.getDate());
+            //newEmail.setIsSent(true);
+            email.setIsSent(true);
 
             fout = new FileOutputStream(path + "/" + email.getId());
             ObjectOutputStream objOut = new ObjectOutputStream(fout);
 
-            objOut.writeObject(newEmail);
+            //objOut.writeObject(newEmail);
+            objOut.writeObject(email);
             objOut.flush();
 
             objOut.close();
@@ -118,7 +119,9 @@ public class FileManager {
         //System.out.println(path);
         //String path2 = "/home/dan/IdeaProjects/dipadamail/server/src/main/resources/dipada/server";
         //System.out.println(path2);
-        return newEmail;
+        email.setIsSent(true);
+        return email;
+        //return newEmail;
     }
 
     // TODO caricare email in arrivo
@@ -184,17 +187,17 @@ public class FileManager {
     }
 
     //TODO delete email
-    public synchronized void deletgeEmail(Email email, String user){
+    public synchronized void deleteEmail(Email email, String user){
         try{
             System.out.println("Email inviata: "+ email.isSent());
             if(email.isSent()){
                 System.out.println("TRUE");
-                System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId() + ".dp"));
-                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId() + ".dp"))));
+                System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId()));
+                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId()))));
             }else{
                 System.out.println("FALSE");
-                System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId() + ".dp"))));
-                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId() + ".dp"))));
+                System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
+                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
             }
         } catch (IOException e) {
             System.out.println("Filemanager files.delete exception");
