@@ -31,11 +31,11 @@ public class Client {
         this.outboxTotalNum = new SimpleIntegerProperty(0);
     }
 
-    public IntegerProperty getInboxTotalNumProperty(){
+    public synchronized IntegerProperty getInboxTotalNumProperty(){
         return inboxTotalNum;
     }
 
-    private void setInboxTotalNumProperty(int numEmail){
+    private synchronized void setInboxTotalNumProperty(int numEmail){
         this.inboxTotalNum.set(numEmail);
     }
 

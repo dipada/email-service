@@ -27,7 +27,7 @@ public class ConnectionHandler {
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
     private String idConnection;
-    private ClientApp clientApp;
+    private final ClientApp clientApp;
 
     public ConnectionHandler(ClientApp clientApp) {
         this.clientApp = clientApp;
@@ -211,6 +211,7 @@ public class ConnectionHandler {
                 switch (serverResponse) {
                     case EMAILDELETED -> {
                         System.out.println("Email canellcata connectionhandler");
+                        clientApp.getClient().deleteEmail(email);
                         deleted = true;
                     }
                     case ERRDELETINGEM -> {

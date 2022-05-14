@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="align email classes">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added popup notification for sent email, update delete operation, update view with wrapped text">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ServerResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/ServerThreadSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,8 +143,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.prog.dipada.lib.FileManager" />
       </list>
     </recent_temporary>
@@ -170,14 +166,7 @@
       <workItem from="1652356991952" duration="4339000" />
       <workItem from="1652419078995" duration="35374000" />
       <workItem from="1652507474398" duration="206000" />
-      <workItem from="1652508570414" duration="23310000" />
-    </task>
-    <task id="LOCAL-00002" summary="second commit, project structure">
-      <created>1651827049452</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1651827049452</updated>
+      <workItem from="1652508570414" duration="29248000" />
     </task>
     <task id="LOCAL-00003" summary="deleted standard javafx project file">
       <created>1651827185674</created>
@@ -515,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652522032515</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="added popup notification for sent email, update delete operation, update view with wrapped text">
+      <created>1652539877593</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1652539877593</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +541,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added method to check if user exist" />
     <MESSAGE value="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream" />
     <MESSAGE value="added Log model class for print logs on screen" />
     <MESSAGE value="update file manager, now when server starts automatically create directory for pre-existent users" />
@@ -570,7 +565,8 @@
     <MESSAGE value="improved readability" />
     <MESSAGE value="fixed exit, added some colors for print" />
     <MESSAGE value="align email classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="align email classes" />
+    <MESSAGE value="added popup notification for sent email, update delete operation, update view with wrapped text" />
+    <option name="LAST_COMMIT_MESSAGE" value="added popup notification for sent email, update delete operation, update view with wrapped text" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

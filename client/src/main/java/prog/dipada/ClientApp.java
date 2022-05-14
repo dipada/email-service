@@ -21,13 +21,14 @@ import java.net.URL;
 public class ClientApp extends Application {
     private Client client;
     private ConnectionHandler connectionHandler;
+    private MainWindowController mainWindowController;
     private Thread mainWinT;
+
 
     public ClientApp() {
         connectionHandler = new ConnectionHandler(this);
         client = new Client();
     }
-
     /*
         @Override
         public void stop(){
@@ -41,9 +42,6 @@ public class ClientApp extends Application {
             System.out.println("Exiting now");
         }
     */
-    public static void main(String[] args) {
-        launch();
-    }
 
     public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
@@ -98,6 +96,9 @@ public class ClientApp extends Application {
         System.exit(0);
     }
 
+    public static void main(String[] args) {
+        launch();
+    }
     private void showLoginLayout(Stage primaryStage) {
         URL loginUrl = ClientApp.class.getResource("Login.fxml");
         FXMLLoader loginLoader = new FXMLLoader(loginUrl);
@@ -122,7 +123,6 @@ public class ClientApp extends Application {
             e.printStackTrace();
         }
     }
-    private MainWindowController mainWindowController;
 
     private void showMainWindow(Stage primaryStage) {
         Platform.runLater(()-> {
@@ -137,7 +137,7 @@ public class ClientApp extends Application {
                 primaryStage.show();
 
             } catch (IOException e) {
-                System.out.println("Main windows loader error");
+                System.err.println("Main windows loader error");
                 e.printStackTrace();
             }
         });
