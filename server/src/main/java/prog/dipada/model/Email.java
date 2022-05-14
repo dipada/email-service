@@ -1,5 +1,6 @@
 package prog.dipada.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class Email implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 5462223600L;
     private final int id;
     private final String sender;
@@ -56,13 +58,13 @@ public class Email implements Serializable {
 
     private String formatDate(Date date) {
         // Specificare pattern "dd/MM/yyyy" per cambiare il formato della data
-        SimpleDateFormat dataFormatter = new SimpleDateFormat();
+        SimpleDateFormat dataFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return dataFormatter.format(date);
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + " " + "Sender: " + sender + " - " + "Subject:" + subject + " - " + "Receivers: " + receivers + " - " + "Date: " + getDateToString();
+        return "Sender: " + sender + " - " + "Subject:" + subject + " - " + getDateToString();
     }
 
     @Override
