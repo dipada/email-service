@@ -188,20 +188,22 @@ public class FileManager {
 
     //TODO delete email
     public synchronized void deleteEmail(Email email, String user){
-        try{
-            System.out.println("Email inviata: "+ email.isSent());
-            if(email.isSent()){
-                System.out.println("TRUE");
-                System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId()));
-                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId()))));
-            }else{
-                System.out.println("FALSE");
-                System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
-                Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
+        if(email != null) {
+            try {
+                System.out.println("Email inviata: " + email.isSent());
+                if (email.isSent()) {
+                    System.out.println("TRUE");
+                    System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId()));
+                    Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId()))));
+                } else {
+                    System.out.println("FALSE");
+                    System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
+                    Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
+                }
+            } catch (IOException e) {
+                System.out.println("Filemanager files.delete exception");
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            System.out.println("Filemanager files.delete exception");
-            e.printStackTrace();
         }
     }
 

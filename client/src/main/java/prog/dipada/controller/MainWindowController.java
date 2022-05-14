@@ -73,15 +73,16 @@ public class MainWindowController {
     }
 
     public void onDeleteButtonClick(MouseEvent mouseEvent) {
-        System.out.println("Sender " + selectedEmail.getSender());
-        // TODO ridefinire il metodo deleteEmail per eliminare le email inviate/ricevute
-        //clientApp.getClient().deleteEmail(selectedEmail);
-        if(clientApp.getConnectionHandler().deleteEmail(selectedEmail)){
-            generatePopup("Email correctly deleted","green");
-            selectedEmail = null;
-            updateDetailView(emptyEmail);
+        if(selectedEmail != null) {
+            if (clientApp.getConnectionHandler().deleteEmail(selectedEmail)) {
+                generatePopup("Email correctly deleted", "green");
+                selectedEmail = null;
+                updateDetailView(emptyEmail);
+            } else {
+                generatePopup("Can't delete email", "red");
+            }
         }else{
-            generatePopup("Can't delete email","red");
+            generatePopup("Error deleting. Select an email", "red");
         }
 
         //model.deleteEmail(selectedEmail);
@@ -89,14 +90,14 @@ public class MainWindowController {
         //updateDetailView(emptyEmail);
     }
 
-    private void updateDetailView(Email email) {
-        if (email != null) {
-            lblFrom.setText("From: " + email.getSender());
-            lblTo.setText("To: " + String.join(", ", email.getReceivers()));
-            lblSubject.setText("Subject: " + email.getSubject());
-            txtEmailContent.setText(email.getMessageText());
-            lblDate.setText("Date: " + email.getDateToString());
-        }
+    private void updateDetailView(Email email){
+            if (email != null) {
+                lblFrom.setText("From: " + email.getSender());
+                lblTo.setText("To: " + String.join(", ", email.getReceivers()));
+                lblSubject.setText("Subject: " + email.getSubject());
+                txtEmailContent.setText(email.getMessageText());
+                lblDate.setText("Date: " + email.getDateToString());
+            }
     }
 
     /*
@@ -168,14 +169,21 @@ public class MainWindowController {
     }
 
     private void refreshList() {
-        int actEmails;
+        clientApp.getConnectionHandler().requestAll();
         while (!stop) {
             // TODO show pop up nuova email
-            actEmails = clientApp.getClient().getInboxProperty().size();
-            System.out.println("Ci sono " + actEmails + " emails");
-            Platform.runLater(() -> clientApp.getConnectionHandler().requestAll());
+            Platform.runLater(()->{
+                final int actEmails = clientApp.getClient().getInboxTotalNumProperty().getValue();
+                clientApp.getConnectionHandler().requestAll();
+                System.out.println("Ci sono " + actEmails + " emails");
+                System.out.println("Valore " + clientApp.getClient().getInboxTotalNumProperty().getValue() + " act " + actEmails);
+                if(clientApp.getClient().getInboxTotalNumProperty().getValue() > actEmails){
+                    generatePopup("New email received!", "blue");
+                }
+            });
+
             try {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -210,10 +218,5 @@ public class MainWindowController {
 
         popup.autoHideProperty().setValue(true);
         popup.show(primaryStage);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException ignore) {
-
-        }
     }
 }
