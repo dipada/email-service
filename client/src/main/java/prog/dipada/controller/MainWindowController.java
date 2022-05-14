@@ -49,6 +49,8 @@ public class MainWindowController {
     private Email selectedEmail;
     private Email emptyEmail;
     private ClientApp clientApp;
+    private Thread clientThread;
+    private boolean stop;
 
     private void showSelectedEmailInbox(MouseEvent mouseEvent) {
         Email email = lstInboxEmail.getSelectionModel().getSelectedItem();
@@ -118,6 +120,7 @@ public class MainWindowController {
     public void setMainWindowController(ClientApp clientApp) {
         this.clientApp = clientApp;
 
+
         lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
 
         lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
@@ -134,21 +137,34 @@ public class MainWindowController {
         emptyEmail = new Email("", "", List.of(""), "", null);
         updateDetailView(emptyEmail);
 
-        Thread clientThread = new Thread(()->refreshList());
+        stop = false;
+        clientThread = new Thread(()->refreshList());
         clientThread.start();
     }
 
+    public void setStop(boolean stop){
+        System.out.println("->\tStopping main window");
+        this.stop = stop;
+        System.out.println("->\tWaiting for refresh thread to end");
+        try {
+            clientThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("->\tMain window exit successful");
+    }
+
     private void refreshList() {
-        while (true) {
+        while (!stop) {
+            // TODO show pop up errore server
             Platform.runLater(()->{clientApp.getConnectionHandler().requestAll();});
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-
     public void onNewButtonClick(ActionEvent actionEvent) {
         System.out.println("NEW BUTTON CLICK");
         Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(), "", null, "", new Date());

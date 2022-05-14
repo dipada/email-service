@@ -18,7 +18,7 @@ import java.util.List;
 public class ServerThreadSession implements Runnable {
     private final FileManager fileManager;
     private final Log log;
-    private Socket socket;
+    private final Socket socket;
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
     private String idSession;
@@ -35,15 +35,13 @@ public class ServerThreadSession implements Runnable {
         log.printLogOnScreen("New session started " + socket.getInetAddress() + socket.getLocalAddress() + socket.getLocalSocketAddress());
         // TODO apre stream - invia/riceve dati - chiude stream
         openStreams();
-        boolean runSession = true;
         // TODO qui operazioni
+        if (inStream != null) {
             try {
-                System.out.println("SERVER ATTENDO OPERAZIONE " );
                 ServerRequest req = (ServerRequest) inStream.readObject();
-                System.out.println("OPERAZIONE RICHIESTA>> " + req);
-                switch (req) {
 
-                    case AUTH: {
+                switch (req) {
+                    case AUTH -> {
                         System.out.println("Server in auth aspetto email");
                         String userEmail = (String) inStream.readObject();
 
@@ -60,10 +58,8 @@ public class ServerThreadSession implements Runnable {
                             outStream.flush();
                         }
                         System.out.println("AUTH finito");
-                        break;
                     }
-
-                    case SENDALL: {
+                    case SENDALL -> {
                         System.out.println("Server in sendAll aspetto userEmail");
                         String userEmail = (String) inStream.readObject();
 
@@ -76,27 +72,21 @@ public class ServerThreadSession implements Runnable {
                         outStream.writeObject(fileManager.loadOutbox(userEmail));
                         outStream.flush();
 
-                        System.out.println("Sendall finita");
-                        break;
+                        System.out.println("Send all finita");
                     }
-
-                    case SENDEMAIL:
+                    case SENDEMAIL -> {
                         boolean usersExist = true;
-
                         Email emailToSend = (Email) inStream.readObject();
                         this.idSession = emailToSend.getSender();
-
                         List<String> usersToCheck = emailToSend.getReceivers();
                         List<String> usersNonexistent = new LinkedList<>();
-
-                        for(String user : usersToCheck){
-                            if(!fileManager.checkUserExist(user)){
+                        for (String user : usersToCheck) {
+                            if (!fileManager.checkUserExist(user)) {
                                 usersExist = false;
                                 usersNonexistent.add(user);
                             }
                         }
-
-                        if(usersExist){
+                        if (usersExist) {
                             // All users exist, sending email
                             log.printLogOnScreen("USER: " + idSession + " send an email correctly");
                             Email newEmail = fileManager.save(emailToSend);
@@ -104,32 +94,29 @@ public class ServerThreadSession implements Runnable {
                             outStream.writeObject(newEmail);
                             outStream.flush();
 
-                        }else{
+                        } else {
                             // one or more users not exists, send back list of nonexistent users
                             log.printLogOnScreen("USER: " + idSession + " error while sending an email: receivers does not exist");
                             outStream.writeObject(ServerResponse.USERNOTEXIST);
                             outStream.writeObject(usersNonexistent);
                             outStream.flush();
                         }
-                        break;
-
-
+                    }
                 }
-            } catch (IOException e) {
+            } catch (IOException ignore) {
                 // User close streams
                 System.out.println("SESSION eccezione lettura object");
-                runSession = false;
                 //e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 System.out.println("Session eccezione class not found");
-                runSession = false;
                 e.printStackTrace();
             }
 
-        System.out.println("server chiude gli stream");
-        // TODO chiude stream
-        log.printLogOnScreen(idSession + " disconnected" );
-        closeStreams();
+            System.out.println("server chiude gli stream");
+            // TODO chiude stream
+            log.printLogOnScreen(idSession + " disconnected");
+            closeStreams();
+        }
     }
 
     private void openStreams(){
@@ -139,7 +126,7 @@ public class ServerThreadSession implements Runnable {
             inStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             System.out.println("SESSIONE ECCEZIONE APERTURA STREAM");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

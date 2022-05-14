@@ -31,7 +31,7 @@ public class Server extends Thread{
     public Server(int serverPort){
         this.serverPort = serverPort;
         numThreadSession = Runtime.getRuntime().availableProcessors();
-        exec = Executors.newFixedThreadPool(1);
+        exec = Executors.newFixedThreadPool(numThreadSession);
         this.userList = new LinkedList<>();
         this.fileManager = new FileManager();
         log = new Log();

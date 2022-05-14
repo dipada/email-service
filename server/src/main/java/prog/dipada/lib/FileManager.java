@@ -74,7 +74,7 @@ public class FileManager {
 
             FileOutputStream fout;
             newEmail = new Email(email.getSender(), email.getSubject(), email.getReceivers(), email.getMessageText(), email.getDate());
-            newEmail.setSent(true);
+            newEmail.setIsSent(true);
 
 
             fout = new FileOutputStream(path + "/" + email.getId());
@@ -97,7 +97,7 @@ public class FileManager {
                 fout = new FileOutputStream(path + "/" + email.getId());
                 objOut = new ObjectOutputStream(fout);
 
-                email.setSent(false);
+                email.setIsSent(false);
                 objOut.writeObject(email);
                 objOut.flush();
                 objOut.close();
