@@ -19,7 +19,6 @@ public class ConnectionHandler {
     private final String GREEN = "\u001B[32m";
     private final String BLUE = "\u001B[34m";
     private final String RESET = "\u001B[0m";
-    private final String CYAN = "\u001B[36m";
 
     private final String host;
     private final int port;

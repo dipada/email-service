@@ -34,14 +34,17 @@ public class ServerApp extends Application {
     }
 
     @Override
-    public void stop() throws Exception {
-        ts.interrupt();
-        ts.join();
+    public void stop(){
+        System.out.println("Partito stop main server");
+        server.end();
+        try {
+            server.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        //server.end();
-        //server.join();
-        System.out.println("Main Server shutdown");
-        System.out.println("Main Exit now");
+        System.out.println("Main Server App shutdown");
+        System.exit(0);
     }
 
     public static void main(String[] args) {

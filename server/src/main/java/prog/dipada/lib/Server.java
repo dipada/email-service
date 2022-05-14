@@ -5,6 +5,7 @@ import prog.dipada.model.Log;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.attribute.UserPrincipal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -19,6 +20,10 @@ import java.util.concurrent.TimeUnit;
  *
  * */
 public class Server extends Thread{
+    private final String YELLOW = "\u001B[33m";
+    private final String GREEN = "\u001B[32m";
+    private final String BLUE = "\u001B[34m";
+    private final String RESET = "\u001B[0m";
     private Log log;
     private ExecutorService exec;
     private FileManager fileManager;
@@ -26,7 +31,6 @@ public class Server extends Thread{
     private final int serverPort;
     private Socket socket;
     private int numThreadSession;
-    private boolean runningServer; // TODO check variabile
 
     public Server(int serverPort){
         this.serverPort = serverPort;
@@ -35,7 +39,6 @@ public class Server extends Thread{
         this.userList = new LinkedList<>();
         this.fileManager = new FileManager();
         log = new Log();
-        this.runningServer = true;
     }
 
     public Log getLog(){
@@ -62,40 +65,48 @@ public class Server extends Thread{
         }
         listen();
     }
-
+    ServerSocket serverSocket;
     public void listen(){
         try {
-            ServerSocket serverSocket = new ServerSocket(serverPort);
+            serverSocket = new ServerSocket(serverPort);
             log.printLogOnScreen("Server ready for connections. Max simultaneous connections " + numThreadSession);
             while(!Thread.interrupted()){
                 socket = serverSocket.accept();
                 log.printLogOnScreen("New connection accepted");
                 exec.execute(new ServerThreadSession(socket,fileManager,log));
             }
-        } catch (IOException e) {
-            System.out.println("Server eccezione serverSocket");
-            e.printStackTrace();
+        } catch (IOException ignore) {
+            // server socket closed
         } finally {
-            // TODO chiusura socket e shutdown threadpool
             if(socket != null){
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    System.out.println("SERVER CHIUSURA SOCKET ECCEZIONE");
+                    System.err.println("client close socket");
                     e.printStackTrace();
                 }
             }
-            System.out.println("Server>> shoutdown");
             exec.shutdown();
-            //exec.shutdownNow();
-
-            System.out.println("Finish");
         }
     }
 
+
     public void end() {
         //log.printLogOnScreen("Start exiting...");
-        System.out.println("Start exiting...");
-        runningServer = false;
+        printColor("Server start exiting...", BLUE);
+        printColor("->\tShutdown thread pool", YELLOW);
+        exec.shutdown();
+        try{
+            printColor("->\tClosing socket", YELLOW);
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        exec.shutdown();
+        printColor("Server finish exit procedure", GREEN);
+    }
+
+    private void printColor(String text, String color) {
+        System.out.println(color + text + RESET);
     }
 }
