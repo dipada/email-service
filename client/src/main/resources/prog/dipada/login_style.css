@@ -1,0 +1,59 @@
+/*
+Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
+
+--eggshell: #f4f1deff;
+--terra-cotta: #e07a5fff;
+--independence: #3d405bff;
+--green-sheen: #81b29aff;
+--deep-champagne: #f2cc8fff;
+
+*/
+
+.root{
+    -fx-background-color: #3d405bff;
+}
+
+.label {
+    -fx-text-fill: #f4f1deff;
+}
+
+.button{
+    -fx-background-color: #e07a5fff;
+}
+
+.button:hover{
+    -fx-background-color: #f2cc8fff;
+    -fx-cursor: hand;
+}
+
+#emailField{
+    -fx-border-width: 2;
+    -fx-border-color: #e07a5fff;
+    -fx-background-color: #f4f1deff;
+    -fx-cursor: hand;
+}
+
+/*
+    Customization of alert window
+*/
+.dialog-pane{
+    -fx-background-color: #3d405bff;
+}
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #3d405bff;
+}
+
+.dialog-pane > .content.label {
+    -fx-background-color: #3d405bff;
+    -fx-text-fill: #f4f1deff;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #3d405bff;
+}
+
+.dialog-pane .header-panel .label{
+    -fx-background-color: #3d405bff;
+    -fx-text-fill: #f4f1deff;
+}
+

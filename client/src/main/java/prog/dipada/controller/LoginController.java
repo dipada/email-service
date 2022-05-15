@@ -1,5 +1,6 @@
 package prog.dipada.controller;
 
+import javafx.scene.layout.AnchorPane;
 import prog.dipada.ClientApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,7 +13,8 @@ import java.util.regex.Pattern;
 public class LoginController {
     private ClientApp clientApp;
     private Stage stage;
-
+    @FXML
+    private AnchorPane rootAnchor;
     @FXML
     private TextField emailField;
     @FXML
@@ -65,6 +67,7 @@ public class LoginController {
     private void generateErrorAlert(String title, String headerText, String contentText){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
+
         alert.initOwner(stage);
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
