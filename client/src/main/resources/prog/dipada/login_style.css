@@ -19,10 +19,12 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
 
 .button{
     -fx-background-color: #e07a5fff;
+    -fx-text-fill: #f4f1deff;
 }
 
 .button:hover{
     -fx-background-color: #f2cc8fff;
+    -fx-text-fill: black;
     -fx-cursor: hand;
 }
 

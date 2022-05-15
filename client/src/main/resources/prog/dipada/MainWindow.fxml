@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.dipada.controller.MainWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@main_window_style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.dipada.controller.MainWindowController">
    <top>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="658.0" BorderPane.alignment="CENTER">
+            <HBox fx:id="tophbox" alignment="CENTER" prefHeight="0.0" prefWidth="658.0" BorderPane.alignment="CENTER">
                 <children>
             <VBox alignment="CENTER" prefHeight="77.0" prefWidth="324.0">
                <children>
@@ -44,18 +44,18 @@
         <items>
           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="220.0" prefWidth="696.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="topVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="220.0" prefWidth="696.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                       <Button fx:id="btnNewEmail" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onNewButtonClick" prefHeight="27.0" prefWidth="62.0" text="New +">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
                         </Button>
-                        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="271.0" prefWidth="696.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="271.0" prefWidth="874.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Inbox">
+                            <Tab fx:id="inboxTab" text="Inbox">
                               <content>
-                                    <VBox alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                    <VBox fx:id="centralVbox" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                        <children>
                                                 <ListView fx:id="lstInboxEmail" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                                           <HBox>
@@ -75,7 +75,7 @@
                                     </VBox>
                               </content>
                             </Tab>
-                            <Tab text="Outbox">
+                            <Tab fx:id="outboxTab" text="Outbox">
                               <content>
                                     <VBox alignment="BOTTOM_LEFT">
                                        <children>
@@ -108,7 +108,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="874.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="bottomVbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="874.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                                 <TextArea fx:id="txtEmailContent" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="229.0" prefWidth="956.0" wrapText="true">
                            <VBox.margin>
@@ -163,7 +163,7 @@
       </SplitPane>
    </center>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
+      <HBox fx:id="bottomHbox" alignment="BOTTOM_RIGHT" BorderPane.alignment="CENTER">
          <children>
             <Label text="Status:">
                <HBox.margin>

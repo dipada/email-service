@@ -1,0 +1,119 @@
+/*
+Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
+
+--eggshell: #f4f1deff;
+--terra-cotta: #e07a5fff;
+--independence: #3d405bff;
+--green-sheen: #81b29aff;
+--deep-champagne: #f2cc8fff;
+
+*/
+
+.root{
+    -fx-background-color: #3d405bff;
+}
+
+.button{
+    -fx-background-color: #e07a5fff;
+    -fx-text-fill: #f4f1deff;
+    -fx-background-radius: 10;
+}
+
+.button:hover{
+    -fx-background-color: #f2cc8fff;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+}
+
+#lblUsername{
+    -fx-text-fill: #f4f1deff;
+}
+
+#topVbox{
+    -fx-background-color: #3d405bff;
+}
+
+#topVbox .label{
+    -fx-text-fill: #f4f1deff;
+}
+
+.tab-pane{
+    -fx-background-color: #3d405bff;
+}
+
+#inboxTab, #outboxTab{
+    -fx-background-color: #81b29aff;
+}
+
+#inboxTab:hover, #outboxTab:hover{
+    -fx-background-color: #e07a5fff;
+    -fx-cursor: hand;
+}
+
+#inboxTab:selected, #outboxTab:selected{
+    -fx-background-color: #e07a5fff;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.list-view{
+    -fx-border-color: #f2cc8fff;
+    -fx-border-width: 3;
+}
+
+.list-cell:hover{
+    -fx-background-color: #81b29aff;
+}
+
+.list-view .cell:selected{
+    -fx-background-color: #e07a5fff;
+}
+
+.list-view .cell:focused{
+    -fx-background-color: #e07a5fff;
+}
+
+#bottomVbox{
+    -fx-background-color: #3d405bff;
+}
+
+#bottomVbox .label{
+    -fx-text-fill: #f4f1deff;
+}
+
+.text-area{
+    -fx-background-color: #f2cc8fff;
+    -fx-border-color: #f2cc8fff;
+    -fx-border-width: 3;
+}
+
+#bottomHbox .label{
+    -fx-text-fill: #f4f1deff;
+}
+
+
+
+
+
+/*
+    Customization of alert window
+*/
+.dialog-pane{
+    -fx-background-color: #3d405bff;
+}
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #3d405bff;
+}
+
+.dialog-pane > .content.label {
+    -fx-background-color: #3d405bff;
+    -fx-text-fill: #f4f1deff;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #3d405bff;
+}
+
+.dialog-pane .header-panel .label{
+    -fx-background-color: #3d405bff;
+    -fx-text-fill: #f4f1deff;
+}
