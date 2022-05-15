@@ -172,7 +172,7 @@
             </Label>
             <Label fx:id="lblSerStatus" prefHeight="12.0" prefWidth="0.0" text="Server status">
                <HBox.margin>
-                  <Insets bottom="5.0" right="12.0" />
+                  <Insets bottom="6.0" right="12.0" />
                </HBox.margin>
             </Label>
          </children>

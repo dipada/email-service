@@ -68,10 +68,6 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-background-color: #e07a5fff;
 }
 
-.list-view .cell:focused{
-    -fx-background-color: #e07a5fff;
-}
-
 #bottomVbox{
     -fx-background-color: #3d405bff;
 }
@@ -89,10 +85,6 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
 #bottomHbox .label{
     -fx-text-fill: #f4f1deff;
 }
-
-
-
-
 
 /*
     Customization of alert window

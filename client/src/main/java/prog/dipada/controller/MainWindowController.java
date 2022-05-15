@@ -1,6 +1,9 @@
 package prog.dipada.controller;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -147,6 +150,45 @@ public class MainWindowController {
         lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
 
         lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
+
+        /*
+        // Setta l'aspetto della singola cella
+        lstInboxEmail.setCellFactory(param->new ListCell<>(){
+            @Override
+            protected void updateItem(Email item, boolean empty){
+                super.updateItem(item, empty);
+
+                if(empty || item == null || item.getSender() == null || item.getMessageText() == null || item.getSubject() == null)
+                    setText("testo primo");
+                else
+                    setText("testo 2");
+            }
+        });
+        */
+
+        /*
+        lstInboxEmail.getSelectionModel().selectedItemProperty().addListener((observableValue, email, t1)->{
+            if(t1 != null){
+                selectedEmail = t1;
+                this.email = selectedEmail;
+            }
+        });
+        */
+
+        /*
+        lstInboxEmail.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            System.out.println("\nListView selection changed from oldValue = "
+                    + oldValue + " \nto newValue = " + newValue + "\n");
+            //if(newValue != null) {
+                System.out.println("Imposto selected email a " + oldValue);
+                selectedEmail = newValue
+            //}
+        });
+        */
+
+
+
         lstOutboxEmail.itemsProperty().bind(clientApp.getClient().getOutboxProperty());
 
         lblTotInbox.textProperty().bind(clientApp.getClient().getInboxTotalNumProperty().asString());
@@ -193,12 +235,12 @@ public class MainWindowController {
                 System.out.println("Valore " + clientApp.getClient().getInboxTotalNumProperty().getValue() + " act " + actEmails);
                 if(clientApp.getClient().getInboxTotalNumProperty().getValue() > actEmails){
                     generatePopup("New email received!", "blue");
+                    lstInboxEmail.getSelectionModel().selectPrevious();
                 }
             });
 
-
             try {
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
