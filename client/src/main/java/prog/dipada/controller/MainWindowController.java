@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -25,6 +27,8 @@ public class MainWindowController {
     private Label lblTotInbox;
     @FXML
     private Label lblTotOutbox;
+    @FXML
+    private Label lblSerStatus;
     @FXML
     private Button btnForward;
     @FXML
@@ -79,7 +83,7 @@ public class MainWindowController {
                 selectedEmail = null;
                 updateDetailView(emptyEmail);
             } else {
-                generatePopup("Can't delete email", "red");
+                generatePopup("Can't delete email server offline", "red");
             }
         }else{
             generatePopup("Error deleting. Select an email", "red");
@@ -169,18 +173,24 @@ public class MainWindowController {
     }
 
     private void refreshList() {
+        setLabelStatus();
         clientApp.getConnectionHandler().requestAll();
         while (!stop) {
             // TODO show pop up nuova email
             Platform.runLater(()->{
                 final int actEmails = clientApp.getClient().getInboxTotalNumProperty().getValue();
-                clientApp.getConnectionHandler().requestAll();
+                if(clientApp.getConnectionHandler().requestAll()){
+                    setStatusColor(Color.GREEN);
+                }else{
+                    setStatusColor(Color.RED);
+                }
                 System.out.println("Ci sono " + actEmails + " emails");
                 System.out.println("Valore " + clientApp.getClient().getInboxTotalNumProperty().getValue() + " act " + actEmails);
                 if(clientApp.getClient().getInboxTotalNumProperty().getValue() > actEmails){
                     generatePopup("New email received!", "blue");
                 }
             });
+
 
             try {
                 Thread.sleep(2000);
@@ -189,6 +199,21 @@ public class MainWindowController {
             }
         }
     }
+
+    private void setLabelStatus() {
+        lblSerStatus.setText("");
+        lblSerStatus.setMinHeight(15);
+        lblSerStatus.setMaxHeight(15);
+        lblSerStatus.setMinWidth(15);
+        lblSerStatus.setMaxWidth(15);
+    }
+
+    private void setStatusColor(Color color) {
+        CornerRadii corn = new CornerRadii(10);
+        Background background = new Background(new BackgroundFill(color, corn, null));
+        lblSerStatus.setBackground(background);
+    }
+
 
     public void onNewButtonClick(ActionEvent actionEvent) {
         System.out.println("NEW BUTTON CLICK");

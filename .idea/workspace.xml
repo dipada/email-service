@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="introduced synchronized on method accessed by different client threads">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="fixed exiting procedure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/lib/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,8 +138,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.prog.dipada.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.prog.dipada.lib.FileManager" />
       </list>
     </recent_temporary>
@@ -161,14 +161,8 @@
       <workItem from="1652356991952" duration="4339000" />
       <workItem from="1652419078995" duration="35374000" />
       <workItem from="1652507474398" duration="206000" />
-      <workItem from="1652508570414" duration="32168000" />
-    </task>
-    <task id="LOCAL-00006" summary="added Email model class">
-      <created>1651828959993</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1651828959993</updated>
+      <workItem from="1652508570414" duration="32514000" />
+      <workItem from="1652592585116" duration="3241000" />
     </task>
     <task id="LOCAL-00007" summary="Fixed module-info.java, added ClientApp main class">
       <created>1651829398325</created>
@@ -506,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652545765790</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="fixed exiting procedure">
+      <created>1652549034760</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1652549034760</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,7 +537,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added timestamp" />
     <MESSAGE value="added auth request and some log print" />
     <MESSAGE value="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow" />
     <MESSAGE value="fix log print to the top of listview" />
@@ -561,7 +561,8 @@
     <MESSAGE value="align email classes version" />
     <MESSAGE value="fixed null selected email sending" />
     <MESSAGE value="introduced synchronized on method accessed by different client threads" />
-    <option name="LAST_COMMIT_MESSAGE" value="introduced synchronized on method accessed by different client threads" />
+    <MESSAGE value="fixed exiting procedure" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed exiting procedure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
