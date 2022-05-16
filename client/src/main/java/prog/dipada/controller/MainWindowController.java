@@ -1,12 +1,11 @@
 package prog.dipada.controller;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -23,6 +22,10 @@ import java.util.List;
 public class MainWindowController {
 
 
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private ButtonBar btnBar;
     @FXML
     private HBox bottomHbox;
     @FXML
@@ -81,6 +84,7 @@ public class MainWindowController {
     }
 
     public void onDeleteButtonClick(MouseEvent mouseEvent) {
+        System.out.println("Delete button clicked");
         new Thread(() -> Platform.runLater(() -> {
             if (selectedEmail != null) {
                 if (clientApp.getConnectionHandler().deleteEmail(selectedEmail)) {
@@ -217,6 +221,28 @@ public class MainWindowController {
 
         lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
         lstOutboxEmail.itemsProperty().bind(clientApp.getClient().getOutboxProperty());
+
+        lstInboxEmail.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Email>() {
+            @Override
+            public void changed(ObservableValue<? extends Email> observableValue, Email email, Email t1) {
+                if (t1 != null && t1.getReceivers().size() < 2) {
+                    btnReplyAll.setDisable(true);
+                } else {
+                    btnReplyAll.setDisable(false);
+                }
+            }
+        });
+
+        lstOutboxEmail.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Email>() {
+            @Override
+            public void changed(ObservableValue<? extends Email> observableValue, Email email, Email t1) {
+                if (t1 != null && t1.getReceivers().size() < 2) {
+                    btnReplyAll.setDisable(true);
+                } else {
+                    btnReplyAll.setDisable(false);
+                }
+            }
+        });
 
         lblTotInbox.textProperty().bind(clientApp.getClient().getInboxTotalNumProperty().asString());
         lblTotOutbox.textProperty().bind(clientApp.getClient().getOutboxTotalNumProperty().asString());
