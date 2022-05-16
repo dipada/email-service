@@ -67,29 +67,31 @@ public class ClientApp extends Application {
         //stage.show();
 
         //System.out.println("Main: conn è " + connection);
-
         showLoginLayout(stage);
 
         //System.out.println("DOPO login " + connection);
         //System.out.println("Client da main: " + client.getUserEmailProperty());
-
-        mainWinT = new Thread(()->showMainWindow(stage));
-        mainWinT.start();
-        //showMainWindow(stage);
+        //mainWinT = new Thread(()->showMainWindow(stage));
+        //mainWinT.start();
+        showMainWindow(stage);
 
     }
 
     @Override
-    public void stop() throws Exception {
-        super.stop();
+    public void stop(){
+        try {
+            super.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("Starting application exiting...");
         if(mainWindowController != null) {
             mainWindowController.setStop(true);
-            try {
+            /*try {
                 mainWinT.join();
-            } catch (RuntimeException e) {
-                throw new RuntimeException();
-            }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
         }
         System.out.println("->\tapplication exit successful\n");
         System.out.println("Exit completed.");
@@ -104,6 +106,7 @@ public class ClientApp extends Application {
         FXMLLoader loginLoader = new FXMLLoader(loginUrl);
         try {
             Scene scene = new Scene(loginLoader.load(), 300, 100);
+            scene.getStylesheets().add(getClass().getResource("login_style.css").toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Login");
             stage.initModality(Modality.WINDOW_MODAL); // blocca l'owner stage (primarystage) di questo stage finchè questo non finisce
@@ -115,6 +118,7 @@ public class ClientApp extends Application {
                     Platform.exit(); // Causes the JavaFX application to terminare. javaDoc
                 }
             });
+            System.out.println("youp");
             LoginController loginController = loginLoader.getController();
             loginController.setLoginController(this, stage);
             stage.showAndWait();
@@ -130,6 +134,7 @@ public class ClientApp extends Application {
                 URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
                 FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
                 Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
+                scene.getStylesheets().add(getClass().getResource("main_window_style.css").toExternalForm());
                 mainWindowController = mainWindowLoader.getController();
                 mainWindowController.setMainWindowController(this,primaryStage);
                 primaryStage.setTitle("dipadamail");
@@ -149,6 +154,7 @@ public class ClientApp extends Application {
             FXMLLoader sendWindowLoader = new FXMLLoader(sendWindowUrl);
             Stage stage = new Stage();
             Scene scene = new Scene(sendWindowLoader.load(), 600, 400);
+            scene.getStylesheets().add(getClass().getResource("send_window_style.css").toExternalForm());
             stage.setTitle("Write - dipadamail");
             SendWindowController sendWindowController = sendWindowLoader.getController();
             sendWindowController.setSendWindowController(this, stage);
