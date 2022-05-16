@@ -60,12 +60,38 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-border-width: 3;
 }
 
-.list-cell:hover{
+.list-view .cell{
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+.list-view:hover{
+    -fx-border-color: #81b29aff;
+}
+
+.list-view:focused{
+    -fx-border-color: #e07a5fff;
+}
+
+.list-view .cell:empty{
+    -fx-border-color: white;
+}
+
+.list-view .cell:empty:hover, .list-view .cell:empty:selected{
+    -fx-border-color: white;
+    -fx-background-color: white;
+}
+
+.list-view .cell:hover{
     -fx-background-color: #81b29aff;
+    -fx-border-width: 3;
+    -fx-border-color: #81b29aff;
 }
 
 .list-view .cell:selected{
     -fx-background-color: #e07a5fff;
+    -fx-border-width: 3;
+    -fx-border-color: #e07a5fff;
 }
 
 #bottomVbox{
@@ -80,6 +106,14 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-background-color: #f2cc8fff;
     -fx-border-color: #f2cc8fff;
     -fx-border-width: 3;
+}
+
+.text-area:hover{
+    -fx-border-color: #81b29aff;
+}
+
+.text-area:focused{
+    -fx-border-color: #e07a5fff;
 }
 
 #bottomHbox .label{

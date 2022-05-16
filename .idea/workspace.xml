@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added send window style, update login style,">
-      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added server style">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/main_window_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/main_window_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,14 +172,7 @@
       <workItem from="1652508570414" duration="32514000" />
       <workItem from="1652592585116" duration="24804000" />
       <workItem from="1652635425418" duration="5169000" />
-      <workItem from="1652679985185" duration="7146000" />
-    </task>
-    <task id="LOCAL-00012" summary="Added alert for login view">
-      <created>1651846451017</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1651846451017</updated>
+      <workItem from="1652679985185" duration="10079000" />
     </task>
     <task id="LOCAL-00013" summary="added basic connection feature">
       <created>1651847827845</created>
@@ -517,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652683199986</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="added server style">
+      <created>1652687488453</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1652687488453</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +547,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="reversed condition for clean code" />
     <MESSAGE value="reversed conditions for clean code" />
     <MESSAGE value="first working exchange of emails between client and server. To complete operations and fix some bugs" />
     <MESSAGE value="update view" />
@@ -572,7 +571,8 @@
     <MESSAGE value="update login style, added main window style" />
     <MESSAGE value="added main window style" />
     <MESSAGE value="added send window style, update login style," />
-    <option name="LAST_COMMIT_MESSAGE" value="added send window style, update login style," />
+    <MESSAGE value="added server style" />
+    <option name="LAST_COMMIT_MESSAGE" value="added server style" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

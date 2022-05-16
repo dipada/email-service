@@ -30,6 +30,10 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-text-fill: #3C9066;
 }
 
+.list-view:hover{
+    -fx-border-color: #81b29aff;
+}
+
 .list-view .cell:hover:empty{
     -fx-background-color: #000000ff;
 }
