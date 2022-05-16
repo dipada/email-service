@@ -115,7 +115,7 @@
                               <Insets bottom="5.0" left="12.0" right="12.0" top="5.0" />
                            </VBox.margin>
                         </TextArea>
-                        <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="144.0" prefWidth="956.0">
+                        <GridPane fx:id="gridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="144.0" prefWidth="956.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="10.0" prefWidth="453.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="397.0" />
@@ -136,12 +136,12 @@
                                         <Label fx:id="lblTo" text="To" GridPane.rowIndex="2" />
                                         <Label fx:id="lblSubject" text="Subject" GridPane.rowIndex="3" />
                               <Label fx:id="lblDate" text="Date" GridPane.rowIndex="4" />
-                              <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="505.0" GridPane.columnIndex="1">
+                              <ButtonBar fx:id="btnBar" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="505.0" GridPane.columnIndex="1">
                                 <buttons>
                                     <Button fx:id="btnReplyAll" layoutX="254.0" layoutY="10.0" minWidth="39.0" mnemonicParsing="false" onAction="#onReplyAllButtonClick" prefHeight="15.0" text="Reply-All" />
                                   <Button fx:id="btnREply" minWidth="39.0" mnemonicParsing="false" onAction="#onReplyButtonClick" prefHeight="15.0" text="Reply" />
                                     <Button fx:id="btnForward" minWidth="39.0" mnemonicParsing="false" onAction="#onForwardButtonClick" prefHeight="15.0" text="Forward" />
-                                            <Button fx:id="btnDelete" minWidth="0.0" mnemonicParsing="false" onAction="#onDeleteButtonClick" onMouseClicked="#onDeleteButtonClick" prefHeight="0.0" text="Delete" />
+                                            <Button fx:id="btnDelete" minWidth="0.0" mnemonicParsing="false" onMouseClicked="#onDeleteButtonClick" prefHeight="0.0" text="Delete" />
                                 </buttons>
                                  <GridPane.margin>
                                     <Insets />

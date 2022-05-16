@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added remove from receiver method, added Forward, Reply and Reply-all operations,">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added listener on listView that will disable reply-all button when that action is not possible">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
@@ -170,14 +170,7 @@
       <workItem from="1652508570414" duration="32514000" />
       <workItem from="1652592585116" duration="24804000" />
       <workItem from="1652635425418" duration="5169000" />
-      <workItem from="1652679985185" duration="21750000" />
-    </task>
-    <task id="LOCAL-00018" summary="added serialization to Email class">
-      <created>1651849550316</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1651849550316</updated>
+      <workItem from="1652679985185" duration="26201000" />
     </task>
     <task id="LOCAL-00019" summary="update email class">
       <created>1651849703199</created>
@@ -515,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652709043186</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="added listener on listView that will disable reply-all button when that action is not possible">
+      <created>1652712880510</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1652712880510</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added IntegerProperty for count emails, to complete: add delete method that can know if email is sent" />
     <MESSAGE value="update view and controller with count email label" />
     <MESSAGE value="added sendWindow view" />
     <MESSAGE value="added Send view controller" />
@@ -570,7 +569,8 @@
     <MESSAGE value="added css load" />
     <MESSAGE value="added order on received email list" />
     <MESSAGE value="added remove from receiver method, added Forward, Reply and Reply-all operations," />
-    <option name="LAST_COMMIT_MESSAGE" value="added remove from receiver method, added Forward, Reply and Reply-all operations," />
+    <MESSAGE value="added listener on listView that will disable reply-all button when that action is not possible" />
+    <option name="LAST_COMMIT_MESSAGE" value="added listener on listView that will disable reply-all button when that action is not possible" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

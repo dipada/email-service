@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import prog.dipada.ClientApp;
 import prog.dipada.model.Client;
 import prog.dipada.model.Email;
@@ -225,22 +226,36 @@ public class MainWindowController {
         lstInboxEmail.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Email>() {
             @Override
             public void changed(ObservableValue<? extends Email> observableValue, Email email, Email t1) {
-                if (t1 != null && t1.getReceivers().size() < 2) {
-                    btnReplyAll.setDisable(true);
-                } else {
-                    btnReplyAll.setDisable(false);
-                }
+                btnReplyAll.setDisable(t1 != null && t1.getReceivers().size() < 2);
             }
         });
 
         lstOutboxEmail.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Email>() {
             @Override
             public void changed(ObservableValue<? extends Email> observableValue, Email email, Email t1) {
-                if (t1 != null && t1.getReceivers().size() < 2) {
-                    btnReplyAll.setDisable(true);
-                } else {
-                    btnReplyAll.setDisable(false);
-                }
+                btnReplyAll.setDisable(t1 != null && t1.getReceivers().size() < 2);
+            }
+        });
+
+        lstInboxEmail.setCellFactory(cell -> new ListCell<>(){
+            @Override
+            protected void updateItem(Email email, boolean empty) {
+                super.updateItem(email, empty);
+                if(email == null || empty)
+                    setText(null);
+                else
+                    setText("\u2198 From: "+ email.getSender() + " Subject: " + email.getSubject() + " Date: " + email.getDateToString());
+            }
+        });
+
+        lstOutboxEmail.setCellFactory(cell -> new ListCell<>(){
+            @Override
+            protected void updateItem(Email email, boolean empty) {
+                super.updateItem(email, empty);
+                if(email == null || empty)
+                    setText(null);
+                else
+                    setText("\u2199 Subject: " + email.getSubject() + " To: " + email.getReceivers() + " Date: " + email.getDateToString());
             }
         });
 
