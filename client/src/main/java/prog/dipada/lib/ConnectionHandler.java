@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -22,11 +23,11 @@ public class ConnectionHandler {
 
     private final String host;
     private final int port;
+    private final ClientApp clientApp;
     private Socket socket;
     private ObjectOutputStream outStream;
     private ObjectInputStream inStream;
     private String idConnection;
-    private final ClientApp clientApp;
 
     public ConnectionHandler(ClientApp clientApp) {
         this.clientApp = clientApp;
@@ -100,11 +101,15 @@ public class ConnectionHandler {
                 List<Email> inboxList = (List<Email>) inStream.readObject();
                 List<Email> outboxList = (List<Email>) inStream.readObject();
 
-                if (inboxList != null)
-                    clientApp.getClient().setInboxContent(inboxList);
+                Comparator<Email> emailComparator = Comparator.comparing(Email::getDate);
 
-                if (outboxList != null)
+                if (inboxList != null && outboxList != null) {
+                    inboxList.sort(emailComparator);
+                    outboxList.sort(emailComparator);
+
+                    clientApp.getClient().setInboxContent(inboxList);
                     clientApp.getClient().setOutboxContent(outboxList);
+                }
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
