@@ -1,13 +1,12 @@
 package prog.dipada.controller;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,6 +16,7 @@ import prog.dipada.ClientApp;
 import prog.dipada.model.Client;
 import prog.dipada.model.Email;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +72,90 @@ public class MainWindowController {
     private Stage primaryStage;
     private boolean stop;
 
+    public void onNewButtonClick(ActionEvent actionEvent) {
+        new Thread(() -> Platform.runLater(() -> {
+            Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(), "", null, "", new Date());
+            if (clientApp.showSendEmailWindow(email))
+                generatePopup("Email sent", "green");
+        })).start();
+    }
+
+    public void onDeleteButtonClick(MouseEvent mouseEvent) {
+        new Thread(() -> Platform.runLater(() -> {
+            if (selectedEmail != null) {
+                if (clientApp.getConnectionHandler().deleteEmail(selectedEmail)) {
+                    generatePopup("Email correctly deleted", "green");
+                    selectedEmail = null;
+                    updateDetailView(emptyEmail);
+                } else {
+                    generatePopup("Can't delete email server offline", "red");
+                }
+            } else {
+                generatePopup("Error deleting. Select an email", "red");
+            }
+        })).start();
+    }
+
+    public void onForwardButtonClick(ActionEvent actionEvent) {
+
+        new Thread(() -> Platform.runLater(() -> {
+            if (selectedEmail != null) {
+                System.out.println("FORWARD BUTTON CLICK");
+                Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(),
+                        "[FWD]: " + selectedEmail.getSubject(),
+                        null,
+                        "-------- Forwarded Message --------\n" +
+                                "Subject: " + selectedEmail.getSubject() + "\n" +
+                                "Date: " + selectedEmail.getDateToString() + "\n" +
+                                "From: " + selectedEmail.getSender() + "\n" +
+                                "To: " + selectedEmail.getReceivers() + "\n",
+                        new Date());
+                if (clientApp.showSendEmailWindow(email))
+                    generatePopup("Email forwarded", "green");
+            } else {
+                generatePopup("Can't forward. Select an email", "red");
+            }
+        })).start();
+    }
+
+    public void onReplyButtonClick(ActionEvent actionEvent) {
+        new Thread(() -> Platform.runLater(() -> {
+            if (selectedEmail != null) {
+                selectedEmail.setReceivers(Collections.singletonList(selectedEmail.getSender()));
+                Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(),
+                        "[RE]: " + selectedEmail.getSubject(),
+                        selectedEmail.getReceivers(),
+                        "On " + selectedEmail.getDateToString() + ", " +
+                                selectedEmail.getSender() + " wrote: \n" +
+                                selectedEmail.getMessageText(),
+                        new Date());
+                if (clientApp.showSendEmailWindow(email))
+                    generatePopup("Emails sent", "green");
+            } else {
+                generatePopup("Can't reply. Select an email", "red");
+            }
+        })).start();
+    }
+
+    public void onReplyAllButtonClick(ActionEvent actionEvent) {
+        new Thread(() -> Platform.runLater(() -> {
+            if (selectedEmail != null) {
+                selectedEmail.removeFromReceivers(clientApp.getClient().getUserEmailProperty().getValue());
+                Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(),
+                        "[RE]: " + selectedEmail.getSubject(),
+                        selectedEmail.getReceivers(),
+                        "On " + selectedEmail.getDateToString() + ", " +
+                                selectedEmail.getSender() + " wrote: \n" +
+                                selectedEmail.getMessageText(),
+                        new Date());
+                if (clientApp.showSendEmailWindow(email))
+                    generatePopup("Emails sent", "green");
+            } else {
+                generatePopup("Can't reply-all. Select an email", "red");
+            }
+        })).start();
+    }
+
     private void showSelectedEmailInbox(MouseEvent mouseEvent) {
         Email email = lstInboxEmail.getSelectionModel().getSelectedItem();
         selectedEmail = email;
@@ -84,32 +168,14 @@ public class MainWindowController {
         updateDetailView(email);
     }
 
-    public void onDeleteButtonClick(MouseEvent mouseEvent) {
-        if(selectedEmail != null) {
-            if (clientApp.getConnectionHandler().deleteEmail(selectedEmail)) {
-                generatePopup("Email correctly deleted", "green");
-                selectedEmail = null;
-                updateDetailView(emptyEmail);
-            } else {
-                generatePopup("Can't delete email server offline", "red");
-            }
-        }else{
-            generatePopup("Error deleting. Select an email", "red");
+    private void updateDetailView(Email email) {
+        if (email != null) {
+            lblFrom.setText("From: " + email.getSender());
+            lblTo.setText("To: " + String.join(", ", email.getReceivers()));
+            lblSubject.setText("Subject: " + email.getSubject());
+            txtEmailContent.setText(email.getMessageText());
+            lblDate.setText("Date: " + email.getDateToString());
         }
-
-        //model.deleteEmail(selectedEmail);
-        //selectedEmail = null;
-        //updateDetailView(emptyEmail);
-    }
-
-    private void updateDetailView(Email email){
-            if (email != null) {
-                lblFrom.setText("From: " + email.getSender());
-                lblTo.setText("To: " + String.join(", ", email.getReceivers()));
-                lblSubject.setText("Subject: " + email.getSubject());
-                txtEmailContent.setText(email.getMessageText());
-                lblDate.setText("Date: " + email.getDateToString());
-            }
     }
 
     /*
@@ -150,45 +216,6 @@ public class MainWindowController {
         lblUsername.textProperty().bind(clientApp.getClient().getUserEmailProperty());
 
         lstInboxEmail.itemsProperty().bind(clientApp.getClient().getInboxProperty());
-
-        /*
-        // Setta l'aspetto della singola cella
-        lstInboxEmail.setCellFactory(param->new ListCell<>(){
-            @Override
-            protected void updateItem(Email item, boolean empty){
-                super.updateItem(item, empty);
-
-                if(empty || item == null || item.getSender() == null || item.getMessageText() == null || item.getSubject() == null)
-                    setText("testo primo");
-                else
-                    setText("testo 2");
-            }
-        });
-        */
-
-        /*
-        lstInboxEmail.getSelectionModel().selectedItemProperty().addListener((observableValue, email, t1)->{
-            if(t1 != null){
-                selectedEmail = t1;
-                this.email = selectedEmail;
-            }
-        });
-        */
-
-        /*
-        lstInboxEmail.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-
-            System.out.println("\nListView selection changed from oldValue = "
-                    + oldValue + " \nto newValue = " + newValue + "\n");
-            //if(newValue != null) {
-                System.out.println("Imposto selected email a " + oldValue);
-                selectedEmail = newValue
-            //}
-        });
-        */
-
-
-
         lstOutboxEmail.itemsProperty().bind(clientApp.getClient().getOutboxProperty());
 
         lblTotInbox.textProperty().bind(clientApp.getClient().getInboxTotalNumProperty().asString());
@@ -223,17 +250,17 @@ public class MainWindowController {
         setLabelStatus();
         clientApp.getConnectionHandler().requestAll();
         while (!stop) {
-            // TODO show pop up nuova email
-            Platform.runLater(()->{
-                final int actEmails = clientApp.getClient().getInboxTotalNumProperty().getValue();
-                if(clientApp.getConnectionHandler().requestAll()){
+            Platform.runLater(() -> {
+                final int actEmailsInbox = clientApp.getClient().getInboxTotalNumProperty().getValue();
+                final int actEmailsOutbox = clientApp.getClient().getOutboxTotalNumProperty().getValue();
+                if (clientApp.getConnectionHandler().requestAll()) {
                     setStatusColor(Color.GREEN);
-                }else{
+                } else {
                     setStatusColor(Color.RED);
                 }
-                System.out.println("Ci sono " + actEmails + " emails");
-                System.out.println("Valore " + clientApp.getClient().getInboxTotalNumProperty().getValue() + " act " + actEmails);
-                if(clientApp.getClient().getInboxTotalNumProperty().getValue() > actEmails){
+                System.out.println("Ci sono " + actEmailsInbox + " emails");
+                System.out.println("Valore " + clientApp.getClient().getInboxTotalNumProperty().getValue() + " act " + actEmailsInbox);
+                if (clientApp.getClient().getInboxTotalNumProperty().getValue() > actEmailsInbox) {
                     generatePopup("New email received!", "blue");
                     lstInboxEmail.getSelectionModel().selectPrevious();
                 }
@@ -259,14 +286,6 @@ public class MainWindowController {
         CornerRadii corn = new CornerRadii(10);
         Background background = new Background(new BackgroundFill(color, corn, null));
         lblSerStatus.setBackground(background);
-    }
-
-
-    public void onNewButtonClick(ActionEvent actionEvent) {
-        System.out.println("NEW BUTTON CLICK");
-        Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(), "", null, "", new Date());
-        if (clientApp.showSendEmailWindow(email))
-            generatePopup("Email sent", "green");
     }
 
     private void generatePopup(String contentText, String color) {

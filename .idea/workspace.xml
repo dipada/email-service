@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added server style">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="update styles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/main_window_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/main_window_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/ServerMainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Email.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,8 +146,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.prog.dipada.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.prog.dipada.lib.FileManager" />
       </list>
     </recent_temporary>
@@ -172,14 +172,7 @@
       <workItem from="1652508570414" duration="32514000" />
       <workItem from="1652592585116" duration="24804000" />
       <workItem from="1652635425418" duration="5169000" />
-      <workItem from="1652679985185" duration="10079000" />
-    </task>
-    <task id="LOCAL-00013" summary="added basic connection feature">
-      <created>1651847827845</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1651847827845</updated>
+      <workItem from="1652679985185" duration="17724000" />
     </task>
     <task id="LOCAL-00014" summary="added server view and controller">
       <created>1651848230606</created>
@@ -517,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652687488453</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="update styles">
+      <created>1652691203232</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1652691203232</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +547,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="reversed conditions for clean code" />
     <MESSAGE value="first working exchange of emails between client and server. To complete operations and fix some bugs" />
     <MESSAGE value="update view" />
     <MESSAGE value="update view again" />
@@ -572,7 +571,8 @@
     <MESSAGE value="added main window style" />
     <MESSAGE value="added send window style, update login style," />
     <MESSAGE value="added server style" />
-    <option name="LAST_COMMIT_MESSAGE" value="added server style" />
+    <MESSAGE value="update styles" />
+    <option name="LAST_COMMIT_MESSAGE" value="update styles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

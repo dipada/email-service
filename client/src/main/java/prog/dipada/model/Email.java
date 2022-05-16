@@ -107,4 +107,9 @@ public class Email implements Serializable {
     public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
+
+    public void removeFromReceivers(String userEmail) {
+        System.out.println("Rimuovo " + userEmail);
+        receivers.remove(userEmail);
+    }
 }
