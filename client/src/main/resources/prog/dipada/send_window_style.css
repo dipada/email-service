@@ -28,15 +28,26 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-cursor: hand;
 }
 
-#emailField{
-    -fx-border-width: 2;
-    -fx-border-color: #e07a5fff;
-    -fx-cursor: hand;
+.text-area {
+    -fx-background-color: #f2cc8fff;
+    -fx-border-color: #f2cc8fff;
+    -fx-border-width: 1;
 }
 
-#emailField:hover{
+.text-area:hover , .text-field:hover{
     -fx-border-color: #81b29aff;
-    -fx-background-color: #f4f1deff;
+    -fx-border-width: 3;
+}
+
+.text-area:focused , .text-field:focused{
+    -fx-border-color: #e07a5fff;
+    -fx-border-width: 3;
+}
+
+.text-field{
+    -fx-border-width: 1;
+    -fx-border-color: #f2cc8fff;
+    -fx-cursor: hand;
 }
 
 /*
@@ -62,4 +73,3 @@ Palettes https://coolors.co/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
     -fx-background-color: #3d405bff;
     -fx-text-fill: #f4f1deff;
 }
-

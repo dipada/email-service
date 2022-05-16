@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="fixed exiting procedure">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added main window style">
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/send_window_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/login_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/login_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +25,7 @@
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -44,9 +49,11 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_directory_selection&quot;: &quot;/home/dan/IdeaProjects/dipadamail/server/src/main/java/dipada/server&quot;
+    &quot;last_directory_selection&quot;: &quot;/home/dan/IdeaProjects/dipadamail/server/src/main/java/dipada/server&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -162,35 +169,9 @@
       <workItem from="1652419078995" duration="35374000" />
       <workItem from="1652507474398" duration="206000" />
       <workItem from="1652508570414" duration="32514000" />
-      <workItem from="1652592585116" duration="3241000" />
-    </task>
-    <task id="LOCAL-00007" summary="Fixed module-info.java, added ClientApp main class">
-      <created>1651829398325</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1651829398325</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added login view and controller">
-      <created>1651829885871</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1651829885871</updated>
-    </task>
-    <task id="LOCAL-00009" summary="update start method for load 2 view, to fix: main layout just need appear later login layout is closed">
-      <created>1651830895310</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1651830895310</updated>
-    </task>
-    <task id="LOCAL-00010" summary="update showLogin method, now main layout start only when login screen is closed">
-      <created>1651830951611</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1651830951611</updated>
+      <workItem from="1652592585116" duration="24804000" />
+      <workItem from="1652635425418" duration="5169000" />
+      <workItem from="1652679985185" duration="2858000" />
     </task>
     <task id="LOCAL-00011" summary="Fixed exit by login screen. Now if exit by login screen application will be terminated">
       <created>1651831108631</created>
@@ -507,7 +488,35 @@
       <option name="project" value="LOCAL" />
       <updated>1652549034760</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="update view, added server status led">
+      <created>1652595964820</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1652595964821</updated>
+    </task>
+    <task id="LOCAL-00057" summary="added css to login window">
+      <created>1652607673386</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1652607673386</updated>
+    </task>
+    <task id="LOCAL-00058" summary="update login style, added main window style">
+      <created>1652614000928</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1652614000928</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added main window style">
+      <created>1652640516018</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1652640516018</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,10 +546,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added auth request and some log print" />
-    <MESSAGE value="update login controller, now user can correct wrong emails or not existing like accounts emails. ConnectionHandler operation adapted at new controller flow" />
-    <MESSAGE value="fix log print to the top of listview" />
-    <MESSAGE value="added end method for correct closing connection" />
     <MESSAGE value="fixed login and update instance method of clientApp" />
     <MESSAGE value="reversed condition for clean code" />
     <MESSAGE value="reversed conditions for clean code" />
@@ -562,7 +567,11 @@
     <MESSAGE value="fixed null selected email sending" />
     <MESSAGE value="introduced synchronized on method accessed by different client threads" />
     <MESSAGE value="fixed exiting procedure" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed exiting procedure" />
+    <MESSAGE value="update view, added server status led" />
+    <MESSAGE value="added css to login window" />
+    <MESSAGE value="update login style, added main window style" />
+    <MESSAGE value="added main window style" />
+    <option name="LAST_COMMIT_MESSAGE" value="added main window style" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
