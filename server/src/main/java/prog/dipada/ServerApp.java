@@ -23,6 +23,7 @@ public class ServerApp extends Application {
         URL serverUrl = ServerApp.class.getResource("ServerMainWindow.fxml");
         FXMLLoader serverLoader = new FXMLLoader(serverUrl);
         Scene scene = new Scene(serverLoader.load(), 900, 600);
+        scene.getStylesheets().add(getClass().getResource("Server_main_style.css").toExternalForm());
         System.out.println("Parte 2");
 
         ServerMainWindowController serverMainWindowController = serverLoader.getController();
@@ -35,7 +36,6 @@ public class ServerApp extends Application {
 
     @Override
     public void stop(){
-        System.out.println("Partito stop main server");
         server.end();
         try {
             server.join();

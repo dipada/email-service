@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added main window style">
-      <change afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/send_window_style.css" afterDir="false" />
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added send window style, update login style,">
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/prog/dipada/Server_main_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/lib/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/SendWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/login_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/login_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/prog/dipada/controller/ServerMainWindowController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
       <recent name="dipada.server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/main/resources/prog/dipada" />
       <recent name="$PROJECT_DIR$/server/src/main/resources/dipada/server" />
       <recent name="$PROJECT_DIR$/client/src/main/resources/dipada/client" />
     </key>
@@ -145,8 +146,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.prog.dipada.lib.FileManager" />
       </list>
     </recent_temporary>
@@ -171,14 +172,7 @@
       <workItem from="1652508570414" duration="32514000" />
       <workItem from="1652592585116" duration="24804000" />
       <workItem from="1652635425418" duration="5169000" />
-      <workItem from="1652679985185" duration="2858000" />
-    </task>
-    <task id="LOCAL-00011" summary="Fixed exit by login screen. Now if exit by login screen application will be terminated">
-      <created>1651831108631</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1651831108631</updated>
+      <workItem from="1652679985185" duration="7146000" />
     </task>
     <task id="LOCAL-00012" summary="Added alert for login view">
       <created>1651846451017</created>
@@ -516,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652640516018</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="added send window style, update login style,">
+      <created>1652683199985</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1652683199986</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +547,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed login and update instance method of clientApp" />
     <MESSAGE value="reversed condition for clean code" />
     <MESSAGE value="reversed conditions for clean code" />
     <MESSAGE value="first working exchange of emails between client and server. To complete operations and fix some bugs" />
@@ -571,7 +571,8 @@
     <MESSAGE value="added css to login window" />
     <MESSAGE value="update login style, added main window style" />
     <MESSAGE value="added main window style" />
-    <option name="LAST_COMMIT_MESSAGE" value="added main window style" />
+    <MESSAGE value="added send window style, update login style," />
+    <option name="LAST_COMMIT_MESSAGE" value="added send window style, update login style," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
