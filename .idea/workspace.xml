@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="cleaned up code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +67,7 @@
       <recent name="dipada.client.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.prog.dipada.ClientApp">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="prog.dipada.ServerApp" />
       <module name="server" />
@@ -169,14 +169,7 @@
       <workItem from="1652635425418" duration="5169000" />
       <workItem from="1652679985185" duration="26280000" />
       <workItem from="1652895320230" duration="656000" />
-      <workItem from="1652934621753" duration="14786000" />
-    </task>
-    <task id="LOCAL-00028" summary="added method to check if user exist">
-      <created>1651914586709</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1651914586709</updated>
+      <workItem from="1652934621753" duration="15194000" />
     </task>
     <task id="LOCAL-00029" summary="moved to same base package to align Email class signature for serialization/deserialization.&#10;Added custom serialVersionUID to email class.&#10;Fixed Email and List of Emails serialization/deserializaition process when sending/receiving obj on a socket stream">
       <created>1651937463571</created>
@@ -514,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652962467003</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="cleaned up code">
+      <created>1652962660838</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1652962660839</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

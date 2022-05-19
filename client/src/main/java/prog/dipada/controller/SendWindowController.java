@@ -1,7 +1,6 @@
 package prog.dipada.controller;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -59,7 +58,7 @@ public class SendWindowController {
         }
     }
 
-    public void onClickSendBtn(ActionEvent actionEvent) {
+    public void onClickSendBtn() {
         new Thread(() -> Platform.runLater(() -> {
             if (email != null) {
                 email.setReceivers(clearCommaReceiver(rcvTextField.getText()));
@@ -148,7 +147,7 @@ public class SendWindowController {
 
     private boolean validateEmail(String emailUserLogin) {
         // Compiles the given regular expression and attempts to match the given input against it.
-        return Pattern.matches("^[a-zA-Z][a-zA-Z0-9._][a-zA-Z0-9._][a-zA-Z0-9._]+@dipada.it", emailUserLogin);
+        return Pattern.matches("^[a-zA-Z][a-zA-Z\\d._][a-zA-Z\\d._][a-zA-Z\\d._]+@dipada.it", emailUserLogin);
     }
 
     private List<String> clearCommaReceiver(String text) {
