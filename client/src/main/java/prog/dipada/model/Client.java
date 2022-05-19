@@ -46,10 +46,13 @@ public class Client {
         this.outboxTotalNum.set(numEmail);
     }
 
+    // indirizzo email della casella postale
+    public StringProperty getUserEmailProperty(){
+        return userEmail;
+    }
     public void setUserEmailProperty(String userEmail){
         this.userEmail.set(userEmail);
     }
-
     public ListProperty<Email> getInboxProperty(){
       return inbox;
     }
@@ -69,7 +72,6 @@ public class Client {
     public void setOutboxContent(List<Email> outboxList) {
         for(Email em : outboxList){
             if(!outboxContent.contains(em)){
-                System.out.println("Aggiungo email " + em);
                 outboxContent.add(0,em);
             }
         }
@@ -80,36 +82,10 @@ public class Client {
         outboxContent.add(0,email);
     }
 
-    // indirizzo email della casella postale
-    public StringProperty getUserEmailProperty(){
-        return userEmail;
-    }
-
     public void deleteEmail(Email email){
         if(email.isSent())
             outboxContent.remove(email);
         else
             inboxContent.remove(email);
-    }
-
-    public void generateEmail(){
-        List<String> receivers = new ArrayList<>();
-        receivers.add("email@1");
-        receivers.add("email@2");
-
-
-        for(int i = 0; i < 1000; i++) {
-            Email e1 = new Email("jop", "oggetto " + i,receivers, "message body text " + i, new Date());
-            inboxContent.add(e1);
-        }
-
-
-        List<String> receivers2 = new ArrayList<>();
-        receivers.add("email@5");
-        receivers.add("email@6");
-        for(int i = 0; i < 1000; i++) {
-            Email e2 = new Email("dan", "oggetto uscita" + i,receivers, "message body uscita text " + i, new Date());
-            outboxContent.add(e2);
-        }
     }
 }
