@@ -4,13 +4,10 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Client {
-    private StringProperty userEmail;
+    private final StringProperty userEmail;
     private final ListProperty<Email> inbox;
     private final ObservableList<Email> inboxContent;
     private final ListProperty<Email> outbox;
@@ -19,11 +16,13 @@ public class Client {
     private final IntegerProperty outboxTotalNum;
     public Client(){
         this.userEmail = new SimpleStringProperty(null);
-        this.inboxContent = FXCollections.observableList(new LinkedList<>());
+        // Different threads access this resource
+        this.inboxContent = FXCollections.observableList(Collections.synchronizedList(new LinkedList<>()));
         this.inbox = new SimpleListProperty<>();
-        this.inbox.set(inboxContent); // setto il valore interno della property con una ObservableList
+        this.inbox.set(inboxContent);
 
-        this.outboxContent = FXCollections.observableList(new LinkedList<>());
+        // Different threads access this resource
+        this.outboxContent = FXCollections.observableList(Collections.synchronizedList(new LinkedList<>()));
         this.outbox = new SimpleListProperty<>();
         this.outbox.set(outboxContent);
 
@@ -48,9 +47,7 @@ public class Client {
     }
 
     public void setUserEmailProperty(String userEmail){
-        System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
         this.userEmail.set(userEmail);
-        System.out.println("Da client setto email ora vale " + this.userEmail + " " + userEmail);
     }
 
     public ListProperty<Email> getInboxProperty(){
@@ -61,17 +58,26 @@ public class Client {
     }
 
     public void setInboxContent(List<Email> inboxList){
-        inboxContent.setAll(inboxList);
+        for(Email em : inboxList){
+            if(!inboxContent.contains(em)){
+                inboxContent.add(0,em);
+            }
+        }
         setInboxTotalNumProperty(inboxContent.size());
     }
 
     public void setOutboxContent(List<Email> outboxList) {
-        outboxContent.setAll(outboxList);
+        for(Email em : outboxList){
+            if(!outboxContent.contains(em)){
+                System.out.println("Aggiungo email " + em);
+                outboxContent.add(0,em);
+            }
+        }
         setOutboxTotalNumProperty(outboxContent.size());
     }
 
     public void setOutboxContent(Email email){
-        outboxContent.add(email);
+        outboxContent.add(0,email);
     }
 
     // indirizzo email della casella postale
