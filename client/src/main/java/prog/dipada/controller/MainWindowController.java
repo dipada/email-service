@@ -11,7 +11,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import prog.dipada.ClientApp;
 import prog.dipada.model.Client;
 import prog.dipada.model.Email;
@@ -113,7 +112,8 @@ public class MainWindowController {
                                 "Subject: " + selectedEmail.getSubject() + "\n" +
                                 "Date: " + selectedEmail.getDateToString() + "\n" +
                                 "From: " + selectedEmail.getSender() + "\n" +
-                                "To: " + selectedEmail.getReceivers() + "\n",
+                                "To: " + selectedEmail.getReceivers() + "\n\n" +
+                                selectedEmail.getMessageText(),
                         new Date());
                 if (clientApp.showSendEmailWindow(email))
                     generatePopup("Email forwarded", "green");
@@ -146,6 +146,7 @@ public class MainWindowController {
         new Thread(() -> Platform.runLater(() -> {
             if (selectedEmail != null) {
                 selectedEmail.removeFromReceivers(clientApp.getClient().getUserEmailProperty().getValue());
+                selectedEmail.addToReceivers(selectedEmail.getSender());
                 Email email = new Email(clientApp.getClient().getUserEmailProperty().getValue(),
                         "[RE]: " + selectedEmail.getSubject(),
                         selectedEmail.getReceivers(),
@@ -237,22 +238,22 @@ public class MainWindowController {
             }
         });
 
-        lstInboxEmail.setCellFactory(cell -> new ListCell<>(){
+        lstInboxEmail.setCellFactory(cell -> new ListCell<>() {
             @Override
             protected void updateItem(Email email, boolean empty) {
                 super.updateItem(email, empty);
-                if(email == null || empty)
+                if (email == null || empty)
                     setText(null);
                 else
-                    setText("\u2198 From: "+ email.getSender() + " Subject: " + email.getSubject() + " Date: " + email.getDateToString());
+                    setText("\u2198 From: " + email.getSender() + " Subject: " + email.getSubject() + " Date: " + email.getDateToString());
             }
         });
 
-        lstOutboxEmail.setCellFactory(cell -> new ListCell<>(){
+        lstOutboxEmail.setCellFactory(cell -> new ListCell<>() {
             @Override
             protected void updateItem(Email email, boolean empty) {
                 super.updateItem(email, empty);
-                if(email == null || empty)
+                if (email == null || empty)
                     setText(null);
                 else
                     setText("\u2199 Subject: " + email.getSubject() + " To: " + email.getReceivers() + " Date: " + email.getDateToString());
@@ -289,7 +290,7 @@ public class MainWindowController {
 
     private void refreshList() {
         setLabelStatus();
-        clientApp.getConnectionHandler().requestAll();
+        //clientApp.getConnectionHandler().requestAll();
         while (!stop) {
             Platform.runLater(() -> {
                 final int actEmailsInbox = clientApp.getClient().getInboxTotalNumProperty().getValue();
