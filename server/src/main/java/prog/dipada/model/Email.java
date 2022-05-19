@@ -15,7 +15,7 @@ public class Email implements Serializable {
     private String subject;
     private List<String> receivers;
     private String messageText;
-    private final Date date; // TODO finire data
+    private final Date date;
     private boolean isSent;
 
     public Email(String sender, String subject, List<String> receivers, String messageText, Date date) {
@@ -31,7 +31,6 @@ public class Email implements Serializable {
     public int getId() {
         return id;
     }
-
     public String getSender() {
         return sender;
     }
@@ -56,12 +55,36 @@ public class Email implements Serializable {
         return (this.date == null) ? "" : formatDate(this.date);
     }
 
+    public boolean isSent() {
+        return isSent;
+    }
+
+    public void setIsSent(boolean sent) {
+        this.isSent = sent;
+    }
+
+    public void setReceivers(List<String> receivers) {
+        this.receivers = receivers;
+    }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
+    public void removeFromReceivers(String userEmail) {
+        receivers.remove(userEmail);
+    }
+    public void addToReceivers(String receiverToAdd) {
+        receivers.add(receiverToAdd);
+    }
     private String formatDate(Date date) {
         // Specificare pattern "dd/MM/yyyy" per cambiare il formato della data
         SimpleDateFormat dataFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return dataFormatter.format(date);
     }
-
     @Override
     public String toString() {
         return "Sender: " + sender + " - " + "Subject:" + subject + " - " + getDateToString();
@@ -79,32 +102,11 @@ public class Email implements Serializable {
 
         return hash;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Email email = (Email) obj;
         return getId() == email.getId();
-    }
-
-    public boolean isSent() {
-        return isSent;
-    }
-
-    public void setIsSent(boolean sent) {
-        this.isSent = sent;
-    }
-
-    public void setReceivers(List<String> receivers) {
-        this.receivers = receivers;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
     }
 }
