@@ -24,7 +24,6 @@ public class SendWindowController {
     private TextArea msgTxtArea;
     @FXML
     private Button sendBtn;
-
     private ClientApp clientApp;
     private Stage stage;
     private Email email;
@@ -42,7 +41,6 @@ public class SendWindowController {
 
         lblUserEmail.setText(this.email.getSender());
         rcvTextField.setText(formatReceiversComma(this.email.getReceivers()));
-        //rcvTextField.setText(this.email.getReceivers().toString());
         subjectTextField.setText(this.email.getSubject());
         msgTxtArea.setText(this.email.getMessageText());
     }
@@ -71,7 +69,6 @@ public class SendWindowController {
 
                 if (checkSendEmailFields(email)) {
 
-                    // TODO inviare email
                     System.out.println("SendWindow prima di SENDEMAIL ci sono>>");
                     for (String s : email.getReceivers()) {
                         System.out.println(s);

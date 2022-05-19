@@ -16,11 +16,6 @@ import java.util.List;
  */
 public class ConnectionHandler {
 
-    private final String YELLOW = "\u001B[33m";
-    private final String GREEN = "\u001B[32m";
-    private final String BLUE = "\u001B[34m";
-    private final String RESET = "\u001B[0m";
-
     private final String host;
     private final int port;
     private final ClientApp clientApp;
@@ -43,16 +38,19 @@ public class ConnectionHandler {
     }
 
     private void printColor(String text, String color) {
+        String RESET = "\u001B[0m";
         System.out.println(color + text + RESET);
     }
 
     private boolean startConnection() {
         boolean success = false;
         try {
+            String YELLOW = "\u001B[33m";
             printColor("Connecting to the server..", YELLOW);
             socket = new Socket(host, port);
             if (openStream()) {
                 success = true;
+                String GREEN = "\u001B[32m";
                 printColor("Connection successful", GREEN);
             }
         } catch (IOException e) {
@@ -90,6 +88,7 @@ public class ConnectionHandler {
 
     /***/
     public boolean requestAll() {
+        String BLUE = "\u001B[34m";
         printColor("Requested inbox and outbox", BLUE);
         if (startConnection()) {
             try {
@@ -180,14 +179,8 @@ public class ConnectionHandler {
                 ServerResponse serverResponse = (ServerResponse) inStream.readObject();
 
                 switch (serverResponse) {
-                    case OK -> {
-                        System.out.println("User " + emailUserLogin + " accettato dal server");
-                        success = "valid";
-                    }
-                    case USERNOTEXIST -> {
-                        System.out.println("User " + emailUserLogin + " non accettato dal server");
-                        success = "notvalid";
-                    }
+                    case OK -> success = "valid";
+                    case USERNOTEXIST -> success = "notvalid";
                 }
             } catch (NullPointerException | IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -205,22 +198,21 @@ public class ConnectionHandler {
             try {
                 outStream.writeObject(ServerRequest.DELETEEMAIL);
                 outStream.flush();
-                System.out.println("USER email da cancellare " + clientApp.getClient().getUserEmailProperty().getValue());
+                
                 outStream.writeObject(clientApp.getClient().getUserEmailProperty().getValue());
                 outStream.flush();
+                
                 outStream.writeObject(email);
                 outStream.flush();
 
                 ServerResponse serverResponse = (ServerResponse) inStream.readObject();
                 switch (serverResponse) {
                     case EMAILDELETED -> {
-                        System.out.println("Email canellcata connectionhandler");
                         clientApp.getClient().deleteEmail(email);
                         deleted = true;
                     }
                     case ERRDELETINGEM -> {
-                        System.out.println("Email non cancellata connection hadnler");
-                        deleted = false;
+                        // delete returns false
                     }
                 }
 
