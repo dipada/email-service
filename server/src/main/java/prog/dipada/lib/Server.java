@@ -5,12 +5,10 @@ import prog.dipada.model.Log;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.file.attribute.UserPrincipal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -20,17 +18,15 @@ import java.util.concurrent.TimeUnit;
  *
  * */
 public class Server extends Thread{
-    private final String YELLOW = "\u001B[33m";
-    private final String GREEN = "\u001B[32m";
-    private final String BLUE = "\u001B[34m";
-    private final String RESET = "\u001B[0m";
-    private Log log;
-    private ExecutorService exec;
-    private FileManager fileManager;
+    private final Log log;
+    private final ExecutorService exec;
+    private final FileManager fileManager;
     private final List<String> userList;
     private final int serverPort;
+    private boolean serverRunning;
+    private ServerSocket serverSocket;
     private Socket socket;
-    private int numThreadSession;
+    private final int numThreadSession;
 
     public Server(int serverPort){
         this.serverPort = serverPort;
@@ -38,6 +34,7 @@ public class Server extends Thread{
         exec = Executors.newFixedThreadPool(numThreadSession);
         this.userList = new LinkedList<>();
         this.fileManager = new FileManager();
+        this.serverRunning = true;
         log = new Log();
     }
 
@@ -55,7 +52,6 @@ public class Server extends Thread{
 
     @Override
     public void run() {
-        System.out.println("Server partito");
         log.printLogOnScreen("Server started");
 
         // When server starts add user dir if doesn't exist
@@ -65,12 +61,12 @@ public class Server extends Thread{
         }
         listen();
     }
-    ServerSocket serverSocket;
+
     public void listen(){
         try {
             serverSocket = new ServerSocket(serverPort);
             log.printLogOnScreen("Server ready for connections. Max simultaneous connections " + numThreadSession);
-            while(!Thread.interrupted()){
+            while(serverRunning){
                 socket = serverSocket.accept();
                 log.printLogOnScreen("New connection accepted");
                 exec.execute(new ServerThreadSession(socket,fileManager,log));
@@ -92,9 +88,11 @@ public class Server extends Thread{
 
 
     public void end() {
-        //log.printLogOnScreen("Start exiting...");
+        String BLUE = "\u001B[34m";
         printColor("Server start exiting...", BLUE);
+        String YELLOW = "\u001B[33m";
         printColor("->\tShutdown thread pool", YELLOW);
+        serverRunning = false;
         exec.shutdown();
         try{
             printColor("->\tClosing socket", YELLOW);
@@ -103,10 +101,12 @@ public class Server extends Thread{
             e.printStackTrace();
         }
         exec.shutdown();
+        String GREEN = "\u001B[32m";
         printColor("Server finish exit procedure", GREEN);
     }
 
     private void printColor(String text, String color) {
+        String RESET = "\u001B[0m";
         System.out.println(color + text + RESET);
     }
 }

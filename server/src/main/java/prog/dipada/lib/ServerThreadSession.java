@@ -11,10 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
  * This class represents single server task for the user session
- *
- * */
+ */
 public class ServerThreadSession implements Runnable {
     private final FileManager fileManager;
     private final Log log;
@@ -31,9 +29,8 @@ public class ServerThreadSession implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Sessione partita " + socket);
         log.printLogOnScreen("New session started " + socket.getInetAddress() + socket.getLocalAddress() + socket.getLocalSocketAddress());
-        // TODO apre stream - invia/riceve dati - chiude stream
+        // open streams -  send/receive data - close streams
         openStreams();
         // TODO qui operazioni
         if (inStream != null) {
@@ -42,7 +39,6 @@ public class ServerThreadSession implements Runnable {
 
                 switch (req) {
                     case AUTH -> {
-                        System.out.println("Server in auth aspetto email");
                         String userEmail = (String) inStream.readObject();
 
                         this.idSession = userEmail;
@@ -57,10 +53,8 @@ public class ServerThreadSession implements Runnable {
                             outStream.writeObject(ServerResponse.USERNOTEXIST);
                             outStream.flush();
                         }
-                        System.out.println("AUTH finito");
                     }
                     case SENDALL -> {
-                        System.out.println("Server in sendAll aspetto userEmail");
                         String userEmail = (String) inStream.readObject();
 
                         this.idSession = userEmail;
@@ -71,8 +65,6 @@ public class ServerThreadSession implements Runnable {
 
                         outStream.writeObject(fileManager.loadOutbox(userEmail));
                         outStream.flush();
-
-                        System.out.println("Send all finita");
                     }
                     case SENDEMAIL -> {
                         boolean usersExist = true;
@@ -104,47 +96,43 @@ public class ServerThreadSession implements Runnable {
                     }
 
                     case DELETEEMAIL -> {
-                        System.out.println("Server legge email da cancellare");
                         String user = (String) inStream.readObject();
                         Email emailToDelete = (Email) inStream.readObject();
-                        fileManager.deleteEmail(emailToDelete,user);
+                        fileManager.deleteEmail(emailToDelete, user);
                         outStream.writeObject(ServerResponse.EMAILDELETED);
                         outStream.flush();
                     }
                 }
             } catch (IOException ignore) {
                 // User close streams
-                System.out.println("SESSION eccezione lettura object");
-                //e.printStackTrace();
             } catch (ClassNotFoundException e) {
-                System.out.println("Session eccezione class not found");
+                System.err.println("Session exception class not found");
                 e.printStackTrace();
+            } finally {
+                log.printLogOnScreen(idSession + " disconnected");
+                closeStreams();
             }
-
-            System.out.println("server chiude gli stream");
-            // TODO chiude stream
-            log.printLogOnScreen(idSession + " disconnected");
-            closeStreams();
         }
+        closeStreams();
     }
 
-    private void openStreams(){
+    private void openStreams() {
         try {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             outStream.flush();
             inStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            System.out.println("SESSIONE ECCEZIONE APERTURA STREAM");
+            System.err.println("Session exception opening streams");
             //e.printStackTrace();
         }
     }
 
-    private void closeStreams(){
+    private void closeStreams() {
         try {
             outStream.close();
             inStream.close();
         } catch (IOException e) {
-            System.out.println("SESSIONE CHIUSURA STREAM ECCEZIONE");
+            System.err.println("Session exception closing streams");
             e.printStackTrace();
         }
     }

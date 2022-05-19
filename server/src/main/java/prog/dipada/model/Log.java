@@ -5,13 +5,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.input.DataFormat;
-
-import java.security.PublicKey;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -22,8 +16,8 @@ import java.util.LinkedList;
  * */
 public class Log {
 
-    private ListProperty<String> log;
-    private ObservableList<String> logContent; // per binding con listView della view del server
+    private final ListProperty<String> log;
+    private final ObservableList<String> logContent; // per binding con listView della view del server
 
     public Log(){
         this.logContent = FXCollections.observableList(new LinkedList<>());

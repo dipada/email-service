@@ -16,42 +16,19 @@ import java.util.*;
  * */
 public class FileManager {
 
-    public static void main(String[] args) {
-        Email e1 = new Email("daniele@dipada.it", "oggetto 1", List.of("giovanni@dipada.it", "peppino@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e2 = new Email("giovanni@dipada.it", "oggetto 2", List.of("daniele@dipada.it", "peppino@dipada.it"),"ciao a tutti da dan", new Date());
-        Email e3 = new Email("peppino@dipada.it", "oggetto 3", List.of("daniele@dipada.it", "giovanni@dipada.it"),"ciao a tutti da dan", new Date());
-
-
-        FileManager fileManager = new FileManager();
-
-        fileManager.addUserDirs("daniele@dipada.it");
-        fileManager.addUserDirs("giovanni@dipada.it");
-
-
-        e1 = fileManager.save(e1);
-        e2 = fileManager.save(e2);
-        e3 = fileManager.save(e3);
-
-
-        //deletgeEmail(e1,"dan@dipada.it");
-        //deletgeEmail(e2,"dan@dipada.it");
-    }
     private final String filePath;
     public FileManager(){
         this.filePath = String.valueOf(getUserFileDirectory(""));
-        System.out.println("File path " + filePath);
     }
 
-    public boolean addUserDirs(String userEmail){
+    public void addUserDirs(String userEmail){
         File in = new File(filePath + "/" + userEmail + "/in");
         File out = new File(filePath + "/" + userEmail + "/out");
 
         if(!checkUserExist(userEmail)){
-            System.out.println("Creo le cartelle per " + userEmail);
-            return createDirectory(in) && createDirectory(out);
-        }else{
-            System.out.println("Utente già esistente");
-            return true;
+            if (createDirectory(in)) {
+                createDirectory(out);
+            }
         }
     }
 
@@ -63,24 +40,18 @@ public class FileManager {
      * @param email email to save
      * */
     public synchronized Email save(Email email){
-        Email newEmail = null;
-
         try{
             String path = filePath + "/" + email.getSender() + "/out";
-            //String path = String.valueOf(getUserFileDirectory("/" + email.getSender() + "/out"));
             File f = new File(path);
             if(!f.exists())
                 createDirectory(f);
 
             FileOutputStream fout;
-            //newEmail = new Email(email.getSender(), email.getSubject(), email.getReceivers(), email.getMessageText(), email.getDate());
-            //newEmail.setIsSent(true);
             email.setIsSent(true);
 
             fout = new FileOutputStream(path + "/" + email.getId());
             ObjectOutputStream objOut = new ObjectOutputStream(fout);
 
-            //objOut.writeObject(newEmail);
             objOut.writeObject(email);
             objOut.flush();
 
@@ -90,7 +61,6 @@ public class FileManager {
             List<String> receivers = email.getReceivers();
             for(String rcv : receivers){
                 path = filePath + "/" + rcv + "/in";
-                //path = String.valueOf(getUserFileDirectory("/" + rcv + "/in"));
                 f = new File(path);
                 if(!f.exists())
                     createDirectory(f);
@@ -116,15 +86,10 @@ public class FileManager {
             e.printStackTrace();
         }
 
-        //System.out.println(path);
-        //String path2 = "/home/dan/IdeaProjects/dipadamail/server/src/main/resources/dipada/server";
-        //System.out.println(path2);
         email.setIsSent(true);
         return email;
-        //return newEmail;
     }
 
-    // TODO caricare email in arrivo
     /**
      *
      * This method retrive inbox user emails and return a list of emails
@@ -136,28 +101,25 @@ public class FileManager {
         List<Email> inbox = new ArrayList<>();
         try {
             File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/in/")));
-            ObjectInputStream oi = null;
-            FileInputStream fis = null;
+
             if(userDir.listFiles() == null)
                 return null;
             for (File f : Objects.requireNonNull(userDir.listFiles())) {
+                ObjectInputStream oi;
+                FileInputStream fis;
                 fis = new FileInputStream(f);
                 oi = new ObjectInputStream(fis);
                 inbox.add((Email) oi.readObject());
                 oi.close();
                 fis.close();
             }
-            for(Email e : inbox)
-                System.out.println(user + " INBOX: " + e);
         } catch (ClassNotFoundException | IOException | NullPointerException e) {
             e.printStackTrace();
             inbox = null;
-        } finally {
         }
         return inbox;
     }
 
-    // TODO caricare email in uscita
     /**
      *
      * This method retrive outbox user emails and return a list of emails
@@ -168,8 +130,8 @@ public class FileManager {
         List<Email> outbox = new ArrayList<>();
         try {
             File userDir = new File(String.valueOf(getUserFileDirectory("/" + user + "/out/")));
-            ObjectInputStream oi = null;
-            FileInputStream fis = null;
+            ObjectInputStream oi;
+            FileInputStream fis;
 
             for(File f : Objects.requireNonNull(userDir.listFiles())){
                 fis = new FileInputStream(f);
@@ -178,30 +140,22 @@ public class FileManager {
                 oi.close();
                 fis.close();
             }
-            //for(Email e : outbox)
-              //  System.out.println(user + " OUTBOX: " + e);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return outbox;
     }
 
-    //TODO delete email
     public synchronized void deleteEmail(Email email, String user){
         if(email != null) {
             try {
-                System.out.println("Email inviata: " + email.isSent());
                 if (email.isSent()) {
-                    System.out.println("TRUE");
-                    System.out.println(getUserFileDirectory("/" + user + "/out/" + email.getId()));
                     Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/out/" + email.getId()))));
                 } else {
-                    System.out.println("FALSE");
-                    System.out.println(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
                     Files.delete(Path.of(String.valueOf(getUserFileDirectory("/" + user + "/in/" + email.getId()))));
                 }
             } catch (IOException e) {
-                System.out.println("Filemanager files.delete exception");
+                System.out.println("Filemanager files delete exception");
                 e.printStackTrace();
             }
         }
@@ -210,8 +164,6 @@ public class FileManager {
     private boolean createDirectory(File f) {
         return f.mkdirs();
     }
-
-    // TODO creare cartella user
 
     private File getUserFileDirectory(String subPath) {
         String path = new File("").getAbsolutePath() + "/server/src/main/resources/prog/dipada/file" + subPath;
