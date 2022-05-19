@@ -7,12 +7,11 @@ import prog.dipada.model.Log;
 
 public class ServerMainWindowController{
 
-    private Log log;
     @FXML
     private ListView<String> loglst;
 
     public void initMainViewController(Server server){
-        this.log = server.getLog();
+        Log log = server.getLog();
         loglst.itemsProperty().bind(log.getLogProperty());
     }
 }
