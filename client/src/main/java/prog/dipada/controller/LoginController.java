@@ -23,24 +23,25 @@ public class LoginController {
     public void onLoginButtonClick() {
         final String emailDomain = "@dipada.it";
 
-        // campo email vuoto
+        // empty email field
         if(emailField.getText().length() == 0 || emailField == null) {
-            generateErrorAlert("Error login", "Email field empty", "Insert an email");
+            generateErrorAlert("Email field empty", "Insert an email");
             return;
         }
 
         String emailUserLogin = emailField.getText() + emailDomain;
 
-        // l'email non rispetta il pattern
+        // email doesn't respect pattern
         if(!validateEmail(emailUserLogin)){
-            generateErrorAlert("Error login", emailUserLogin + " is invalid", "Valid email:\n" +
-                    "- should begin with a letter\n" +
-                    "- length need to be almost 4 character\n" +
-                    "- can contain only this special character . _");
+            generateErrorAlert(emailUserLogin + " is invalid", """
+                    Valid email:
+                    - should begin with a letter
+                    - length need to be almost 4 character
+                    - can contain only this special character . _""");
             return;
         }
 
-        // Email non vuota e rispetta il pattern
+        // email valid and not empty
         String isUserAccept = clientApp.getConnectionHandler().authUser(emailUserLogin);
 
         if(isUserAccept != null){
@@ -51,22 +52,22 @@ public class LoginController {
                 stage.close();
             }else{
                 // user doesn't exist
-                generateErrorAlert("Error login", emailUserLogin + " invalid account", "Account does not exist");
+                generateErrorAlert(emailUserLogin + " invalid account", "Account does not exist");
             }
         }else {
             // server offline
-            generateErrorAlert("Error login", "Server offline", "Server does not respond");
+            generateErrorAlert("Server offline", "Server does not respond");
         }
     }
 
     private boolean validateEmail(String emailUserLogin) {
         // Compiles the given regular expression and attempts to match the given input against it.
-        return Pattern.matches("^[a-zA-Z][a-zA-Z0-9._][a-zA-Z0-9._][a-zA-Z0-9._]+@dipada.it",emailUserLogin);
+        return Pattern.matches("^[a-zA-Z][a-zA-Z\\d._][a-zA-Z\\d._][a-zA-Z\\d._]+@dipada.it",emailUserLogin);
     }
 
-    private void generateErrorAlert(String title, String headerText, String contentText){
+    private void generateErrorAlert(String headerText, String contentText){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Error login");
 
         alert.initOwner(stage);
         alert.setHeaderText(headerText);

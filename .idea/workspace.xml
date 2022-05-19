@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="added listener on listView that will disable reply-all button when that action is not possible">
+    <list default="true" id="9ec28269-8a2b-4023-b7d7-164d3ccd21d3" name="Changes" comment="cleaned up code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/controller/SendWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/prog/dipada/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/prog/dipada/MainWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,6 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "18",
@@ -144,8 +141,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.prog.dipada.ClientApp" />
         <item itemvalue="Application.prog.dipada.lib.FileManager" />
       </list>
     </recent_temporary>
@@ -170,70 +167,9 @@
       <workItem from="1652508570414" duration="32514000" />
       <workItem from="1652592585116" duration="24804000" />
       <workItem from="1652635425418" duration="5169000" />
-      <workItem from="1652679985185" duration="26201000" />
-    </task>
-    <task id="LOCAL-00019" summary="update email class">
-      <created>1651849703199</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1651849703199</updated>
-    </task>
-    <task id="LOCAL-00020" summary="added Server, ServerThreadSession for handle multiple connections. All works. Clients can send a file and server can read it. To fix: when server fx Application terminate server have to shutdown threadPool. To complete: add operations and file handler for save email received/sended">
-      <created>1651851685846</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1651851685846</updated>
-    </task>
-    <task id="LOCAL-00021" summary="added simply code for test communication with 2-3 clients and server.">
-      <created>1651851731788</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1651851731788</updated>
-    </task>
-    <task id="LOCAL-00022" summary="moved Server and ServerThreadSession to lib package">
-      <created>1651854067369</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1651854067369</updated>
-    </task>
-    <task id="LOCAL-00023" summary="added file manager that save sent email according hierarchy">
-      <created>1651856628489</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1651856628489</updated>
-    </task>
-    <task id="LOCAL-00024" summary="update file manager with loading inbox/outbox methods">
-      <created>1651857580820</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1651857580820</updated>
-    </task>
-    <task id="LOCAL-00025" summary="added Client model class">
-      <created>1651899734837</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1651899734837</updated>
-    </task>
-    <task id="LOCAL-00026" summary="update main window controller">
-      <created>1651900017438</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1651900017438</updated>
-    </task>
-    <task id="LOCAL-00027" summary="added method for validate email">
-      <created>1651906477539</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1651906477539</updated>
+      <workItem from="1652679985185" duration="26280000" />
+      <workItem from="1652895320230" duration="656000" />
+      <workItem from="1652934621753" duration="14786000" />
     </task>
     <task id="LOCAL-00028" summary="added method to check if user exist">
       <created>1651914586709</created>
@@ -515,7 +451,70 @@
       <option name="project" value="LOCAL" />
       <updated>1652712880510</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="added custom cell factory on listview">
+      <created>1652718072379</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1652718072379</updated>
+    </task>
+    <task id="LOCAL-00069" summary="email Class Complete">
+      <created>1652946524800</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1652946524800</updated>
+    </task>
+    <task id="LOCAL-00070" summary="update setInbox and Outbox Content method. Now will be added only single email on top of list.&#10;Added synchronized inbox and outbox lists, there are multiple access by differents client threads">
+      <created>1652948731903</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1652948731903</updated>
+    </task>
+    <task id="LOCAL-00071" summary="fixed replyAll event. Now email is correctly sent too to the sender.&#10;Added custom cell factory to inbox and outbox lists.">
+      <created>1652948861530</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1652948861530</updated>
+    </task>
+    <task id="LOCAL-00072" summary="ServerMainWindowController complete">
+      <created>1652948900520</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1652948900520</updated>
+    </task>
+    <task id="LOCAL-00073" summary="email class alignment between server and client">
+      <created>1652960725118</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1652960725119</updated>
+    </task>
+    <task id="LOCAL-00074" summary="ClientApp complete">
+      <created>1652961561326</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1652961561326</updated>
+    </task>
+    <task id="LOCAL-00075" summary="cleaned up code">
+      <created>1652961856637</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1652961856637</updated>
+    </task>
+    <task id="LOCAL-00076" summary="cleaned up code">
+      <created>1652962467003</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1652962467003</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,14 +544,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update view and controller with count email label" />
-    <MESSAGE value="added sendWindow view" />
-    <MESSAGE value="added Send view controller" />
-    <MESSAGE value="added method for showup sendWindow" />
-    <MESSAGE value="added clearComma by receiver string, checking for entire form and alert to display. To improve readability of alert msg" />
-    <MESSAGE value="improved readability" />
-    <MESSAGE value="fixed exit, added some colors for print" />
-    <MESSAGE value="align email classes" />
     <MESSAGE value="added popup notification for sent email, update delete operation, update view with wrapped text" />
     <MESSAGE value="align email classes version" />
     <MESSAGE value="fixed null selected email sending" />
@@ -570,7 +561,15 @@
     <MESSAGE value="added order on received email list" />
     <MESSAGE value="added remove from receiver method, added Forward, Reply and Reply-all operations," />
     <MESSAGE value="added listener on listView that will disable reply-all button when that action is not possible" />
-    <option name="LAST_COMMIT_MESSAGE" value="added listener on listView that will disable reply-all button when that action is not possible" />
+    <MESSAGE value="added custom cell factory on listview" />
+    <MESSAGE value="email Class Complete" />
+    <MESSAGE value="update setInbox and Outbox Content method. Now will be added only single email on top of list.&#10;Added synchronized inbox and outbox lists, there are multiple access by differents client threads" />
+    <MESSAGE value="fixed replyAll event. Now email is correctly sent too to the sender.&#10;Added custom cell factory to inbox and outbox lists." />
+    <MESSAGE value="ServerMainWindowController complete" />
+    <MESSAGE value="email class alignment between server and client" />
+    <MESSAGE value="ClientApp complete" />
+    <MESSAGE value="cleaned up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

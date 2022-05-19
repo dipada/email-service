@@ -33,7 +33,6 @@ public class SendWindowController {
     public void setSendWindowController(ClientApp clientApp, Stage stage) {
         this.clientApp = clientApp;
         this.stage = stage;
-        System.out.println("setSendWindowController");
     }
 
     public void setEmail(Email email) {
