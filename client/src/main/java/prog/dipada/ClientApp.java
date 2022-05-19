@@ -2,12 +2,10 @@ package prog.dipada;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import prog.dipada.controller.LoginController;
 import prog.dipada.controller.MainWindowController;
 import prog.dipada.controller.SendWindowController;
@@ -17,31 +15,18 @@ import prog.dipada.model.Email;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class ClientApp extends Application {
-    private Client client;
-    private ConnectionHandler connectionHandler;
+    private final Client client;
+    private final ConnectionHandler connectionHandler;
     private MainWindowController mainWindowController;
-    private Thread mainWinT;
 
 
     public ClientApp() {
         connectionHandler = new ConnectionHandler(this);
         client = new Client();
     }
-    /*
-        @Override
-        public void stop(){
-            System.out.println("Preparing to application exit...");
-            connection.end();
-            try {
-                connThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Exiting now");
-        }
-    */
 
     public ConnectionHandler getConnectionHandler() {
         return connectionHandler;
@@ -53,28 +38,9 @@ public class ClientApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        //URL clientUrl = ClientApp.class.getResource("MainWindow.fxml");
-        //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
-        //Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-        URL clientUrl = ClientApp.class.getResource("Login.fxml");
 
-        //FXMLLoader fxmlLoader = new FXMLLoader(clientUrl);
-        //System.out.println("qua");
-        //Scene scene = new Scene(fxmlLoader.load(), 300, 100); // TODO spec dimensioni
-
-        //stage.setTitle("dipadamail");
-        //stage.setScene(scene);
-        //stage.show();
-
-        //System.out.println("Main: conn è " + connection);
         showLoginLayout(stage);
-
-        //System.out.println("DOPO login " + connection);
-        //System.out.println("Client da main: " + client.getUserEmailProperty());
-        //mainWinT = new Thread(()->showMainWindow(stage));
-        //mainWinT.start();
         showMainWindow(stage);
-
     }
 
     @Override
@@ -84,17 +50,15 @@ public class ClientApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Starting application exiting...");
+        String YELLOW = "\u001B[33m";
+        String RESET = "\u001B[0m";
+        System.out.println(YELLOW + "Starting application exiting..." + RESET);
         if(mainWindowController != null) {
             mainWindowController.setStop(true);
-            /*try {
-                mainWinT.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
         System.out.println("->\tapplication exit successful\n");
-        System.out.println("Exit completed.");
+        String GREEN = "\u001B[32m";
+        System.out.println(GREEN + "Exit completed." + RESET);
         System.exit(0);
     }
 
@@ -106,19 +70,18 @@ public class ClientApp extends Application {
         FXMLLoader loginLoader = new FXMLLoader(loginUrl);
         try {
             Scene scene = new Scene(loginLoader.load(), 300, 100);
-            scene.getStylesheets().add(getClass().getResource("login_style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("login_style.css")).toExternalForm());
             Stage stage = new Stage();
             stage.setTitle("Login");
             stage.initModality(Modality.WINDOW_MODAL); // blocca l'owner stage (primarystage) di questo stage finchè questo non finisce
             stage.initOwner(primaryStage);
             stage.setScene(scene);
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent windowEvent) {
-                    Platform.exit(); // Causes the JavaFX application to terminare. javaDoc
-                }
+
+            // window event Handler
+            stage.setOnCloseRequest(windowEvent -> {
+                Platform.exit(); // Causes the JavaFX application to terminare. javaDoc
             });
-            System.out.println("youp");
+
             LoginController loginController = loginLoader.getController();
             loginController.setLoginController(this, stage);
             stage.showAndWait();
@@ -134,10 +97,10 @@ public class ClientApp extends Application {
                 URL mainWindowsUrl = ClientApp.class.getResource("MainWindow.fxml");
                 FXMLLoader mainWindowLoader = new FXMLLoader(mainWindowsUrl);
                 Scene scene = new Scene(mainWindowLoader.load(), 900, 700);
-                scene.getStylesheets().add(getClass().getResource("main_window_style.css").toExternalForm());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("main_window_style.css")).toExternalForm());
                 mainWindowController = mainWindowLoader.getController();
                 mainWindowController.setMainWindowController(this,primaryStage);
-                primaryStage.setTitle("dipadamail");
+                primaryStage.setTitle(client.getUserEmailProperty().getValue() + " - dipadamail");
                 primaryStage.setScene(scene);
                 primaryStage.show();
 
@@ -154,7 +117,7 @@ public class ClientApp extends Application {
             FXMLLoader sendWindowLoader = new FXMLLoader(sendWindowUrl);
             Stage stage = new Stage();
             Scene scene = new Scene(sendWindowLoader.load(), 600, 400);
-            scene.getStylesheets().add(getClass().getResource("send_window_style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("send_window_style.css")).toExternalForm());
             stage.setTitle("Write - dipadamail");
             SendWindowController sendWindowController = sendWindowLoader.getController();
             sendWindowController.setSendWindowController(this, stage);
