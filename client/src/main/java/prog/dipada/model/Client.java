@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 
 import java.util.*;
 
+
+/**
+ * This class represent data of entire client
+ */
 public class Client {
     private final StringProperty userEmail;
     private final ListProperty<Email> inbox;

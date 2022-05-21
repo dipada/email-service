@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 /**
  *
  * This class represent server handler
- * It create thread pool, take and dispatch new connection to the server
- * Number of threads active in thread pool depends on machine
+ * It creates thread pool, take and dispatch new connection to the server
+ * Number of active threads in thread pool depends on machine
  *
  * */
 public class Server extends Thread{
@@ -44,6 +44,9 @@ public class Server extends Thread{
 
     public List<String> getUserList(){return userList;}
 
+    /*
+     List of "registered users".
+     */
     public void setUsersList(){
         userList.add("daniele@dipada.it");
         userList.add("giovanni@dipada.it");
@@ -54,7 +57,7 @@ public class Server extends Thread{
     public void run() {
         log.printLogOnScreen("Server started");
 
-        // When server starts add user dir if doesn't exist
+        // When server starts add user dir if it doesn't exist
         for (String s : getUserList()){
             System.out.println(s);
             fileManager.addUserDirs(s);
