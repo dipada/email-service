@@ -67,18 +67,13 @@ public class SendWindowController {
 
                 if (checkSendEmailFields(email)) {
 
-                    System.out.println("SendWindow prima di SENDEMAIL ci sono>>");
-                    for (String s : email.getReceivers()) {
-                        System.out.println(s);
-                    }
-
                     switch (clientApp.getConnectionHandler().sendEmail(email)) {
                         case EMAILSENT -> {
-                            System.out.println("Email inviata");
                             emailSent = true;
                             stage.close();
                         }
                         case USERNOTEXIST -> {
+                            // email not sent. Server sent back nonexistent users
                             StringBuilder errContentText = new StringBuilder();
                             for (String userNonexistent : email.getReceivers()) {
                                 errContentText.append(userNonexistent).append("\n");
@@ -150,6 +145,14 @@ public class SendWindowController {
         return Pattern.matches("^[a-zA-Z][a-zA-Z\\d._][a-zA-Z\\d._][a-zA-Z\\d._]+@dipada.it", emailUserLogin);
     }
 
+    /**
+     *
+     * This method scan all passed text and find a matching pattern.
+     *
+     *
+     * @param text input text to scan
+     * @return list of receivers
+     */
     private List<String> clearCommaReceiver(String text) {
         List<String> receivers = new LinkedList<>();
 
@@ -158,13 +161,8 @@ public class SendWindowController {
         //dan,att ,ssta, dadas
         while (matcher.find()) {
             String group = matcher.group();
-            System.out.println("Trovato: " + group);
             receivers.add(group);
         }
-
-        System.out.println("Lunghezza lista " + receivers.size() + " Stampo: ");
-        for (String s : receivers)
-            System.out.println("\n" + s);
         return receivers;
     }
 

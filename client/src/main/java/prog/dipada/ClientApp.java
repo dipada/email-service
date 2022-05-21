@@ -126,7 +126,7 @@ public class ClientApp extends Application {
             stage.showAndWait();
             return sendWindowController.isEmailSent();
         } catch (IOException e) {
-            System.out.println("Send email window loader error");
+            System.err.println("Send email window loader error");
             e.printStackTrace();
             return false;
         }

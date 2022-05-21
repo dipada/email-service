@@ -125,7 +125,7 @@ public class ServerThreadSession implements Runnable {
             inStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             System.err.println("Session exception opening streams");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
