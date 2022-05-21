@@ -47,7 +47,7 @@ public class ServerThreadSession implements Runnable {
                                     + " try connect to the server. Connection accepted");
                             outStream.writeObject(ServerResponse.OK); // user exist and is accepted
                             outStream.flush();
-                        } else {
+                        } else {    // users doesn't exist - refuse connection
                             log.printLogOnScreen("USER: " + userEmail
                                     + " try connect to the server. Connection refused, unknown user");
                             outStream.writeObject(ServerResponse.USERNOTEXIST);
@@ -98,9 +98,11 @@ public class ServerThreadSession implements Runnable {
                     case DELETEEMAIL -> {
                         String user = (String) inStream.readObject();
                         Email emailToDelete = (Email) inStream.readObject();
+                        this.idSession = user;
                         fileManager.deleteEmail(emailToDelete, user);
                         outStream.writeObject(ServerResponse.EMAILDELETED);
                         outStream.flush();
+                        log.printLogOnScreen("USER: " + idSession + " deleted an email correctly");
                     }
                 }
             } catch (IOException ignore) {
